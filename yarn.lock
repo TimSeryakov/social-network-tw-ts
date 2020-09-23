@@ -10349,6 +10349,14 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
+tailwindcss-pixel-dimensions@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/tailwindcss-pixel-dimensions/-/tailwindcss-pixel-dimensions-1.0.2.tgz#bab4064fb70a221c4646b448f6c52457ad1ae64b"
+  integrity sha512-EkU8hysj71Ol1t2q6PhYXjXgrPQkQy4n3RoMEfWhB5ZGdA56umVlYwmIm8lR5N1I0HfjNrTm30DCni2YCgeVBQ==
+  dependencies:
+    lodash "^4.17.19"
+    postcss-selector-parser "^6.0.2"
+
 tailwindcss@^1.7.1:
   version "1.8.10"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.8.10.tgz#945ef151c401c04a1c95e6a6bc747387a8d1b9dc"
