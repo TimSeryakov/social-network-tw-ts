@@ -20,7 +20,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "j-primary": "#4466FF", // brand blue
+        "theme-text": "#7b828b", // text
+        "theme-bg-primary": "#20252c", // bg main
+        "theme-bg-secondary": "#262b32", // bg secondary
+        "theme-border": "#161a20", // borders
+        "theme-accent": "#bd93f9", // accent
+        "theme-accent-alternative": "#4e4ad8", // accent
+        "theme-placeholder": "#1b1f25", // placeholder
+        "theme-badge": "#2b3037", // BETA badge
       },
     },
     fontFamily: {

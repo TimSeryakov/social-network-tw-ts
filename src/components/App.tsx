@@ -10,11 +10,11 @@ import {Profile} from "./Profile/Profile";
 
 const App: FC = () => (
     <BrowserRouter>
-      <div className="container h-full min-h-screen flex flex-col bg-blue-100">
+      <div className="container shadow-2xl h-full min-h-screen flex flex-col bg-blue-100">
 
         <Header/>
 
-        <div className="flex bg-red-400 flex-auto">
+        <div className="flex flex-auto">
           <Sidebar/>
 
           <main className="flex-grow bg-gray-500">
