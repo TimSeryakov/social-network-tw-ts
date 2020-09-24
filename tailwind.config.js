@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   purge: {
     // Filenames to scan for classes
@@ -19,19 +21,11 @@ module.exports = {
     extend: {
       colors: {
         "j-primary": "#4466FF", // brand blue
-        "j-secondary": "#4A6FFF", // brand light blue
-        "j-hover": "#4161E3", // button and link hover
-        "j-gray-50": "#FAFBFF", // bg in few section
-        "j-gray-75": "#F0F1F5", // line in about section
-        "j-gray-100": "#F0F1F5", // focus and hover background links in mobile menu
-        "j-gray-200": "#676A7A", // text
-        "j-gray-800": "#454752", // hero text
-        "j-gray-600": "#444752", // other titles
-        "j-red-400": "#FF7FA3", // text
-        "j-red-200": "#FFF5F8", // bg
-        "j-green-400": "#61CF9F", // text
-        "j-green-200": "#EDFBF8", // bg
       },
+    },
+    fontFamily: {
+      sans: ["Play", ...defaultTheme.fontFamily.sans],
+      "ubuntu": ["Ubuntu", ...defaultTheme.fontFamily.sans],
     },
   },
   variants: {},
@@ -39,15 +33,15 @@ module.exports = {
     container: false,
   },
   plugins: [
-    require("tailwindcss-pixel-dimensions")({
-      width: {
-        total: 500, // 900 is the default
-      },
-      height: {
-        total: 900, // 900 is the default
-      },
-    }),
-    function ({ addComponents }) {
+    /*  require("tailwindcss-pixel-dimensions")({
+        width: {
+          total: 500, // 900 is the default
+        },
+        height: {
+          total: 900, // 900 is the default
+        },
+      }),*/
+    function ({addComponents}) {
       addComponents({
         ".container": {
           maxWidth: "100%",

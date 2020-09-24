@@ -6,20 +6,30 @@ import {Sidebar} from "./Sidebar/Sidebar";
 import {Footer} from "./Footer/Footer";
 import {Dialogs} from "./Dialogs/Dialogs";
 import {Profile} from "./Profile/Profile";
+import {OnOff} from "./Tmp1";
+
+
 
 const App: FC = () => (
     <BrowserRouter>
-      <div className="">
+      <div className="container h-full min-h-screen flex flex-col bg-blue-100">
+
         <Header/>
-        <div className="container flex min-h-full bg-red-400">
+
+        <div className="flex bg-red-400 flex-auto">
           <Sidebar/>
 
-          <main className="flex-grow bg-gray-700">
-            <Route path={"/messages"} component={Dialogs}/>
-            <Route path={"/profile"} component={Profile}/>
+          <main className="flex-grow bg-gray-500">
+            <Route path={"/dialogs"} component={Dialogs}/>
+            <Route path={"/profile"} render={() => <Profile/>}/>
+            <OnOff/>
+            <OnOff/>
           </main>
+
         </div>
+
         <Footer/>
+
       </div>
     </BrowserRouter>
 )
