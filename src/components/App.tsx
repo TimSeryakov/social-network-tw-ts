@@ -6,8 +6,6 @@ import {Sidebar} from "./Sidebar/Sidebar";
 import {Footer} from "./Footer/Footer";
 import {Dialogs} from "./Dialogs/Dialogs";
 import {Profile} from "./Profile/Profile";
-import {OnOff} from "./Tmp1";
-
 
 
 const App: FC = () => (
@@ -22,8 +20,6 @@ const App: FC = () => (
           <main className="flex-grow bg-gray-500">
             <Route path={"/dialogs"} component={Dialogs}/>
             <Route path={"/profile"} render={() => <Profile/>}/>
-            <OnOff/>
-            <OnOff/>
           </main>
 
         </div>
