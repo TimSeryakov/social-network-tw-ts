@@ -14,6 +14,8 @@ export const Header = () => {
           <ul className="flex items-center justify-end">
             <li className="p-4"><a className="text-theme-text text-xl hover:text-white" href="/about">Used Technologies</a></li>
             <li className="p-4"><a className="text-theme-text text-xl hover:text-white" href="/technologies">About</a></li>
+            <li className="p-4"><a className="text-theme-text text-xl hover:text-white" href="/login">Login</a></li>
+            <li className="p-4"><a className="text-theme-text text-xl hover:text-white" href="/signup">Signup</a></li>
           </ul>
         </div>
       </header>

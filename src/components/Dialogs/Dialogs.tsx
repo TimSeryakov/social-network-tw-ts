@@ -6,6 +6,7 @@ import samurai from '../../assets/img/samurai.png';
 import fuji from '../../assets/img/fuji.png';
 import lionstatue from '../../assets/img/lionstatue.png';
 import luckycat from '../../assets/img/luckycat.png';
+import {InputMessageSection} from "./InputMessageSection";
 
 
 export const Dialogs = () => {
@@ -26,16 +27,24 @@ export const Dialogs = () => {
             <DialogItem name="Masha" id={4} avatar={luckycat} unreadMessages={1}/>
           </div>
 
-          <div className="bg-theme-bg-primary border-t border-theme-border w-8/12 flex-auto">
-            <MessageItem incoming={true} text="Hi"/>
-            <MessageItem incoming={true} text="How r you"/>
-            <MessageItem incoming={true} text="i want to talk"/>
-            <MessageItem incoming={true} text="answer me"/>
-            <MessageItem incoming={true} text="please"/>
-            <MessageItem incoming={false} text="Hi, im there! 👋"/>
-            <MessageItem incoming={true} text="really 👻"/>
+          <div className="bg-theme-bg-primary border-t border-theme-border w-8/12 flex flex-auto flex-col">
+            <div className="flex-grow">
+              <MessageItem incoming={true} text="Hi"/>
+              <MessageItem incoming={true} text="How r you"/>
+              <MessageItem incoming={true} text="i want to talk"/>
+              <MessageItem incoming={true} text="answer me"/>
+              <MessageItem incoming={true} text="please"/>
+              <MessageItem incoming={false} text="Hi, im there! 👋"/>
+              <MessageItem incoming={true} text="really 👻"/>
+            </div>
+
+            <div className="border-theme-border border-t pt-3">
+              <InputMessageSection/>
+            </div>
+
           </div>
         </div>
+
 
 
       </section>
