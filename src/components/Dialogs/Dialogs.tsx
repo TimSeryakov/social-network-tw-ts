@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
+import {PageTitle} from "../PageTitle/PageTitle";
 import samurai from './samurai.png';
 import fuji from './fuji.png';
 import lionstatue from './lionstatue.png';
@@ -37,9 +38,8 @@ const Message = (props: MessagePropsType) => {
 export const Dialogs = () => {
   return (
       <section className="h-full flex flex-col">
-        <header className="py-4 px-4">
-            <h2 className="text-white text-3xl font-bold">Your dialogs</h2>
-        </header>
+
+       <PageTitle title="Your dialogs"/>
 
         <div className="flex flex-auto flex-grow">
 
