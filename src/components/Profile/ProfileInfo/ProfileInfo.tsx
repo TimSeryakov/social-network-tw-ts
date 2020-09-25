@@ -1,5 +1,5 @@
 import React from 'react';
-
+import samurai from '../../../assets/img/samurai.png';
 
 export const ProfileInfo = () => {
   return (
@@ -7,7 +7,7 @@ export const ProfileInfo = () => {
 
         <div>
           <img className="rounded-full w-16 h-16"
-               src="https://avatars1.githubusercontent.com/u/109951?s=400&v=4"
+               src={samurai}
                alt=""
           />
 

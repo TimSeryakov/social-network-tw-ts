@@ -1,10 +1,10 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import {PageTitle} from "../PageTitle/PageTitle";
-import samurai from './samurai.png';
-import fuji from './fuji.png';
-import lionstatue from './lionstatue.png';
-import luckycat from './luckycat.png';
+import samurai from './../../assets/img/samurai.png';
+import fuji from './../../assets/img/fuji.png';
+import lionstatue from './../../assets/img/lionstatue.png';
+import luckycat from './../../assets/img/luckycat.png';
 
 
 type DialogItemType = {
