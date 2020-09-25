@@ -5,6 +5,7 @@ module.exports = {
     // Filenames to scan for classes
     content: [
       './src/**/*.html',
+      './src/**/*.css',
       './src/**/*.js',
       './src/**/*.jsx',
       './src/**/*.ts',
@@ -18,6 +19,9 @@ module.exports = {
     },
   },
   theme: {
+    boxShadow: {
+      outline: '0 0 0 3px rgba(189, 147, 249, 0.5)',
+    },
     extend: {
       colors: {
         "theme-bg-primary": "#20252c", // bg main
