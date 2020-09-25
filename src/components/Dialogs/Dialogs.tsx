@@ -1,64 +1,12 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
 import {PageTitle} from "../PageTitle/PageTitle";
-import samurai from './../../assets/img/samurai.png';
-import fuji from './../../assets/img/fuji.png';
-import lionstatue from './../../assets/img/lionstatue.png';
-import luckycat from './../../assets/img/luckycat.png';
+import {DialogItem} from "./components/DialogItem";
+import {MessageItem} from "./components/MessageItem";
+import samurai from '../../assets/img/samurai.png';
+import fuji from '../../assets/img/fuji.png';
+import lionstatue from '../../assets/img/lionstatue.png';
+import luckycat from '../../assets/img/luckycat.png';
 
-
-type DialogItemType = {
-  name: string
-  id: number
-  avatar: string
-  unreadMessages: number
-}
-
-const DialogItem = (props: DialogItemType) => {
-  const path = "/dialogs/"
-
-  return (
-      <div className="flex">
-        <NavLink
-            className="flex block border-b border-theme-border items-center hover:text-white text-theme-text pl-3 flex-grow"
-            to={path + props.id}>
-          <img
-              className="inline-block w-12 h-12 bg-theme-bg-secondary rounded-full border border-theme-border flex items-center justify-center my-1 mr-3"
-              src={props.avatar} alt=""/>
-          {props.name}
-          <UnreadMessages value={props.unreadMessages}/>
-        </NavLink>
-      </div>
-  )
-}
-
-type UnreadMessagesType = {
-  value: number
-}
-
-const UnreadMessages = (props: UnreadMessagesType) => {
-  return (
-      <span className="ml-4 text-theme-accent text-xs font-bold">
-        {!!props.value && `+${props.value}`}
-      </span>
-  )
-}
-
-type MessagePropsType = {
-  text: string
-  incoming: boolean
-}
-
-const Message = (props: MessagePropsType) => {
-  const incomingStyle = "bg-theme-bg-secondary rounded-md text-theme-text p-3 my-3 mr-10 ml-3"
-  const outGoing = "bg-theme-bg-third rounded-md text-theme-text p-3 my-3 ml-12 mr-3"
-
-  if (props.incoming) {
-    return (<div className={incomingStyle}>{props.text}</div>)
-  } else {
-    return (<div className={outGoing}>{props.text}</div>)
-  }
-}
 
 export const Dialogs = () => {
   return (
@@ -79,13 +27,13 @@ export const Dialogs = () => {
           </div>
 
           <div className="bg-theme-bg-primary border-t border-theme-border w-8/12 flex-auto">
-            <Message incoming={true} text="Hi"/>
-            <Message incoming={true} text="How r you"/>
-            <Message incoming={true} text="i want to talk"/>
-            <Message incoming={true} text="answer me"/>
-            <Message incoming={true} text="please"/>
-            <Message incoming={false} text="Hi, im there! 👋"/>
-            <Message incoming={true} text="really 👻"/>
+            <MessageItem incoming={true} text="Hi"/>
+            <MessageItem incoming={true} text="How r you"/>
+            <MessageItem incoming={true} text="i want to talk"/>
+            <MessageItem incoming={true} text="answer me"/>
+            <MessageItem incoming={true} text="please"/>
+            <MessageItem incoming={false} text="Hi, im there! 👋"/>
+            <MessageItem incoming={true} text="really 👻"/>
           </div>
         </div>
 
