@@ -6,12 +6,11 @@ export const ProfileInfo = () => {
       <section className="">
 
         <div>
-          <img className="rounded-full w-16 h-16"
+          <img className="w-32 h-32 bg-theme-bg-secondary rounded-full border border-theme-border flex items-center justify-center"
                src={samurai}
-               alt=""
+               alt={`${samurai} avatar`}
           />
 
-          <h4>Profile info goes here</h4>
         </div>
       </section>
   )
