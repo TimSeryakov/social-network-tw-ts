@@ -6,10 +6,11 @@ import fuji from './fuji.png';
 import lionstatue from './lionstatue.png';
 import luckycat from './luckycat.png';
 
+
 type DialogItemType = {
   name: string
   id: number
-  avatar: any
+  avatar: string
 }
 
 const DialogItem = (props: DialogItemType) => {
@@ -60,7 +61,6 @@ export const Dialogs = () => {
             <Message text="answer me"/>
             <Message text="please"/>
           </div>
-
         </div>
 
 
