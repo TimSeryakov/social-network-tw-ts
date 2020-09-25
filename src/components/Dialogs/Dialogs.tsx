@@ -11,6 +11,7 @@ type DialogItemType = {
   name: string
   id: number
   avatar: string
+  unreadMessages: number
 }
 
 const DialogItem = (props: DialogItemType) => {
@@ -25,8 +26,21 @@ const DialogItem = (props: DialogItemType) => {
               className="inline-block w-12 h-12 bg-theme-bg-secondary rounded-full border border-theme-border flex items-center justify-center my-1 mr-3"
               src={props.avatar} alt=""/>
           {props.name}
+          <UnreadMessages value={props.unreadMessages}/>
         </NavLink>
       </div>
+  )
+}
+
+type UnreadMessagesType = {
+  value: number
+}
+
+const UnreadMessages = (props: UnreadMessagesType) => {
+  return (
+      <span className="ml-4 text-theme-accent text-xs font-bold">
+        {!!props.value && `+${props.value}`}
+      </span>
   )
 }
 
@@ -46,37 +60,37 @@ const Message = (props: MessagePropsType) => {
   }
 }
 
-  export const Dialogs = () => {
-    return (
-        <section className="h-full flex flex-col">
+export const Dialogs = () => {
+  return (
+      <section className="h-full flex flex-col">
 
-          <PageTitle title="Your dialogs"/>
+        <PageTitle title="Your dialogs"/>
 
-          <div className="flex flex-auto flex-grow">
+        <div className="flex flex-auto flex-grow">
 
-            <div className="bg-theme-bg-primary border-r border-theme-border w-4/12">
-              <div className="">
-                <h3 className="py-2 px-4 border-t border-b border-theme-border text-theme-text bg-theme-bg-secondary">Friends</h3>
-              </div>
-              <DialogItem name="Maxy" id={1} avatar={samurai}/>
-              <DialogItem name="Olya" id={2} avatar={fuji}/>
-              <DialogItem name="Vika" id={3} avatar={lionstatue}/>
-              <DialogItem name="Masha" id={4} avatar={luckycat}/>
+          <div className="bg-theme-bg-primary border-r border-theme-border w-4/12">
+            <div className="">
+              <h3 className="py-2 px-4 border-t border-b border-theme-border text-theme-text bg-theme-bg-secondary">Friends</h3>
             </div>
-
-            <div className="bg-theme-bg-primary border-t border-theme-border w-8/12 flex-auto">
-              <Message incoming={true} text="Hi"/>
-              <Message incoming={true} text="How r you"/>
-              <Message incoming={true} text="i want to talk"/>
-              <Message incoming={true} text="answer me"/>
-              <Message incoming={true} text="please"/>
-              <Message incoming={false} text="Hi, im there! 👋"/>
-              <Message incoming={true} text="really 👻"/>
-            </div>
+            <DialogItem name="Maxy" id={1} avatar={samurai} unreadMessages={2}/>
+            <DialogItem name="Olya" id={2} avatar={fuji} unreadMessages={3}/>
+            <DialogItem name="Vika" id={3} avatar={lionstatue} unreadMessages={0}/>
+            <DialogItem name="Masha" id={4} avatar={luckycat} unreadMessages={1}/>
           </div>
 
+          <div className="bg-theme-bg-primary border-t border-theme-border w-8/12 flex-auto">
+            <Message incoming={true} text="Hi"/>
+            <Message incoming={true} text="How r you"/>
+            <Message incoming={true} text="i want to talk"/>
+            <Message incoming={true} text="answer me"/>
+            <Message incoming={true} text="please"/>
+            <Message incoming={false} text="Hi, im there! 👋"/>
+            <Message incoming={true} text="really 👻"/>
+          </div>
+        </div>
 
-        </section>
-    )
-  }
+
+      </section>
+  )
+}
 
