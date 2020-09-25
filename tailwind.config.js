@@ -57,12 +57,12 @@ module.exports = {
           marginLeft: "auto",
           marginRight: "auto",
           "@screen sm": {
-            maxWidth: "95%",
+            maxWidth: "100%",
             marginLeft: "auto",
             marginRight: "auto",
           },
           "@screen md": {
-            maxWidth: "90%",
+            maxWidth: "100%",
             marginLeft: "auto",
             marginRight: "auto",
           },
