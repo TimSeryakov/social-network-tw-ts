@@ -70,7 +70,7 @@ const Message = (props: MessagePropsType) => {
               <Message incoming={true} text="i want to talk"/>
               <Message incoming={true} text="answer me"/>
               <Message incoming={true} text="please"/>
-              <Message incoming={false} text="Hi, im there!"/>
+              <Message incoming={false} text="Hi, im there! 👋"/>
               <Message incoming={true} text="really 👻"/>
             </div>
           </div>
