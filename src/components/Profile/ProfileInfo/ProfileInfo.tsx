@@ -10,7 +10,6 @@ export const ProfileInfo = () => {
                src={fuji}
                alt={`${fuji} avatar`}
           />
-
         </div>
       </section>
   )
