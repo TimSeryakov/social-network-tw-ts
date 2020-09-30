@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import {UnreadMessages} from "./UnreadMessagesBadge";
+import {UnreadMessages} from "../UnreadMessages/UnreadMessagesBadge";
 import React from "react";
 
 type DialogItemType = {

@@ -1,12 +1,12 @@
 import React from 'react';
 import {PageTitle} from "../PageTitle/PageTitle";
-import {DialogItem} from "./components/DialogItem";
-import {MessageItem} from "./components/MessageItem";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {MessageItem} from "./MessageItem/MessageItem";
 import samurai from '../../assets/img/samurai.png';
 import fuji from '../../assets/img/fuji.png';
 import lionstatue from '../../assets/img/lionstatue.png';
 import luckycat from '../../assets/img/luckycat.png';
-import {InputMessageSection} from "./InputMessageSection";
+import {InputMessageSection} from "./InputMessageSection/InputMessageSection";
 
 
 export const Dialogs = () => {
