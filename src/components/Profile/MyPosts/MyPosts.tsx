@@ -1,10 +1,5 @@
 import React from 'react';
 import {Post} from "./Post/Post"
-import samurai from "../../../assets/img/samurai.png";
-import fuji from "../../../assets/img/fuji.png";
-import lionstatue from "../../../assets/img/lionstatue.png";
-import luckycat from "../../../assets/img/luckycat.png";
-
 
 
 export const MyPosts = () => {
@@ -31,9 +26,6 @@ export const MyPosts = () => {
 
 
         <div className="pt-4 pb-8 px-4">
-{/*          <Post text={postData[0].text} likesCount={postData[0].likesCount}/>
-          <Post text={postData[1].text} likesCount={postData[1].likesCount}/>
-          <Post text={postData[2].text} likesCount={postData[2].likesCount}/>*/}
 
           {postList}
 
