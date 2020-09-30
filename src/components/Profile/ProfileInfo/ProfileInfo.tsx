@@ -3,7 +3,7 @@ import fuji from "../../../assets/img/fuji.png";
 
 export const ProfileInfo = () => {
   return (
-      <section className="py-4 px-4 flex">
+      <section className="pt-4 pb-10 px-4 flex">
           <div className="p-3 flex-shrink-0">
             <img
                 className="w-32 h-32 bg-theme-bg-secondary rounded-full border border-theme-border flex items-center justify-center"
@@ -28,16 +28,21 @@ export const ProfileInfo = () => {
             <div className="mt-8">
               <h4 className="pb-2">Interests</h4>
               <p className="text-theme-text">
-                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Star Wars</span>
-                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Quake</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Interstellar</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#UK Music</span>
                 <span
                     className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Atmospheric Drum'n'Bass</span>
-                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#MongoDB</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Drumfunk</span>
                 <span
                     className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Old School Hip-Hop</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#ReactJS</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Adobe XD</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#NextJS</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Gadsby</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#VueJS</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#NuxtJS</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Gridsome</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#GraphQL</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#TypeScript</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#JetBrains</span>
               </p>
