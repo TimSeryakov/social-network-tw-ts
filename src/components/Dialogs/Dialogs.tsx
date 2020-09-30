@@ -7,7 +7,6 @@ import fuji from '../../assets/img/fuji.png';
 import lionstatue from '../../assets/img/lionstatue.png';
 import luckycat from '../../assets/img/luckycat.png';
 import {InputMessageSection} from "./InputMessageSection";
-import {Post} from "../Profile/MyPosts/Post/Post";
 
 
 export const Dialogs = () => {
