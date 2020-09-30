@@ -18,7 +18,8 @@ const App: FC = () => (
           <Sidebar/>
 
           <main className="flex-grow bg-theme-bg-primary">
-            <Route path={"/dialogs"} component={Dialogs}/>
+            {/*<Route path={"/dialogs"} component={Dialogs}/>*/}
+            <Route path={"/dialogs"} render={() => <Dialogs/>}/>
             <Route path={"/profile"} render={() => <Profile/>}/>
           </main>
 
