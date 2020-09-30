@@ -10,8 +10,9 @@ export const Profile = () => {
 
         <PageTitle title="Profile info"/>
 
-        <div className="py-4 px-4">
+        <div className="border-theme-border border-t">
           <ProfileInfo/>
+
           <MyPosts/>
         </div>
       </section>

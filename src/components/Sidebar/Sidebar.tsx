@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 export const Sidebar = () => {
   return (
-      <aside className="w-56 bg-theme-bg-third border-r border-theme-border">
+      <aside className="w-56 bg-theme-bg-third border-r border-theme-border flex-shrink-0">
         <ul className="">
           <li className="border-b border-theme-border">
             <NavLink to={"/profile"}
