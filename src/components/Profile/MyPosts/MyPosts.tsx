@@ -15,6 +15,8 @@ export const MyPosts = () => {
     {id: 3, text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 12},
   ]
 
+  const postList = postData.map(post => <Post text={post.text} likesCount={post.likesCount}/>)
+
   return (
       <section className="text-theme-text border-t border-theme-border">
 
@@ -29,9 +31,12 @@ export const MyPosts = () => {
 
 
         <div className="pt-4 pb-8 px-4">
-          <Post text={postData[0].text} likesCount={postData[0].likesCount}/>
+{/*          <Post text={postData[0].text} likesCount={postData[0].likesCount}/>
           <Post text={postData[1].text} likesCount={postData[1].likesCount}/>
-          <Post text={postData[2].text} likesCount={postData[2].likesCount}/>
+          <Post text={postData[2].text} likesCount={postData[2].likesCount}/>*/}
+
+          {postList}
+
         </div>
       </section>
   )
