@@ -4,13 +4,14 @@ import './App.css';
 import {Header} from "./Header/Header";
 import {Sidebar} from "./Sidebar/Sidebar";
 import {Footer} from "./Footer/Footer";
-import {Dialogs} from "./Dialogs/Dialogs";
+import {Dialogs, DialogsDataType, MessagesDataType} from "./Dialogs/Dialogs";
 import {Profile} from "./Profile/Profile";
 import {PostsDataType} from "./Profile/MyPosts/MyPosts";
 
-
 type PropsType = {
   postsData: Array<PostsDataType>
+  dialogsData: Array<DialogsDataType>
+  messagesData: Array<MessagesDataType>
 }
 
 const App = (props: PropsType) => {
@@ -25,7 +26,7 @@ const App = (props: PropsType) => {
 
             <main className="flex-grow bg-theme-bg-primary">
               {/*<Route path={"/dialogs"} component={Dialogs}/>*/}
-              <Route path={"/dialogs"} render={() => <Dialogs/>}/>
+              <Route path={"/dialogs"} render={() => <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData}/>}/>
               <Route path={"/profile"} render={() => <Profile postsData={props.postsData}/>}/>
             </main>
 
