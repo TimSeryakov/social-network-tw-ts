@@ -8,21 +8,20 @@ import fuji from "./assets/img/fuji.png";
 import lionstatue from "./assets/img/lionstatue.png";
 import luckycat from "./assets/img/luckycat.png";
 
-const postsData = [
+export const postsData = [
   {id: 1, text: "Сбербанк выкупил актрису Зою Бербер и назвал Сбербербер.", likesCount: 29},
   {id: 2, text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.", likesCount: 11},
   {id: 3, text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 42},
 ]
 
-
-const dialogsData = [
+export const dialogsData = [
   {id: 1, name: "Max", avatar: samurai, unreadMessages: 5 },
   {id: 2, name: "Bob", avatar: fuji, unreadMessages: 2 },
   {id: 3, name: "Larry", avatar: lionstatue, unreadMessages: 0 },
   {id: 4, name: "Mary", avatar: luckycat, unreadMessages: 9 },
 ]
 
-const messagesData = [
+export const messagesData = [
   {id: 1, belongsToUser: false, text: "Hi"},
   {id: 2, belongsToUser: false, text: "How r you"},
   {id: 3, belongsToUser: false, text: "i want to talk"},
