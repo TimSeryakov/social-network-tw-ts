@@ -1,10 +1,13 @@
 import React from 'react';
-import {MyPosts} from "./MyPosts/MyPosts";
+import {MyPosts, PostsDataType} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PageTitle} from "../PageTitle/PageTitle";
 
+type PropsType = {
+  postsData: Array<PostsDataType>
+}
 
-export const Profile = () => {
+export const Profile = (props: PropsType) => {
   return (
       <section>
 
@@ -13,7 +16,7 @@ export const Profile = () => {
         <div className="border-theme-border border-t">
           <ProfileInfo/>
 
-          <MyPosts/>
+          <MyPosts postsData={props.postsData}/>
         </div>
       </section>
   )

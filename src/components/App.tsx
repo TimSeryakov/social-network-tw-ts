@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 import {Header} from "./Header/Header";
@@ -6,29 +6,36 @@ import {Sidebar} from "./Sidebar/Sidebar";
 import {Footer} from "./Footer/Footer";
 import {Dialogs} from "./Dialogs/Dialogs";
 import {Profile} from "./Profile/Profile";
+import {PostsDataType} from "./Profile/MyPosts/MyPosts";
 
 
-const App: FC = () => (
-    <BrowserRouter>
-      <div className="container shadow-xl h-full min-h-screen flex flex-col border border-theme-border">
+type PropsType = {
+  postsData: Array<PostsDataType>
+}
 
-        <Header/>
+const App = (props: PropsType) => {
+  return (
+      <BrowserRouter>
+        <div className="container shadow-xl h-full min-h-screen flex flex-col border border-theme-border">
 
-        <div className="flex flex-auto">
-          <Sidebar/>
+          <Header/>
 
-          <main className="flex-grow bg-theme-bg-primary">
-            {/*<Route path={"/dialogs"} component={Dialogs}/>*/}
-            <Route path={"/dialogs"} render={() => <Dialogs/>}/>
-            <Route path={"/profile"} render={() => <Profile/>}/>
-          </main>
+          <div className="flex flex-auto">
+            <Sidebar/>
+
+            <main className="flex-grow bg-theme-bg-primary">
+              {/*<Route path={"/dialogs"} component={Dialogs}/>*/}
+              <Route path={"/dialogs"} render={() => <Dialogs/>}/>
+              <Route path={"/profile"} render={() => <Profile postsData={props.postsData}/>}/>
+            </main>
+
+          </div>
+
+          <Footer/>
 
         </div>
-
-        <Footer/>
-
-      </div>
-    </BrowserRouter>
-)
+      </BrowserRouter>
+  )
+}
 
 export default App;

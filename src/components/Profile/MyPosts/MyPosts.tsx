@@ -1,16 +1,20 @@
 import React from 'react';
 import {Post} from "./Post/Post"
 
+type PropsType = {
+  postsData: Array<PostsDataType>
+}
 
-export const MyPosts = () => {
+export type PostsDataType = {
+  id: number
+  text: string
+  likesCount: number
+}
 
-  let postData = [
-    {id: 1, text: "Сбербанк выкупил актрису Зою Бербер и назвал Сбербербер.", likesCount: 29},
-    {id: 2, text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.", likesCount: 11},
-    {id: 3, text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 42},
-  ]
 
-  const postList = postData.map(post => <Post text={post.text} likesCount={post.likesCount}/>)
+export const MyPosts = (props: PropsType) => {
+
+  const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>)
 
   return (
       <section className="text-theme-text border-t border-theme-border">
@@ -28,7 +32,7 @@ export const MyPosts = () => {
 
         <div className="pt-4 pb-8 px-4">
 
-          {postList}
+          {postsList}
 
         </div>
       </section>
