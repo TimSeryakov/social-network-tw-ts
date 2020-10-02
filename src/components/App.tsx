@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import './App.css';
 import {Header} from "./Header/Header";
 import {Sidebar} from "./Sidebar/Sidebar";
@@ -14,12 +14,12 @@ type PropsType = {
 
 const App = (props: PropsType) => {
   return (
-      <BrowserRouter>
         <div className="container shadow-xl h-full min-h-screen flex flex-col border border-theme-border">
 
           <Header/>
 
           <div className="flex flex-auto">
+
             <Sidebar/>
 
             <main className="flex-grow bg-theme-bg-primary">
@@ -33,7 +33,6 @@ const App = (props: PropsType) => {
           <Footer/>
 
         </div>
-      </BrowserRouter>
   )
 }
 
