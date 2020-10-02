@@ -1,14 +1,9 @@
 import React from 'react';
 import {Post} from "./Post/Post"
+import {PostsDataType} from "../../../redux/state";
 
 type PropsType = {
   postsData: Array<PostsDataType>
-}
-
-export type PostsDataType = {
-  id: number
-  text: string
-  likesCount: number
 }
 
 

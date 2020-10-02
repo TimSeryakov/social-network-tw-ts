@@ -3,31 +3,23 @@ import {PageTitle} from "../PageTitle/PageTitle";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 import {InputMessageSection} from "./InputMessageSection/InputMessageSection";
+import {DialogsDataType, MessagesDataType} from "../../redux/state";
 
 type PropsType = {
+  state: DialogsStateType
+}
+
+type DialogsStateType = {
   dialogsData: Array<DialogsDataType>
   messagesData: Array<MessagesDataType>
 }
 
-export type DialogsDataType = {
-  id: number
-  name: string
-  avatar: string // ????
-  unreadMessages: number
-}
-
-export type MessagesDataType = {
-  id: number
-  belongsToUser: boolean
-  text: string
-}
-
 export const Dialogs = (props: PropsType) => {
 
-  const dialogsList = props.dialogsData.map(d =>
+  const dialogsList = props.state.dialogsData.map(d =>
       <DialogItem name={d.name} id={d.id} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
 
-  const messagesList = props.messagesData.map(m =>
+  const messagesList = props.state.messagesData.map(m =>
       <MessageItem belongsToUser={m.belongsToUser} text={m.text}/> )
 
   return (
