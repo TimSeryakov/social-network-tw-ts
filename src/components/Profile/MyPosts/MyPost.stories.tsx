@@ -2,10 +2,13 @@ import React from 'react';
 import './../../../styles/index.css'
 import {MyPosts} from "./MyPosts";
 import {state} from '../../../redux/state'
+import {action} from "@storybook/addon-actions";
+
+const callbackFn = action('Clicked!')
 
 export default {
   title: 'MyPosts',
   component: MyPosts,
 };
 
-export const MyPostsStory = () => <MyPosts borders="trbl" postsData={state.profilePage.postsData}/>
+export const MyPostsStory = () => <MyPosts borders="trbl" postsData={state.profilePage.postsData} addPostCallback={callbackFn}/>

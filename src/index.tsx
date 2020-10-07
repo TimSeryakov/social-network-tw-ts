@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import {state} from './redux/state'
+import {addPost, state} from './redux/state'
 import {BrowserRouter} from "react-router-dom";
 
 // TODO Переписать стрелочные функции компонент на декларативные
 
 ReactDOM.render(
     <BrowserRouter>
-      <App state={state} />
+      <App state={state} addPostCallback={addPost}/>
     </BrowserRouter>,
     document.getElementById('root')
 );

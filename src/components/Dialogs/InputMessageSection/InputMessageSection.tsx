@@ -3,7 +3,7 @@ import React from "react";
 const newMessageElement = React.createRef<HTMLTextAreaElement>()
 const AddMessage = () => {
   alert(newMessageElement.current?.value)
-  // console.log(newPostElement.current && newPostElement.current?.value) // Можно так
+  // alert(newPostElement.current && newPostElement.current?.value) // Можно так
 }
 
 export function InputMessageSection () {

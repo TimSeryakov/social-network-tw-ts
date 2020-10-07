@@ -6,6 +6,7 @@ import {PostsDataType} from "../../redux/state";
 
 type PropsType = {
   state: PostsStateType
+  addPostCallback: (postMessage: string) => void
 }
 
 type PostsStateType = {
@@ -21,7 +22,7 @@ export function Profile (props: PropsType) {
         <div className="border-theme-border border-t">
           <ProfileInfo/>
 
-          <MyPosts postsData={props.state.postsData} borders="t"/>
+          <MyPosts postsData={props.state.postsData} addPostCallback={props.addPostCallback} borders="t"/>
         </div>
       </section>
   )

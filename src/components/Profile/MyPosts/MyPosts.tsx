@@ -6,6 +6,7 @@ import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBorde
 type PropsType = {
   postsData: Array<PostsDataType>
   borders: BordersPropsType
+  addPostCallback: (postMessage: string) => void
 }
 
 
@@ -13,10 +14,13 @@ export function MyPosts (props: PropsType) {
 
   const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>)
   const newPostElement = React.createRef<HTMLTextAreaElement>()
-  const AddPost = () => {
-    alert(newPostElement.current?.value)
-    // console.log(newPostElement.current && newPostElement.current?.value) // Можно так
+  const addPost = () => {
+    debugger
+    if (newPostElement.current) {
+      props.addPostCallback( newPostElement.current.value)
+    }
   }
+
   const myPostsStyle = `${parseBordersProps(props.borders)} text-theme-text bg-theme-bg-primary`
 
   return (
@@ -30,7 +34,7 @@ export function MyPosts (props: PropsType) {
           />
             <button
                 className="px-4 py-2 text-white rounded-md bg-theme-accent-alternative focus:outline-none focus:shadow-outline"
-                onClick={AddPost}
+                onClick={addPost}
             >
               Post
             </button>

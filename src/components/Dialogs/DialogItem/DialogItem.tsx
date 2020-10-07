@@ -4,7 +4,7 @@ import React from "react";
 
 type DialogItemType = {
   name: string
-  id: number
+  id: string
   avatar: string
   unreadMessages: number
 }
