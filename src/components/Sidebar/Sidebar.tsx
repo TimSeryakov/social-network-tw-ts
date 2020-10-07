@@ -1,10 +1,19 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
+import {BordersPropsType, parseBordersProps} from "../common/utils/parseBordersProps";
+
+type SidebarPropsType ={
+  borders: BordersPropsType
+}
 
 
-export const Sidebar = () => {
+export const Sidebar = (props: SidebarPropsType) => {
+
+  const sidebarStyle = `${parseBordersProps(props.borders)} w-56 bg-theme-bg-third flex-shrink-0`
+
+
   return (
-      <aside className="w-56 bg-theme-bg-third border-r border-theme-border flex-shrink-0">
+      <aside className={sidebarStyle}>
         <ul className="">
           <li className="border-b border-theme-border">
             <NavLink to={"/profile"}

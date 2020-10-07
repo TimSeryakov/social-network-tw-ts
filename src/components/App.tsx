@@ -20,7 +20,7 @@ function App (props: PropsType) {
 
           <div className="flex flex-auto">
 
-            <Sidebar/>
+            <Sidebar borders="r"/>
 
             <main className="flex-grow bg-theme-bg-primary">
               {/*<Route path={"/dialogs"} component={Dialogs}/>*/}

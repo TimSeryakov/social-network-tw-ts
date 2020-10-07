@@ -9,6 +9,7 @@ type FooterPropsType ={
 export function Footer(props: FooterPropsType) {
 
   const footerStyle = `${parseBordersProps(props.borders)} h-14 bg-theme-bg-primary text-center`
+
 return (
     <footer className={footerStyle}>
       <p className="text-theme-text p-4">
