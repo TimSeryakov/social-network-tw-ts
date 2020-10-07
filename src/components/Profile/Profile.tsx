@@ -21,7 +21,7 @@ export function Profile (props: PropsType) {
         <div className="border-theme-border border-t">
           <ProfileInfo/>
 
-          <MyPosts postsData={props.state.postsData}/>
+          <MyPosts postsData={props.state.postsData} borders="t"/>
         </div>
       </section>
   )

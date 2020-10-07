@@ -11,5 +11,4 @@ export default {
 };
 
 
-// TODO будет получать данные из state
-export const FooterSection = () => <BrowserRouter><Sidebar borders="trbl"/></BrowserRouter>
+export const SidebarSection = () => <BrowserRouter><Sidebar borders="trl"/></BrowserRouter>

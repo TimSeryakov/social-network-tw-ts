@@ -1,4 +1,5 @@
 import React from 'react';
+import './../../../../styles/index.css'
 
 type PostType = {
   text: string
@@ -7,7 +8,7 @@ type PostType = {
 
 export function Post (props: PostType) {
   return (
-    <div className="bg-theme-bg-secondary rounded-md px-6 pt-6 pb-3 mt-4">
+    <div className="px-6 pt-6 pb-3 mt-4 rounded-md bg-theme-bg-secondary text-theme-text">
       <div>
         <p>{props.text}</p>
       </div>
