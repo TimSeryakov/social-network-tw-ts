@@ -16,7 +16,7 @@ function App (props: PropsType) {
   return (
         <div className="container shadow-xl h-full min-h-screen flex flex-col border border-theme-border">
 
-          <Header/>
+          <Header borders="b"/>
 
           <div className="flex flex-auto">
 
@@ -30,7 +30,7 @@ function App (props: PropsType) {
 
           </div>
 
-          <Footer/>
+          <Footer borders="t"/>
 
         </div>
   )

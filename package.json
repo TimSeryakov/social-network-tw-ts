@@ -33,7 +33,8 @@
     "react-scripts:start": "timeout 5 > NUL && react-scripts start",
     "react-scripts:build": "react-scripts build",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "build-storybook-netlify": "run-s build:css && build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
