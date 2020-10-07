@@ -11,6 +11,8 @@ import {RootStateType} from "../redux/state";
 type PropsType = {
   state: RootStateType
   addPostCallback: (postMessage: string) => void
+  updateTypedPostTextCallback: (newValue: string) => void
+
 }
 
 function App (props: PropsType) {
@@ -25,8 +27,10 @@ function App (props: PropsType) {
 
             <main className="flex-grow bg-theme-bg-primary">
               {/*<Route path={"/dialogs"} component={Dialogs}/>*/}
-              <Route path={"/dialogs"} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
-              <Route path={"/profile"} render={() => <Profile state={props.state.profilePage} addPostCallback={props.addPostCallback}/>}/>
+              <Route path={"/dialogs"} render={() =>
+                  <Dialogs state={props.state.dialogsPage}/>}/>
+              <Route path={"/profile"} render={() =>
+                  <Profile profilePage={props.state.profilePage} addPostCallback={props.addPostCallback} updateTypedPostTextCallback={props.updateTypedPostTextCallback}/>}/>
             </main>
 
           </div>

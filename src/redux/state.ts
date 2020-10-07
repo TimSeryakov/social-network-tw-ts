@@ -3,7 +3,7 @@ import fuji from "../assets/img/fuji.png";
 import lionstatue from "../assets/img/lionstatue.png";
 import luckycat from "../assets/img/luckycat.png";
 import {v1} from "uuid";
-import {rerenderEntireTree} from "../Render";
+import {rerenderEntireTree} from "../render";
 
 export type RootStateType = {
   profilePage: ProfilePageType
@@ -12,6 +12,7 @@ export type RootStateType = {
 }
 type ProfilePageType = {
   postsData: Array<PostsDataType>
+  typedPostText: string
 }
 type DialogsPageType = {
   dialogsData: Array<DialogsDataType>
@@ -45,6 +46,7 @@ export const state: RootStateType = {
       {id: v1(), text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.", likesCount: 11},
       {id: v1(), text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 42},
     ],
+    typedPostText: "",
   },
   dialogsPage: {
     dialogsData: [
@@ -70,5 +72,10 @@ export const state: RootStateType = {
 export const addPost = (postMessage: string) => {
   const newPost: PostsDataType = { id: v1(), text: postMessage, likesCount: 0 }
   state.profilePage.postsData.push(newPost)
+  rerenderEntireTree(state)
+}
+
+export const updateTypedPostText = (newValue: string) => {
+  state.profilePage.typedPostText = newValue
   rerenderEntireTree(state)
 }

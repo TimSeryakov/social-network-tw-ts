@@ -5,12 +5,14 @@ import {PageTitle} from "../PageTitle/PageTitle";
 import {PostsDataType} from "../../redux/state";
 
 type PropsType = {
-  state: PostsStateType
+  profilePage: PostsStateType
   addPostCallback: (postMessage: string) => void
+  updateTypedPostTextCallback: (newValue: string) => void
 }
 
 type PostsStateType = {
   postsData: Array<PostsDataType>
+  typedPostText: string
 }
 
 export function Profile (props: PropsType) {
@@ -20,9 +22,16 @@ export function Profile (props: PropsType) {
         <PageTitle title="Profile info"/>
 
         <div className="border-theme-border border-t">
+
           <ProfileInfo/>
 
-          <MyPosts postsData={props.state.postsData} addPostCallback={props.addPostCallback} borders="t"/>
+          <MyPosts postsData={props.profilePage.postsData}
+                   addPostCallback={props.addPostCallback}
+                   typedPostText={props.profilePage.typedPostText}
+                   updateTypedPostTextCallback={props.updateTypedPostTextCallback}
+                   borders="t"
+          />
+
         </div>
       </section>
   )
