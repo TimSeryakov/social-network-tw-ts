@@ -23,6 +23,8 @@ export function Dialogs (props: PropsType) {
       <MessageItem belongsToUser={m.belongsToUser} text={m.text}/> )
 
   return (
+
+
       <section className="h-full flex flex-col">
 
         <PageTitle title="Your dialogs"/>
