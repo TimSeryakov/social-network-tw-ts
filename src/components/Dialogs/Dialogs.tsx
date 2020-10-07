@@ -14,7 +14,7 @@ type DialogsStateType = {
   messagesData: Array<MessagesDataType>
 }
 
-export const Dialogs = (props: PropsType) => {
+export function Dialogs (props: PropsType) {
 
   const dialogsList = props.state.dialogsData.map(d =>
       <DialogItem name={d.name} id={d.id} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)

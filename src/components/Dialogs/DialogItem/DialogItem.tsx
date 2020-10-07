@@ -8,7 +8,7 @@ type DialogItemType = {
   avatar: string
   unreadMessages: number
 }
-export const DialogItem = (props: DialogItemType) => {
+export function DialogItem (props: DialogItemType) {
   const path = "/dialogs/"
 
   return (

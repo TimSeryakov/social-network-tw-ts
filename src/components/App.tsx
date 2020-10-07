@@ -12,7 +12,7 @@ type PropsType = {
   state: RootStateType
 }
 
-const App = (props: PropsType) => {
+function App (props: PropsType) {
   return (
         <div className="container shadow-xl h-full min-h-screen flex flex-col border border-theme-border">
 

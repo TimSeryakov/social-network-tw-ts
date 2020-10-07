@@ -1,6 +1,6 @@
 import React from "react";
 
-export const InputMessageSection = () => {
+export function InputMessageSection () {
   return (
       <div className="flex mx-3 mb-3">
         <textarea

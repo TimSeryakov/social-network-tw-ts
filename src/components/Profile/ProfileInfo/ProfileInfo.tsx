@@ -1,7 +1,7 @@
 import React from 'react';
 import luckycat from "../../../assets/img/luckycat.png";
 
-export const ProfileInfo = () => {
+export function ProfileInfo () {
   return (
       <section className="pt-4 pb-10 px-4 flex">
           <div className="p-3 flex-shrink-0">

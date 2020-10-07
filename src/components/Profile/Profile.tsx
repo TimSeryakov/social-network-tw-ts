@@ -12,7 +12,7 @@ type PostsStateType = {
   postsData: Array<PostsDataType>
 }
 
-export const Profile = (props: PropsType) => {
+export function Profile (props: PropsType) {
   return (
       <section>
 

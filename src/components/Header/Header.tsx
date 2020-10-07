@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export const Header = () => {
+export function Header () {
 
   return (
       <header className="p-5 bg-theme-bg-primary h-24 border-b border-theme-border flex justify-between w-full">

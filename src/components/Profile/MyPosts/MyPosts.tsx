@@ -7,7 +7,7 @@ type PropsType = {
 }
 
 
-export const MyPosts = (props: PropsType) => {
+export function MyPosts (props: PropsType) {
 
   const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>)
 
