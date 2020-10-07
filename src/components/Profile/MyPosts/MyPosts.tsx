@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {Post} from "./Post/Post"
 import {PostsDataType} from "../../../redux/state";
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
@@ -7,7 +7,7 @@ type PropsType = {
   postsData: Array<PostsDataType>
   typedPostText: string
   borders: BordersPropsType
-  addPostCallback: (postMessage: string) => void
+  addPostCallback: () => void
   updateTypedPostTextCallback: (newValue: string) => void
 }
 
@@ -15,18 +15,15 @@ type PropsType = {
 export function MyPosts (props: PropsType) {
 
   const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>)
-  const newPostElement = React.createRef<HTMLTextAreaElement>()
+
   const addPost = () => {
-    if (newPostElement.current) {
-      props.addPostCallback(newPostElement.current.value)
+    if (props.typedPostText) {
+      props.addPostCallback()
       props.updateTypedPostTextCallback("")
     }
   }
-  const onTextAreaChange = () => {
-    if (newPostElement.current) {
-      props.updateTypedPostTextCallback(newPostElement.current.value)
-    }
-  }
+  const onTextAreaChange = (e:ChangeEvent<HTMLTextAreaElement>) => props.updateTypedPostTextCallback(e.currentTarget.value)
+
 
   const myPostsStyle = `${parseBordersProps(props.borders)} text-theme-text bg-theme-bg-primary`
 
@@ -37,7 +34,6 @@ export function MyPosts (props: PropsType) {
           <textarea
             className="flex-grow px-3 py-1 mr-2 text-white border rounded-md border-theme-border bg-theme-bg-third focus:outline-none focus:shadow-outline placeholder-gray-700"
             placeholder="What's new..."
-            ref={newPostElement}
             value = {props.typedPostText}
             onChange={onTextAreaChange}
           />

@@ -6,7 +6,7 @@ import {PostsDataType} from "../../redux/state";
 
 type PropsType = {
   profilePage: PostsStateType
-  addPostCallback: (postMessage: string) => void
+  addPostCallback: () => void
   updateTypedPostTextCallback: (newValue: string) => void
 }
 

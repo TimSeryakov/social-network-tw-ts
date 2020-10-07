@@ -10,7 +10,7 @@ import {RootStateType} from "../redux/state";
 
 type PropsType = {
   state: RootStateType
-  addPostCallback: (postMessage: string) => void
+  addPostCallback: () => void
   updateTypedPostTextCallback: (newValue: string) => void
 
 }
