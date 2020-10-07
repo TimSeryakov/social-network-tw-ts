@@ -18,6 +18,7 @@ export function MyPosts (props: PropsType) {
     debugger
     if (newPostElement.current) {
       props.addPostCallback( newPostElement.current.value)
+      newPostElement.current.value = ''
     }
   }
 
@@ -28,7 +29,7 @@ export function MyPosts (props: PropsType) {
 
         <div className="flex px-4 py-4 pb-3 border-b border-theme-border">
           <textarea
-            className="flex-grow px-3 py-1 mr-2 text-white border rounded-md border-theme-border bg-theme-bg-third focus:outline-none focus:shadow-outline"
+            className="flex-grow px-3 py-1 mr-2 text-white border rounded-md border-theme-border bg-theme-bg-third focus:outline-none focus:shadow-outline placeholder-gray-700"
             placeholder="What's new..."
             ref={newPostElement}
           />

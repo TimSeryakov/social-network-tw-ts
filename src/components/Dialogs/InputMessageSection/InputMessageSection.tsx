@@ -10,7 +10,7 @@ export function InputMessageSection () {
   return (
       <div className="flex mx-3 mb-3">
         <textarea
-            className="flex-grow border-theme-border px-3 py-1 mr-2 border bg-theme-bg-third rounded-md text-white focus:outline-none focus:shadow-outline"
+            className="flex-grow border-theme-border px-3 py-1 mr-2 border bg-theme-bg-third rounded-md text-white focus:outline-none focus:shadow-outline placeholder-gray-700"
             placeholder="Write message..."
             ref={newMessageElement}
         />

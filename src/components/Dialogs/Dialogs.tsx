@@ -17,10 +17,10 @@ type DialogsStateType = {
 export function Dialogs (props: PropsType) {
 
   const dialogsList = props.state.dialogsData.map(d =>
-      <DialogItem name={d.name} id={d.id} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
+      <DialogItem id={d.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
 
   const messagesList = props.state.messagesData.map(m =>
-      <MessageItem belongsToUser={m.belongsToUser} text={m.text}/> )
+      <MessageItem id={m.id} belongsToUser={m.belongsToUser} text={m.text}/> )
 
   return (
 

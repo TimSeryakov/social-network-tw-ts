@@ -3,6 +3,7 @@ import fuji from "../assets/img/fuji.png";
 import lionstatue from "../assets/img/lionstatue.png";
 import luckycat from "../assets/img/luckycat.png";
 import {v1} from "uuid";
+import {rerenderEntireTree} from "../Render";
 
 export type RootStateType = {
   profilePage: ProfilePageType
@@ -69,4 +70,5 @@ export const state: RootStateType = {
 export const addPost = (postMessage: string) => {
   const newPost: PostsDataType = { id: v1(), text: postMessage, likesCount: 0 }
   state.profilePage.postsData.push(newPost)
+  rerenderEntireTree(state)
 }

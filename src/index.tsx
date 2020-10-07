@@ -1,21 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/index.css';
-import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import {addPost, state} from './redux/state'
-import {BrowserRouter} from "react-router-dom";
+import {rerenderEntireTree} from "./Render";
+import {state} from "./redux/state";
 
-// TODO Переписать стрелочные функции компонент на декларативные
 
-ReactDOM.render(
-    <BrowserRouter>
-      <App state={state} addPostCallback={addPost}/>
-    </BrowserRouter>,
-    document.getElementById('root')
-);
+rerenderEntireTree(state)
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();

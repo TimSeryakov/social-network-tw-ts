@@ -20,7 +20,6 @@ export function Header (props: HeaderPropsType) {
         <div className="hidden md:block">
           <ul className="flex items-center justify-end">
             <li className="p-4"><a className="text-xl text-theme-text hover:text-white" href="/about">About</a></li>
-            {/*<li className="p-4"><a className="text-xl text-theme-text hover:text-white" href="/technologies">Used Technologies</a></li>*/}
             <li className="p-4"><a className="text-xl text-theme-text hover:text-white" href="/login">Login</a></li>
             <li className="p-4"><a className="text-xl text-theme-text hover:text-white" href="/signup">Signup</a></li>
           </ul>

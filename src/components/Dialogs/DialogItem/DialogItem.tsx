@@ -12,7 +12,7 @@ export function DialogItem (props: DialogItemType) {
   const path = "/dialogs/"
 
   return (
-      <div className="flex">
+      <div key={props.id} className="flex">
         <NavLink
             className="flex block border-b border-theme-border items-center hover:text-white text-theme-text pl-3 flex-grow"
             to={path + props.id}>
