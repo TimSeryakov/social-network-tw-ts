@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {state} from './redux/state'
 import {BrowserRouter} from "react-router-dom";
 
+// TODO Переписать стрелочные функции компонент на декларативные
 
 ReactDOM.render(
     <BrowserRouter>
