@@ -1,5 +1,4 @@
 import React from 'react';
-import luckycat from "../../../assets/img/luckycat.png";
 
 export function ProfileInfo () {
   return (
@@ -7,7 +6,7 @@ export function ProfileInfo () {
           <div className="p-3 flex-shrink-0">
             <img
                 className="w-32 h-32 bg-theme-bg-secondary rounded-full border border-theme-border flex items-center justify-center"
-                src={luckycat}
+                src={`https://api.adorable.io/avatars/128/samuraijack.png`}
                 alt="avatar"
             />
           </div>
@@ -38,7 +37,7 @@ export function ProfileInfo () {
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#ReactJS</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Adobe XD</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#NextJS</span>
-                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Gadsby</span>
+                <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Gatsby</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#VueJS</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#NuxtJS</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Gridsome</span>
