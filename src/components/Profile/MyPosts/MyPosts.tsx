@@ -19,7 +19,6 @@ export function MyPosts (props: PropsType) {
   const addPost = () => {
     if (props.typedPostText) {
       props.addPostCallback()
-      props.updateTypedPostTextCallback("")
     }
   }
   const onTextAreaChange = (e:ChangeEvent<HTMLTextAreaElement>) => props.updateTypedPostTextCallback(e.currentTarget.value)

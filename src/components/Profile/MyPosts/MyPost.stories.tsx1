@@ -11,4 +11,10 @@ export default {
   component: MyPosts,
 };
 
-export const MyPostsStory = () => <MyPosts borders="trbl" postsData={state.profilePage.postsData} addPostCallback={callbackFn}/>
+export const MyPostsStory = () => <MyPosts
+    borders="trbl"
+    postsData={state.profilePage.postsData}
+    addPostCallback={callbackFn}
+    typedPostText={state.profilePage.typedPostText}
+    updateTypedPostTextCallback={}
+/>

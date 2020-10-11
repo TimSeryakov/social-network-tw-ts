@@ -72,6 +72,7 @@ export const state: RootStateType = {
 export const addPost = () => {
   const newPost: PostsDataType = { id: v1(), text: state.profilePage.typedPostText, likesCount: 0 }
   state.profilePage.postsData.push(newPost)
+  updateTypedPostText("")
   rerenderEntireTree(state)
 }
 
