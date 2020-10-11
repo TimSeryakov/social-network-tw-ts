@@ -54,6 +54,10 @@ export const state: RootStateType = {
       {id: v1(), name: "Bob", avatar: fuji, unreadMessages: 2},
       {id: v1(), name: "Larry", avatar: lionstatue, unreadMessages: 0},
       {id: v1(), name: "Mary", avatar: luckycat, unreadMessages: 9},
+      {id: v1(), name: "Johny", avatar: samurai, unreadMessages: 1},
+      {id: v1(), name: "Flint", avatar: fuji, unreadMessages: 0},
+      {id: v1(), name: "Sara", avatar: lionstatue, unreadMessages: 0},
+      {id: v1(), name: "Jackie", avatar: luckycat, unreadMessages: 1},
     ],
     messagesData: [
       {id: v1(), belongsToUser: false, text: "Hi"},
