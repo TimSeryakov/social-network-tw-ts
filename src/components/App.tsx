@@ -6,16 +6,14 @@ import {Sidebar} from "./Sidebar/Sidebar";
 import {Footer} from "./Footer/Footer";
 import {Dialogs} from "./Dialogs/Dialogs";
 import {Profile} from "./Profile/Profile";
-import {RootStateType} from "../redux/state";
+import {ActionsTypes, StateType} from "../redux/state";
 
-type PropsType = {
-  state: RootStateType
-  addPostCallback: () => void
-  updateTypedPostTextCallback: (newValue: string) => void
-
+type AppPropsType = {
+  state: StateType
+  dispatch: (action: ActionsTypes) => void
 }
 
-function App (props: PropsType) {
+function App (props: AppPropsType) {
   return (
         <div className="container shadow-xl h-full min-h-screen flex flex-col border border-theme-border">
 
@@ -30,7 +28,10 @@ function App (props: PropsType) {
               <Route path={"/dialogs"} render={() =>
                   <Dialogs state={props.state.dialogsPage}/>}/>
               <Route path={"/profile"} render={() =>
-                  <Profile profilePage={props.state.profilePage} addPostCallback={props.addPostCallback} updateTypedPostTextCallback={props.updateTypedPostTextCallback}/>}/>
+                  <Profile profilePage={props.state.profilePage}
+                           dispatch={props.dispatch}
+                  />}
+              />
             </main>
 
           </div>

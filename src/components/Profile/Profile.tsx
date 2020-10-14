@@ -2,12 +2,11 @@ import React from 'react';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PageTitle} from "../PageTitle/PageTitle";
-import {PostsDataType} from "../../redux/state";
+import {ActionsTypes, PostsDataType} from "../../redux/state";
 
 type PropsType = {
   profilePage: PostsStateType
-  addPostCallback: () => void
-  updateTypedPostTextCallback: (newValue: string) => void
+  dispatch: (action: ActionsTypes) => void
 }
 
 type PostsStateType = {
@@ -26,9 +25,8 @@ export function Profile (props: PropsType) {
           <ProfileInfo/>
 
           <MyPosts postsData={props.profilePage.postsData}
-                   addPostCallback={props.addPostCallback}
+                   dispatch={props.dispatch}
                    typedPostText={props.profilePage.typedPostText}
-                   updateTypedPostTextCallback={props.updateTypedPostTextCallback}
                    borders="t"
           />
 

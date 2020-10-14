@@ -1,23 +1,22 @@
-import * as serviceWorker from './serviceWorker';
-import {addPost, state, subscribe, updateTypedPostText} from "./redux/state";
-import ReactDOM from "react-dom";
-import {BrowserRouter} from "react-router-dom";
-import App from "./components/App";
 import React from "react";
+import ReactDOM from "react-dom";
+import {store, StoreType} from "./redux/state";
+import App from "./components/App";
+import {BrowserRouter} from "react-router-dom";
 
 
-
-export const rerenderEntireTree = () => { // props: RootStateType
+export const rerenderEntireTree = (props?: StoreType) => {
   ReactDOM.render(
       <BrowserRouter>
-        <App state={state} addPostCallback={addPost} updateTypedPostTextCallback={updateTypedPostText}/>
+        <App
+            state={store.getState()}
+            dispatch={store.dispatch.bind(store)}
+        />
       </BrowserRouter>,
       document.getElementById('root')
   );
 }
- rerenderEntireTree()
-  subscribe(rerenderEntireTree)
 
+rerenderEntireTree(store)
+store.subscribe(rerenderEntireTree)
 
-
-serviceWorker.unregister();

@@ -1,14 +1,13 @@
 import React, {ChangeEvent} from 'react';
 import {Post} from "./Post/Post"
-import {PostsDataType} from "../../../redux/state";
+import {ActionsTypes, PostsDataType} from "../../../redux/state";
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
 
 type PropsType = {
   postsData: Array<PostsDataType>
   typedPostText: string
   borders: BordersPropsType
-  addPostCallback: () => void
-  updateTypedPostTextCallback: (newValue: string) => void
+  dispatch: (action: ActionsTypes) => void
 }
 
 
@@ -18,16 +17,15 @@ export function MyPosts (props: PropsType) {
 
   const addPost = () => {
     if (props.typedPostText) {
-      props.addPostCallback()
+      props.dispatch({type: "ADD-POST"})
     }
   }
-  const onTextAreaChange = (e:ChangeEvent<HTMLTextAreaElement>) => props.updateTypedPostTextCallback(e.currentTarget.value)
-
-
-  const myPostsStyle = `${parseBordersProps(props.borders)} text-theme-text bg-theme-bg-primary`
+  const onTextAreaChange = (e:ChangeEvent<HTMLTextAreaElement>) => { // onPostChange у Димы?
+    props.dispatch({type: "UPDATE-TYPED-POST-TEXT", newValue: e.currentTarget.value})
+  }
 
   return (
-      <section className={myPostsStyle}>
+      <section className={`${parseBordersProps(props.borders)} text-theme-text bg-theme-bg-primary`}>
 
         <div className="flex px-4 py-4 pb-3 border-b border-theme-border">
           <textarea
@@ -43,7 +41,6 @@ export function MyPosts (props: PropsType) {
               Post
             </button>
         </div>
-
 
         <div className="px-4 pt-4 pb-8">
 
