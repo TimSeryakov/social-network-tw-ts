@@ -17,7 +17,7 @@ type DialogsStateType = {
 export function Dialogs (props: PropsType) {
 
   const dialogsList = props.state.dialogsData.map(d =>
-      // <DialogItem id={d.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
+      // <DialogItem id={d55.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
       <DialogItem id={d.id} name={d.name} avatar={`https://api.adorable.io/avatars/96/${d.name}.png`} unreadMessages={d.unreadMessages}/>)
 
   const messagesList = props.state.messagesData.map(m =>

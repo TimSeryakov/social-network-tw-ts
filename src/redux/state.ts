@@ -3,7 +3,12 @@ import fuji from "../assets/img/fuji.png";
 import lionstatue from "../assets/img/lionstatue.png";
 import luckycat from "../assets/img/luckycat.png";
 import {v1} from "uuid";
-import {rerenderEntireTree} from "../render";
+
+let rerenderEntireTree = () => {}
+
+export const subscribe = (observer: () => void) => {
+  rerenderEntireTree = observer // Observer pattern
+}
 
 export type RootStateType = {
   profilePage: ProfilePageType
@@ -37,7 +42,6 @@ export type MessagesDataType = {
   belongsToUser: boolean
   text: string
 }
-
 
 export const state: RootStateType = {
   profilePage: {
@@ -77,10 +81,10 @@ export const addPost = () => {
   const newPost: PostsDataType = { id: v1(), text: state.profilePage.typedPostText, likesCount: 0 }
   state.profilePage.postsData.push(newPost)
   updateTypedPostText("")
-  rerenderEntireTree(state)
+  rerenderEntireTree()
 }
 
 export const updateTypedPostText = (newValue: string) => {
   state.profilePage.typedPostText = newValue
-  rerenderEntireTree(state)
+  rerenderEntireTree()
 }
