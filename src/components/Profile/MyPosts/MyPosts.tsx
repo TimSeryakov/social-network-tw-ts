@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {Post} from "./Post/Post"
-import {ActionsTypes, PostsDataType} from "../../../redux/state";
+import {ActionsTypes, addPostAC, PostsDataType, updateTypedPostTextAC} from "../../../redux/state";
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
 
 type PropsType = {
@@ -15,13 +15,17 @@ export function MyPosts (props: PropsType) {
 
   const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>)
 
+
+
   const addPost = () => {
     if (props.typedPostText) {
-      props.dispatch({type: "ADD-POST"})
+      props.dispatch(addPostAC())
     }
   }
-  const onTextAreaChange = (e:ChangeEvent<HTMLTextAreaElement>) => { // onPostChange у Димы?
-    props.dispatch({type: "UPDATE-TYPED-POST-TEXT", newValue: e.currentTarget.value})
+
+
+  const onTextAreaChange = (e:ChangeEvent<HTMLTextAreaElement>) => { // onPostChange у Димы
+    props.dispatch(updateTypedPostTextAC(e.currentTarget.value))
   }
 
   return (

@@ -4,6 +4,7 @@ import lionstatue from "../assets/img/lionstatue.png";
 import luckycat from "../assets/img/luckycat.png";
 import {v1} from "uuid";
 
+
 export type StateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
@@ -28,7 +29,7 @@ export type PostsDataType = {
 export type DialogsDataType = {
   id: string
   name: string
-  avatar: string // ????
+  avatar: string
   unreadMessages: number
 }
 export type MessagesDataType = {
@@ -37,22 +38,27 @@ export type MessagesDataType = {
   text: string
 }
 
+
 export type StoreType = {
   _state: StateType
   _callSubscriber: () => void
   getState: () => StateType
   subscribe: (observer: () => void) => void
-  dispatch: (action: AddPostActionType | updateTypedPostTextActionType) => void
+  dispatch: (action: AddPostActionType | UpdateTypedPostTextActionType) => void
 }
 
-type AddPostActionType = {
-  type: "ADD-POST"
-}
-type updateTypedPostTextActionType = {
+type UpdateTypedPostTextActionType = {
   type: "UPDATE-TYPED-POST-TEXT"
   newValue: string
 }
-export type ActionsTypes = AddPostActionType | updateTypedPostTextActionType
+type AddPostActionType = {
+  type: "ADD-POST"
+}
+
+export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType
+
+const ADD_POST = "ADD-POST"
+const UPDATE_TYPED_POST_TEXT = "UPDATE-TYPED-POST-TEXT"
 
 export let store: StoreType = {
   _state: {
@@ -72,7 +78,6 @@ export let store: StoreType = {
         {id: v1(), name: "Mary", avatar: luckycat, unreadMessages: 9},
         {id: v1(), name: "Johny", avatar: samurai, unreadMessages: 1},
         {id: v1(), name: "Flint", avatar: fuji, unreadMessages: 0},
-        {id: v1(), name: "Sara", avatar: lionstatue, unreadMessages: 0},
         {id: v1(), name: "Jackie", avatar: luckycat, unreadMessages: 1},
       ],
       messagesData: [
@@ -96,15 +101,25 @@ export let store: StoreType = {
     this._callSubscriber = observer
   },
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      const newPost: PostsDataType = { id: v1(), text: this._state.profilePage.typedPostText, likesCount: 0 }
-      this._state.profilePage.postsData.push(newPost)
-      this._state.profilePage.typedPostText = ""
-      this._callSubscriber()
-    } else if (action.type === 'UPDATE-TYPED-POST-TEXT') {
-      this._state.profilePage.typedPostText = action.newValue
-      this._callSubscriber()
+    switch (action.type) {
+      case ADD_POST:
+        const newPost: PostsDataType = { id: v1(), text: this._state.profilePage.typedPostText, likesCount: 0 }
+        this._state.profilePage.postsData.push(newPost)
+        this._state.profilePage.typedPostText = ""
+        this._callSubscriber()
+        break
+      case UPDATE_TYPED_POST_TEXT:
+        this._state.profilePage.typedPostText = action.newValue
+        this._callSubscriber()
+        break
     }
   }
 }
+
+
+export const addPostAC = (): AddPostActionType =>
+    ({ type: ADD_POST })
+
+export const updateTypedPostTextAC = (newValue: string): UpdateTypedPostTextActionType =>
+    ({ type: UPDATE_TYPED_POST_TEXT, newValue: newValue })
 
