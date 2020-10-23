@@ -13,7 +13,7 @@ export function Footer(props: FooterPropsType) {
 return (
     <footer className={footerStyle}>
       <p className="p-4 text-theme-text">
-        Shuh Shuh Training Project © 2020
+        <span className="hidden sm:inline">Shuh Shuh Training Project © 2020</span>
         <img className="inline-block w-5 h-5 mx-1 mb-1"
              src={ninjacat}
              alt="ninja cat emoji"/>
