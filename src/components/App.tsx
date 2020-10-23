@@ -2,7 +2,7 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import './App.css';
 import {Header} from "./Header/Header";
-import {AsideMenu} from "./Sidebar/AsideMenu";
+import {MainMenu} from "./MainMenu/MainMenu";
 import {Footer} from "./Footer/Footer";
 import {Dialogs} from "./Dialogs/Dialogs";
 import {Profile} from "./Profile/Profile";
@@ -21,7 +21,7 @@ function App (props: AppPropsType) {
 
           <div className="flex flex-auto">
 
-            <AsideMenu borders="r"/>
+            <MainMenu borders="r"/>
 
             <main className="flex-grow bg-theme-bg-primary">
               {/*<Route path={"/dialogs"} component={Dialogs}/>*/}

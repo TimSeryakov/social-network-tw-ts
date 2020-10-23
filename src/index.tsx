@@ -10,7 +10,7 @@ export const rerenderEntireTree = (props?: StoreType) => {
       <BrowserRouter>
         <App
             state={store.getState()}
-            dispatch={store.dispatch.bind(store)} // WARNING .bind - не забывать
+            dispatch={store.dispatch.bind(store)} // WARNING помнить про .bind
         />
       </BrowserRouter>,
       document.getElementById('root')

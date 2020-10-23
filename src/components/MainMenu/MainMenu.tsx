@@ -7,13 +7,13 @@ type SidebarPropsType ={
 }
 
 
-export const Sidebar = (props: SidebarPropsType) => {
+export const MainMenu = (props: SidebarPropsType) => {
 
-  const sidebarStyle = `${parseBordersProps(props.borders)} w-56 bg-theme-bg-third flex-shrink-0`
+  const MainMenuStyle = `${parseBordersProps(props.borders)} w-56 bg-theme-bg-third flex-shrink-0`
 
 
   return (
-      <aside className={sidebarStyle}>
+      <aside className={MainMenuStyle}>
         <ul className="">
           <li className="border-b border-theme-border">
             <NavLink to={"/profile"}
@@ -27,7 +27,7 @@ export const Sidebar = (props: SidebarPropsType) => {
                      className="text-xl text-theme-text block border-l-2 border-theme-bg-third hover:text-white py-4 pl-6"
                      activeClassName="bg-theme-bg-primary border-l-2 border-theme-accent text-theme-white">
 
-              <i className="far fa-envelope mr-3"/> Messages
+              <i className="far fa-envelope mr-3"/> Messenger
             </NavLink>
           </li>
           <li className="border-b border-theme-border">
