@@ -8,13 +8,13 @@ type FooterPropsType ={
 
 export function Footer(props: FooterPropsType) {
 
-  const footerStyle = `${parseBordersProps(props.borders)} h-14 bg-theme-bg-primary text-center`
+  const footerStyle = `${parseBordersProps(props.borders)} sm:block hidden h-14 bg-theme-bg-primary text-center`
 
 return (
     <footer className={footerStyle}>
-      <p className="text-theme-text p-4">
+      <p className="p-4 text-theme-text">
         Shuh Shuh Training Project © 2020
-        <img className="w-5 h-5 inline-block mb-1 mx-1"
+        <img className="inline-block w-5 h-5 mx-1 mb-1"
              src={ninjacat}
              alt="ninja cat emoji"/>
 
