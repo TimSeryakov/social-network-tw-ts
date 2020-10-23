@@ -1,27 +1,39 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {PageTitle} from "../PageTitle/PageTitle";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
-import {InputMessageSection} from "./InputMessageSection/InputMessageSection";
-import {DialogsDataType, MessagesDataType} from "../../redux/state";
+import {ActionsTypes, DialogsPageType, sendMessageAC, updateTypedMessageTextAC} from "../../redux/state";
 
 type PropsType = {
-  state: DialogsStateType
+  state: DialogsPageType
+  dispatch: (action: ActionsTypes) => void
 }
 
-type DialogsStateType = {
-  dialogsData: Array<DialogsDataType>
-  messagesData: Array<MessagesDataType>
-}
-
-export function Dialogs (props: PropsType) {
+export function Dialogs(props: PropsType) {
 
   const dialogsList = props.state.dialogsData.map(d =>
-      // <DialogItem id={d55.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
-      <DialogItem id={d.id} name={d.name} avatar={`https://api.adorable.io/avatars/96/${d.name}.png`} unreadMessages={d.unreadMessages}/>)
+      <DialogItem id={d.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
+      // <DialogItem id={d.id} name={d.name} avatar={`https://api.adorable.io/avatars/96/${d.name}.png`} unreadMessages={d.unreadMessages}/>)
 
   const messagesList = props.state.messagesData.map(m =>
-      <MessageItem id={m.id} belongsToUser={m.belongsToUser} text={m.text}/> )
+      <MessageItem id={m.id} belongsToUser={m.belongsToUser} text={m.text}/>)
+
+// TODO Сделать, чтобы при нажатии страница прокручивалась вниз
+// (чтобы окно ввода сообщения не вылазило после добавления сообщения за viewport)
+  const onSendMessageClick = () => {
+    props.dispatch(sendMessageAC())
+  }
+
+  const onNewMessageTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    props.dispatch(updateTypedMessageTextAC(e.currentTarget.value))
+  }
+
+  const onNewMessageKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault()
+      onSendMessageClick()
+    }
+  }
 
   return (
 
@@ -48,13 +60,28 @@ export function Dialogs (props: PropsType) {
 
             </div>
 
-            <div className="border-theme-border border-t pt-3">
-              <InputMessageSection/>
+            <div className="border-theme-border border-t pt-3">  {/*<InputMessageSection/>*/}
+
+              <div className="flex mx-3 mb-3">
+                <textarea
+                    className="flex-grow border-theme-border px-3 py-1 mr-2 border bg-theme-bg-third rounded-md text-white focus:outline-none focus:shadow-outline placeholder-gray-700"
+                    placeholder="Write message..."
+                    onChange={onNewMessageTextAreaChange}
+                    onKeyPress={onNewMessageKeyPress}
+                    value={props.state.typedMessageText}
+                />
+                <button
+                    className="bg-theme-accent-alternative text-white px-4 py-2 rounded-md focus:outline-none focus:shadow-outline"
+                    onClick={onSendMessageClick}
+                >
+                  Send
+                </button>
+              </div>
+
             </div>
 
           </div>
         </div>
-
 
 
       </section>

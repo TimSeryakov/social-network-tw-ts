@@ -1,4 +1,5 @@
 import React from 'react';
+import fuji from "../../../assets/img/fuji.png";
 
 export function ProfileInfo () {
   return (
@@ -6,7 +7,7 @@ export function ProfileInfo () {
           <div className="p-3 flex-shrink-0">
             <img
                 className="w-32 h-32 bg-theme-bg-secondary rounded-full border border-theme-border flex items-center justify-center"
-                src={`https://api.adorable.io/avatars/128/samuraijack.png`}
+                src={fuji}
                 alt="avatar"
             />
           </div>
