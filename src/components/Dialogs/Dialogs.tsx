@@ -44,10 +44,8 @@ export function Dialogs(props: PropsType) {
 
         <div className="flex flex-auto flex-grow">
 
-          <div className="bg-theme-bg-primary border-r border-theme-border w-4/12">
-            <div className="">
-              <h3 className="py-2 px-4 border-t border-b border-theme-border text-theme-text bg-theme-bg-secondary">Friends</h3>
-            </div>
+          <div className="bg-theme-bg-primary border-r border-theme-border sm:w-4/12">
+              <h3 className="text-sm sm:text-base text-center sm:text-left py-2 px-4 border-t border-b border-theme-border text-theme-text bg-theme-bg-secondary">Friends</h3>
 
             {dialogsList}
 
