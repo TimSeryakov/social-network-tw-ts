@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {store, StoreType} from "./redux/state";
+import {store, StoreType} from "./redux/store";
 import App from "./components/App";
 import {BrowserRouter} from "react-router-dom";
 

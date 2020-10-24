@@ -1,7 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from "./Post/Post"
-import {ActionsTypes, addPostAC, PostsDataType, updateTypedPostTextAC} from "../../../redux/state";
+import {ActionsTypes,  PostsDataType} from "../../../redux/store";
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
+import {addPostAC, updateTypedPostTextAC} from "../../../redux/profile-reducer";
 
 type PropsType = {
   postsData: Array<PostsDataType>

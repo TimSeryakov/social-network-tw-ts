@@ -2,7 +2,8 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {PageTitle} from "../PageTitle/PageTitle";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
-import {ActionsTypes, DialogsPageType, sendMessageAC, updateTypedMessageTextAC} from "../../redux/state";
+import {ActionsTypes, DialogsPageType} from "../../redux/store";
+import {sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
 
 type PropsType = {
   state: DialogsPageType
