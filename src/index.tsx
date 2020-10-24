@@ -17,6 +17,6 @@ export const rerenderEntireTree = (props?: StoreType) => {
   );
 }
 
-rerenderEntireTree(store)
+rerenderEntireTree()
 store.subscribe(rerenderEntireTree)
 

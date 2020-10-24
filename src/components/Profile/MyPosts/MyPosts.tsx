@@ -1,8 +1,10 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from "./Post/Post"
-import {ActionsTypes,  PostsDataType} from "../../../redux/store";
+import {ActionsTypes, PostsDataType} from "../../../redux/store";
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
 import {addPostAC, updateTypedPostTextAC} from "../../../redux/profile-reducer";
+import {scroller} from 'react-scroll';
+
 
 type PropsType = {
   postsData: Array<PostsDataType>
@@ -14,11 +16,18 @@ type PropsType = {
 
 export function MyPosts (props: PropsType) {
 
-  const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>)
+  const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>).reverse()
 
   const onAddPostClick = () => {
     if (props.typedPostText) {
       props.dispatch(addPostAC())
+
+      scroller.scrollTo('add-post-textarea', {
+        duration: 800,
+        delay: 0,
+        smooth: 'easeInOutQuart'
+      })
+
     }
   }
 
@@ -34,7 +43,9 @@ export function MyPosts (props: PropsType) {
   }
 
   return ( // TODO Вынести в отдельный компонент и сделать его универсальным
-      <section className={`${parseBordersProps(props.borders)} text-theme-text bg-theme-bg-primary`}>
+      <section className={`${parseBordersProps(props.borders)} text-theme-text bg-theme-bg-primary`}
+               id={"add-post-textarea"}
+      >
 
         <div className="flex px-4 py-4 pb-3 border-b border-theme-border">
           <textarea

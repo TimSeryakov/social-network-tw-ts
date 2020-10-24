@@ -4,6 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 import {ActionsTypes, DialogsPageType} from "../../redux/store";
 import {sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
+import * as Scroll from 'react-scroll';
 
 type PropsType = {
   state: DialogsPageType
@@ -12,6 +13,8 @@ type PropsType = {
 
 export function Dialogs(props: PropsType) {
 
+  const scroll = Scroll.animateScroll;
+
   const dialogsList = props.state.dialogsData.map(d =>
       <DialogItem id={d.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
       // <DialogItem id={d.id} name={d.name} avatar={`https://api.adorable.io/avatars/96/${d.name}.png`} unreadMessages={d.unreadMessages}/>)
@@ -19,10 +22,9 @@ export function Dialogs(props: PropsType) {
   const messagesList = props.state.messagesData.map(m =>
       <MessageItem id={m.id} belongsToUser={m.belongsToUser} text={m.text}/>)
 
-// TODO Сделать, чтобы при нажатии страница прокручивалась вниз
-// (чтобы окно ввода сообщения не вылазило после добавления сообщения за viewport)
   const onSendMessageClick = () => {
     props.dispatch(sendMessageAC())
+    scroll.scrollToBottom();
   }
 
   const onNewMessageTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -37,8 +39,6 @@ export function Dialogs(props: PropsType) {
   }
 
   return (
-
-
       <section className="h-full flex flex-col">
 
         <PageTitle title="Your dialogs"/>
@@ -52,7 +52,7 @@ export function Dialogs(props: PropsType) {
 
           </div>
 
-          <div className="bg-theme-bg-primary border-t border-theme-border w-8/12 flex flex-auto flex-col">
+          <div className="bg-theme-bg-primary border-t border-theme-border sm:w-8/12 flex flex-auto flex-col">
             <div className="flex-grow">
 
               {messagesList}
@@ -63,7 +63,7 @@ export function Dialogs(props: PropsType) {
 
               <div className="flex mx-3 mb-3">
                 <textarea
-                    className="flex-grow border-theme-border px-3 py-1 mr-2 border bg-theme-bg-third rounded-md text-white focus:outline-none focus:shadow-outline placeholder-gray-700"
+                    className="flex-grow w-full border-theme-border px-3 py-1 mr-2 border bg-theme-bg-third rounded-md text-white focus:outline-none focus:shadow-outline placeholder-gray-700"
                     placeholder="Write message..."
                     onChange={onNewMessageTextAreaChange}
                     onKeyPress={onNewMessageKeyPress}
