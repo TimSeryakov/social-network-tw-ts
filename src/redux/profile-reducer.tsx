@@ -8,14 +8,17 @@ const profileReducer = (state: ProfilePageType, action: ActionsTypes): ProfilePa
   switch (action.type) {
     case ADD_POST:
       if (state.typedPostText) {
-        const newPost: PostsDataType = {id: v1(), text: state.typedPostText, likesCount: 0}
-        state.postsData.push(newPost)
-        state.typedPostText = ""
+        const stateCopy = {...state}
+        const newPost: PostsDataType = {id: v1(), text: stateCopy.typedPostText, likesCount: 0}
+        stateCopy.postsData.push(newPost)
+        stateCopy.typedPostText = ""
+      return stateCopy
       }
       return state
     case UPDATE_TYPED_POST_TEXT:
-      state.typedPostText = action.newValue
-      return state
+      const stateCopy = {...state}
+      stateCopy.typedPostText = action.newValue
+      return stateCopy
     default:
       return state
   }

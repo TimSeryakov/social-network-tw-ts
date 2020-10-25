@@ -14,14 +14,17 @@ const dialogsReducer = (state: DialogsPageType, action: ActionsTypes): DialogsPa
   switch (action.type) {
     case SEND_MESSAGE:
       if (state.typedMessageText) {
-        const newMessage: MessagesDataType = {id: v1(), belongsToUser: true, text: state.typedMessageText}
-        state.messagesData.push(newMessage)
-        state.typedMessageText = ""
+        const stateCopy = {...state}
+        const newMessage: MessagesDataType = {id: v1(), belongsToUser: true, text: stateCopy.typedMessageText}
+        stateCopy.messagesData.push(newMessage)
+        stateCopy.typedMessageText = ""
+        return stateCopy
       }
       return state
     case UPDATE_TYPED_MESSAGE_TEXT:
-      state.typedMessageText = action.newValue
-      return state
+      const stateCopy = {...state}
+      stateCopy.typedMessageText = action.newValue
+      return stateCopy
     default:
       return state
   }

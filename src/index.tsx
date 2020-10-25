@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {store, StoreType} from "./redux/store";
+import {store} from "./redux/store";
 import App from "./components/App";
 import {BrowserRouter} from "react-router-dom";
 
 
-export const rerenderEntireTree = (props?: StoreType) => {
+export const rerenderEntireTree = () => {
   ReactDOM.render(
       <BrowserRouter>
         <App
