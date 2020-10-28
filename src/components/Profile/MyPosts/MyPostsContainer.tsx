@@ -1,32 +1,34 @@
 import React from 'react';
-import {ActionsTypes, PostsDataType} from "../../../redux/store-handmade";
+import {StoreType} from "../../../redux/store-handmade";
 import {BordersPropsType} from "../../common/utils/parseBordersProps";
 import {addPostAC, updateTypedPostTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 
-
 type PropsType = {
-  postsData: Array<PostsDataType>
-  typedPostText: string
   borders: BordersPropsType
-  dispatch: (action: ActionsTypes) => void
+  store: StoreType
 }
-
 
 export function MyPostsContainer (props: PropsType) {
 
+  const state = props.store.getState()
+
   const addPost = () => {
-      props.dispatch(addPostAC())
+      props.store.dispatch(addPostAC())
   }
 
   const updateTypedPostText = (newValue: string) => { // onPostChange у Димы
-    props.dispatch(updateTypedPostTextAC(newValue))
+    props.store.dispatch(updateTypedPostTextAC(newValue))
   }
 
-  return <MyPosts borders={props.borders}
-                  postsData={props.postsData}
-                  addPost={addPost}
-                  typedPostText={props.typedPostText}
-                  updateTypedPostText={updateTypedPostText}
-          />
+  return (
+      <MyPosts borders={props.borders}
+
+               postsData={state.profilePage.postsData}
+               addPost={addPost}
+
+               typedPostText={state.profilePage.typedPostText}
+               updateTypedPostText={updateTypedPostText}
+       />
+  )
 }

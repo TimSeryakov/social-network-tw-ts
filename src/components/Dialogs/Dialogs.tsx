@@ -2,33 +2,42 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {PageTitle} from "../PageTitle/PageTitle";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
-import {ActionsTypes, DialogsPageType} from "../../redux/store-handmade";
-import {sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
 import * as Scroll from 'react-scroll';
+import {DialogsDataType, MessagesDataType} from "../../redux/store-handmade"; // FIXME
 
 type PropsType = {
-  state: DialogsPageType
-  dispatch: (action: ActionsTypes) => void
+  dialogsData: Array<DialogsDataType>
+
+  messagesData: Array<MessagesDataType>
+  sendMessage: ()  => void
+
+  typedMessageText: string
+  updateTypedMessageText: (newValue: string) => void
 }
 
 export function Dialogs(props: PropsType) {
 
+  const textAreaRef = React.createRef<HTMLTextAreaElement>()
+
   const scroll = Scroll.animateScroll;
 
-  const dialogsList = props.state.dialogsData.map(d =>
+  const dialogsList = props.dialogsData.map(d =>
       <DialogItem id={d.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
-      // <DialogItem id={d.id} name={d.name} avatar={`https://api.adorable.io/avatars/96/${d.name}.png`} unreadMessages={d.unreadMessages}/>)
 
-  const messagesList = props.state.messagesData.map(m =>
+  const messagesList = props.messagesData.map(m =>
       <MessageItem id={m.id} belongsToUser={m.belongsToUser} text={m.text}/>)
 
   const onSendMessageClick = () => {
-    props.dispatch(sendMessageAC())
-    scroll.scrollToBottom();
+    textAreaRef.current && textAreaRef.current.focus();
+
+    if (props.typedMessageText) {
+      props.sendMessage()
+      scroll.scrollToBottom();
+    }
   }
 
   const onNewMessageTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.dispatch(updateTypedMessageTextAC(e.currentTarget.value))
+    props.updateTypedMessageText(e.currentTarget.value)
   }
 
   const onNewMessageKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -67,7 +76,8 @@ export function Dialogs(props: PropsType) {
                     placeholder="Write message..."
                     onChange={onNewMessageTextAreaChange}
                     onKeyPress={onNewMessageKeyPress}
-                    value={props.state.typedMessageText}
+                    value={props.typedMessageText}
+                    ref={textAreaRef}
                 />
                 <button
                     className="bg-theme-accent-alternative text-white px-4 py-2 rounded-md focus:outline-none focus:shadow-outline"

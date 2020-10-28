@@ -1,17 +1,11 @@
 import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PageTitle} from "../PageTitle/PageTitle";
-import {ActionsTypes, PostsDataType} from "../../redux/store-handmade";
+import {StoreType} from "../../redux/store-handmade";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 type PropsType = {
-  profilePage: PostsStateType
-  dispatch: (action: ActionsTypes) => void
-}
-
-type PostsStateType = {
-  postsData: Array<PostsDataType>
-  typedPostText: string
+  store: StoreType
 }
 
 export function Profile (props: PropsType) {
@@ -26,9 +20,7 @@ export function Profile (props: PropsType) {
 
           <MyPostsContainer
                    borders="t"
-                   postsData={props.profilePage.postsData}
-                   dispatch={props.dispatch}
-                   typedPostText={props.profilePage.typedPostText}
+                   store={props.store}
           />
 
         </div>
