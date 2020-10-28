@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {store} from "./redux/store";
 import App from "./components/App";
 import {BrowserRouter} from "react-router-dom";
+import store from "./redux/store-redux";
 
 
 export const rerenderEntireTree = () => {
@@ -18,5 +18,5 @@ export const rerenderEntireTree = () => {
 }
 
 rerenderEntireTree()
-store.subscribe(rerenderEntireTree)
+store.subscribe(() => {rerenderEntireTree()})
 

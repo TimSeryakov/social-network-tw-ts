@@ -6,7 +6,7 @@ import {MainMenu} from "./MainMenu/MainMenu";
 import {Footer} from "./Footer/Footer";
 import {Dialogs} from "./Dialogs/Dialogs";
 import {Profile} from "./Profile/Profile";
-import {ActionsTypes, StateType} from "../redux/store";
+import {ActionsTypes, StateType} from "../redux/store-handmade";
 
 type AppPropsType = {
   state: StateType

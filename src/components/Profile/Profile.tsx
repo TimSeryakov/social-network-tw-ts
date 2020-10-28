@@ -2,7 +2,7 @@ import React from 'react';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PageTitle} from "../PageTitle/PageTitle";
-import {ActionsTypes, PostsDataType} from "../../redux/store";
+import {ActionsTypes, PostsDataType} from "../../redux/store-handmade";
 
 type PropsType = {
   profilePage: PostsStateType

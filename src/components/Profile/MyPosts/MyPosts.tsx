@@ -1,6 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from "./Post/Post"
-import {ActionsTypes, PostsDataType} from "../../../redux/store";
+import {ActionsTypes, PostsDataType} from "../../../redux/store-handmade";
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
 import {addPostAC, updateTypedPostTextAC} from "../../../redux/profile-reducer";
 import {scroller} from 'react-scroll';

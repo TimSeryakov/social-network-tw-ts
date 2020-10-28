@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {PageTitle} from "../PageTitle/PageTitle";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
-import {ActionsTypes, DialogsPageType} from "../../redux/store";
+import {ActionsTypes, DialogsPageType} from "../../redux/store-handmade";
 import {sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
 import * as Scroll from 'react-scroll';
 
