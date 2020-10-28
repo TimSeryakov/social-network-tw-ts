@@ -1,8 +1,8 @@
 import React from 'react';
-import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PageTitle} from "../PageTitle/PageTitle";
 import {ActionsTypes, PostsDataType} from "../../redux/store-handmade";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 type PropsType = {
   profilePage: PostsStateType
@@ -24,10 +24,11 @@ export function Profile (props: PropsType) {
 
           <ProfileInfo/>
 
-          <MyPosts postsData={props.profilePage.postsData}
+          <MyPostsContainer
+                   borders="t"
+                   postsData={props.profilePage.postsData}
                    dispatch={props.dispatch}
                    typedPostText={props.profilePage.typedPostText}
-                   borders="t"
           />
 
         </div>

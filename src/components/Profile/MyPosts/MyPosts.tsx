@@ -1,26 +1,33 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from "./Post/Post"
-import {ActionsTypes, PostsDataType} from "../../../redux/store-handmade";
+import {PostsDataType} from "../../../redux/store-handmade";
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
-import {addPostAC, updateTypedPostTextAC} from "../../../redux/profile-reducer";
 import {scroller} from 'react-scroll';
 
 
 type PropsType = {
-  postsData: Array<PostsDataType>
-  typedPostText: string
   borders: BordersPropsType
-  dispatch: (action: ActionsTypes) => void
+
+  postsData: Array<PostsDataType>
+  addPost: () => void
+
+  typedPostText: string
+  updateTypedPostText: (newValue: string) => void
 }
+
 
 
 export function MyPosts (props: PropsType) {
 
+  const textAreaRef = React.createRef<HTMLTextAreaElement>() // FIXME
   const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>).reverse()
 
   const onAddPostClick = () => {
+
+    textAreaRef.current && textAreaRef.current.focus();
+
     if (props.typedPostText) {
-      props.dispatch(addPostAC())
+      props.addPost()
 
       scroller.scrollTo('add-post-textarea', {
         duration: 800,
@@ -32,7 +39,7 @@ export function MyPosts (props: PropsType) {
   }
 
   const onAddPostTextAreaChange = (e:ChangeEvent<HTMLTextAreaElement>) => { // onPostChange у Димы
-    props.dispatch(updateTypedPostTextAC(e.currentTarget.value))
+    props.updateTypedPostText(e.currentTarget.value)
   }
 
   const onAddPostTextAreaKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -54,6 +61,7 @@ export function MyPosts (props: PropsType) {
             value = {props.typedPostText}
             onChange={onAddPostTextAreaChange}
             onKeyPress={onAddPostTextAreaKeyPress}
+            ref={textAreaRef}
           />
             <button
                 className="px-4 py-2 text-white rounded-md bg-theme-accent-alternative focus:outline-none focus:shadow-outline"
