@@ -9,7 +9,7 @@ type SidebarPropsType ={
 
 export const MainMenu = (props: SidebarPropsType) => {
 
-  const MainMenuStyle = `${parseBordersProps(props.borders)} sm:relative w-full fixed bottom-0 sm:w-48 md:w-56 bg-theme-bg-third flex-shrink-0`
+  const MainMenuStyle = `${parseBordersProps(props.borders)} sm:relative w-full fixed bottom-0 sm:w-48 md:w-56 bg-theme-bg-third flex-shrink-0 z-50`
 
 
   return (
