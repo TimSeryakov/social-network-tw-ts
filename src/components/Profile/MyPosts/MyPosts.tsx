@@ -19,7 +19,7 @@ type PropsType = {
 
 export function MyPosts (props: PropsType) {
 
-  const textAreaRef = React.createRef<HTMLTextAreaElement>() // FIXME
+  const textAreaRef = React.createRef<HTMLTextAreaElement>()
   const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>).reverse()
 
   const onAddPostClick = () => {
