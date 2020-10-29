@@ -21,7 +21,7 @@ export type DialogsPageType = {
   messagesData: Array<MessagesDataType>
   typedMessageText: string
 }
-export type SidebarType = {
+type SidebarType = {
 
 }
 export type PostsDataType = {
@@ -47,8 +47,8 @@ export type StoreType = {
   getState: () => StateType
   subscribe: (observer: () => void) => void
   dispatch: (action: AddPostActionType | UpdateTypedPostTextActionType |
-                     UpdateTypedMessageTextActionType | SendMessageActionType
-            ) => void
+      UpdateTypedMessageTextActionType | SendMessageActionType
+  ) => void
 }
 
 export type UpdateTypedPostTextActionType = {
@@ -68,9 +68,9 @@ export type SendMessageActionType = {
 }
 
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
-                           UpdateTypedMessageTextActionType | SendMessageActionType
+    UpdateTypedMessageTextActionType | SendMessageActionType
 
-export let storeHandmade: StoreType = {
+export let store: StoreType = {
   _state: {
     profilePage: {
       postsData: [

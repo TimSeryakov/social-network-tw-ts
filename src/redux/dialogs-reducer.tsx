@@ -1,15 +1,9 @@
 import {v1} from "uuid";
-import {
-  ActionsTypes,
-  DialogsPageType,
-  MessagesDataType,
-  SendMessageActionType,
-  UpdateTypedMessageTextActionType
-} from "./store-handmade";
 import samurai from "../assets/img/samurai.png";
 import fuji from "../assets/img/fuji.png";
 import lionstatue from "../assets/img/lionstatue.png";
 import luckycat from "../assets/img/luckycat.png";
+import {ActionsTypes} from "./store-redux";
 
 const initialState = {
       dialogsData: [
@@ -20,7 +14,7 @@ const initialState = {
         {id: v1(), name: "Johnny", avatar: samurai, unreadMessages: 1},
         {id: v1(), name: "Flint", avatar: fuji, unreadMessages: 0},
         {id: v1(), name: "Jackie", avatar: luckycat, unreadMessages: 999},
-      ],
+      ] as Array<DialogsDataType>,
       messagesData: [
         {id: v1(), belongsToUser: false, text: "Hi"},
         {id: v1(), belongsToUser: false, text: "How r you"},
@@ -29,9 +23,32 @@ const initialState = {
         {id: v1(), belongsToUser: false, text: "please"},
         {id: v1(), belongsToUser: true, text: "Hi, im there! 👋"},
         {id: v1(), belongsToUser: false, text: "really 👻"},
-      ],
-      typedMessageText: "",
+      ] as Array<MessagesDataType>,
+      typedMessageText: "" as string,
     }
+
+export type DialogsPageType = typeof initialState
+
+export type DialogsDataType = {
+  id: string
+  name: string
+  avatar: string
+  unreadMessages: number
+}
+export type MessagesDataType = {
+  id: string
+  belongsToUser: boolean
+  text: string
+}
+
+export type UpdateTypedMessageTextActionType = {
+  type: typeof UPDATE_TYPED_MESSAGE_TEXT
+  newValue: string
+}
+
+export type SendMessageActionType = {
+  type: typeof SEND_MESSAGE
+}
 
 const SEND_MESSAGE = "SEND-MESSAGE"
 const UPDATE_TYPED_MESSAGE_TEXT = "UPDATE-TYPED-MESSAGE-TEXT"
@@ -61,7 +78,6 @@ export const sendMessageAC = (): SendMessageActionType =>
 
 export const updateTypedMessageTextAC = (newValue: string): UpdateTypedMessageTextActionType =>
     ({ type: UPDATE_TYPED_MESSAGE_TEXT, newValue: newValue })
-
 
 
 export default dialogsReducer
