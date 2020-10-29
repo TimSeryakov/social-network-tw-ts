@@ -19,7 +19,6 @@ export function Profile (props: PropsType) {
           <ProfileInfo/>
 
           <MyPostsContainer
-                   borders="t"
                    store={props.store}
           />
 

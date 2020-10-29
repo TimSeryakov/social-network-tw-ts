@@ -1,11 +1,9 @@
 import React from 'react';
 import {StoreType} from "../../../redux/store-handmade";
-import {BordersPropsType} from "../../common/utils/parseBordersProps";
 import {addPostAC, updateTypedPostTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 
 type PropsType = {
-  borders: BordersPropsType
   store: StoreType
 }
 
@@ -22,7 +20,7 @@ export function MyPostsContainer (props: PropsType) {
   }
 
   return (
-      <MyPosts borders={props.borders}
+      <MyPosts borders={"t"}
 
                postsData={state.profilePage.postsData}
                addPost={addPost}
