@@ -5,13 +5,9 @@ import {Header} from "./Header/Header";
 import {MainMenu} from "./MainMenu/MainMenu";
 import {Footer} from "./Footer/Footer";
 import {Profile} from "./Profile/Profile";
-import {ActionsTypes, StateType} from "../redux/store-handmade";
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 
 type AppPropsType = {
-  state: StateType
-  store: any // FIXME
-  dispatch: (action: ActionsTypes) => void
 }
 
 function App (props: AppPropsType) {
@@ -25,8 +21,8 @@ function App (props: AppPropsType) {
             <MainMenu borders="r"/>
 
             <main className="flex-grow bg-theme-bg-primary">
-              <Route path={"/dialogs"} render={() =><DialogsContainer store={props.store}/>}/>
-              <Route path={"/profile"} render={() =><Profile store={props.store}/>}/>
+              <Route path={"/dialogs"} render={() =><DialogsContainer/>}/>
+              <Route path={"/profile"} render={() =><Profile/>}/>
             </main>
 
           </div>

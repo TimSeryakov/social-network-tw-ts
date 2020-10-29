@@ -1,33 +1,39 @@
 import React from 'react';
 import {sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
+import { StoreContext } from '../../redux/store-context';
 import {Dialogs} from "./Dialogs";
 
-type PropsType = {
-  store: any // FIXME
-}
 
-export function DialogsContainer(props: PropsType) {
-
-  const state = props.store.getState()
-
-  const sendMessage = () => {
-    props.store.dispatch(sendMessageAC())
-  }
-
-  const updateTypedMessageText = (newValue: string) => {
-    props.store.dispatch(updateTypedMessageTextAC(newValue))
-  }
-
+export function DialogsContainer() {
 
   return (
-      <Dialogs dialogsData={state.dialogsPage.dialogsData}
+      <StoreContext.Consumer>
+        { // бывает баг если не переносить на новую строку
+          (store: any) => {
 
-               messagesData={state.dialogsPage.messagesData}
-               sendMessage={sendMessage}
+            const state = store.getState()
 
-               typedMessageText={state.dialogsPage.typedMessageText}
-               updateTypedMessageText={updateTypedMessageText}
-       />
-     )
+            const sendMessage = () => {
+              store.dispatch(sendMessageAC())
+            }
+
+            const updateTypedMessageText = (newValue: string) => {
+              store.dispatch(updateTypedMessageTextAC(newValue))
+            }
+
+            return (
+                <Dialogs dialogsData={state.dialogsPage.dialogsData}
+
+                         messagesData={state.dialogsPage.messagesData}
+                         sendMessage={sendMessage}
+
+                         typedMessageText={state.dialogsPage.typedMessageText}
+                         updateTypedMessageText={updateTypedMessageText}
+                 />
+            )
+          }
+        }
+      </StoreContext.Consumer>
+  )
 }
 

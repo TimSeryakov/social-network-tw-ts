@@ -38,9 +38,9 @@ export function MyPosts (props: PropsType) {
     }
   }
 
-  const onAddPostTextAreaChange = (e:ChangeEvent<HTMLTextAreaElement>) => { // onPostChange у Димы
+  const onAddPostTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     props.updateTypedPostText(e.currentTarget.value)
-  }
+  };
 
   const onAddPostTextAreaKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {

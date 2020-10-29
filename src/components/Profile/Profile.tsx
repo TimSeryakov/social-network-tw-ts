@@ -1,14 +1,10 @@
 import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PageTitle} from "../PageTitle/PageTitle";
-import {StoreType} from "../../redux/store-handmade";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-type PropsType = {
-  store: StoreType
-}
 
-export function Profile (props: PropsType) {
+export function Profile () {
   return (
       <section>
 
@@ -18,9 +14,7 @@ export function Profile (props: PropsType) {
 
           <ProfileInfo/>
 
-          <MyPostsContainer
-                   store={props.store}
-          />
+          <MyPostsContainer/>
 
         </div>
       </section>

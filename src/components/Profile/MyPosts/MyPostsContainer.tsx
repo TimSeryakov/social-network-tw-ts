@@ -1,32 +1,38 @@
 import React from 'react';
-import {StoreType} from "../../../redux/store-handmade";
 import {addPostAC, updateTypedPostTextAC} from "../../../redux/profile-reducer";
+import { StoreContext } from '../../../redux/store-context';
 import {MyPosts} from "./MyPosts";
 
-type PropsType = {
-  store: StoreType
-}
 
-export function MyPostsContainer (props: PropsType) {
-
-  const state = props.store.getState()
-
-  const addPost = () => {
-      props.store.dispatch(addPostAC())
-  }
-
-  const updateTypedPostText = (newValue: string) => { // onPostChange у Димы
-    props.store.dispatch(updateTypedPostTextAC(newValue))
-  }
+export function MyPostsContainer () {
 
   return (
-      <MyPosts borders={"t"}
+      <StoreContext.Consumer>
+        { // бывает баг если не переносить на новую строку
+          (store: any) => {
 
-               postsData={state.profilePage.postsData}
-               addPost={addPost}
+            const state = store.getState()
 
-               typedPostText={state.profilePage.typedPostText}
-               updateTypedPostText={updateTypedPostText}
-       />
+            const addPost = () => {
+              store.dispatch(addPostAC())
+            }
+
+            const updateTypedPostText = (newValue: string) => {
+              store.dispatch(updateTypedPostTextAC(newValue))
+            }
+
+            return (
+                <MyPosts borders={"t"}
+
+                         postsData={state.profilePage.postsData}
+                         addPost={addPost}
+
+                         typedPostText={state.profilePage.typedPostText}
+                         updateTypedPostText={updateTypedPostText}
+                />
+            )
+          }
+        }
+      </StoreContext.Consumer>
   )
 }
