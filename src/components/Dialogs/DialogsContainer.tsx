@@ -1,7 +1,7 @@
 import {DialogsDataType, MessagesDataType, sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
-import {StateType} from "../../redux/store-redux";
+import {ActionsTypes, StateType} from "../../redux/store-redux";
 
 type MapStatePropsType = {
   dialogsData: Array<DialogsDataType>
@@ -21,7 +21,7 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
     typedMessageText: state.dialogsPage.typedMessageText
   }
 }
-const mapDispatchToProps = (dispatch: any): MapDispatchPropsType => { // FIXME ANY
+const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void): MapDispatchPropsType => {
   return {
     updateTypedMessageText: (newValue: string) => {dispatch(updateTypedMessageTextAC(newValue))},
     sendMessage: () => {dispatch(sendMessageAC())}

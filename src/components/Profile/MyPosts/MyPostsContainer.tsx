@@ -1,7 +1,7 @@
 import {addPostAC, PostsDataType, updateTypedPostTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
-import {StateType} from "../../../redux/store-redux";
+import {ActionsTypes, StateType} from "../../../redux/store-redux";
 import {BordersPropsType} from "../../common/utils/parseBordersProps";
 
 type MapStatePropsType = {
@@ -22,7 +22,7 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
     typedPostText: state.profilePage.typedPostText
   }
 }
-const mapDispatchToProps = (dispatch: any): MapDispatchPropsType => { // FIXME ANY
+const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void): MapDispatchPropsType => {
   return {
     updateTypedPostText: (newValue: string) => {dispatch(updateTypedPostTextAC(newValue))},
     addPost: () => {dispatch(addPostAC())}
