@@ -7,10 +7,7 @@ import {Footer} from "./Footer/Footer";
 import {Profile} from "./Profile/Profile";
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 
-type AppPropsType = {
-}
-
-function App (props: AppPropsType) {
+function App() {
   return (
         <div className="container shadow-xl h-full min-h-screen flex flex-col border border-theme-border">
 

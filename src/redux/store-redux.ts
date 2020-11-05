@@ -14,7 +14,7 @@ export type StateType = {
 }
 
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
-    UpdateTypedMessageTextActionType | SendMessageActionType
+                           UpdateTypedMessageTextActionType | SendMessageActionType
 
 let reducers = combineReducers({
   profilePage: profileReducer,

@@ -1,8 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from "./Post/Post"
-import {PostsDataType} from "../../../redux/store-handmade";
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
 import {scroller} from 'react-scroll';
+import {PostsDataType} from "../../../redux/profile-reducer";
 
 
 type PropsType = {
@@ -14,7 +14,6 @@ type PropsType = {
   typedPostText: string
   updateTypedPostText: (newValue: string) => void
 }
-
 
 
 export function MyPosts (props: PropsType) {

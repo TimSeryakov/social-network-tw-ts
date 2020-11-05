@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./store-handmade";
+import {ActionsTypes} from "./store-redux";
 
 const initialState = {}
 

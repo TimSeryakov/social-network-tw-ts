@@ -1,39 +1,39 @@
 import React from 'react';
-import {sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
-import { StoreContext } from '../../redux/store-context';
+import {
+  DialogsDataType,
+  DialogsPageType,
+  MessagesDataType,
+  sendMessageAC,
+  updateTypedMessageTextAC
+} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
+import {connect} from "react-redux";
+import {StateType} from "../../redux/store-redux";
 
-
-export function DialogsContainer() {
-
-  return (
-      <StoreContext.Consumer>
-        { // бывает баг если не переносить на новую строку
-          (store: any) => {
-
-            const state = store.getState()
-
-            const sendMessage = () => {
-              store.dispatch(sendMessageAC())
-            }
-
-            const updateTypedMessageText = (newValue: string) => {
-              store.dispatch(updateTypedMessageTextAC(newValue))
-            }
-
-            return (
-                <Dialogs dialogsData={state.dialogsPage.dialogsData}
-
-                         messagesData={state.dialogsPage.messagesData}
-                         sendMessage={sendMessage}
-
-                         typedMessageText={state.dialogsPage.typedMessageText}
-                         updateTypedMessageText={updateTypedMessageText}
-                 />
-            )
-          }
-        }
-      </StoreContext.Consumer>
-  )
+type MapStatePropsType = {
+  dialogsData: Array<DialogsDataType>
+  messagesData: Array<MessagesDataType>
+  typedMessageText: string
 }
 
+type MapDispatchPropsType = {
+  updateTypedMessageText: (newValue: string) => void
+  sendMessage: () => void
+}
+
+const mapStateToProps = (state: StateType): MapStatePropsType => {
+  return {
+    dialogsData: state.dialogsPage.dialogsData,
+    messagesData: state.dialogsPage.messagesData,
+    typedMessageText: state.dialogsPage.typedMessageText
+  }
+}
+const mapDispatchToProps = (dispatch: any): MapDispatchPropsType => { // FIXME ANY
+  return {
+    updateTypedMessageText: (newValue: string) => {dispatch(updateTypedMessageTextAC(newValue))},
+    sendMessage: () => {dispatch(sendMessageAC())}
+  }
+}
+
+// --------- Новая контейнерная компонента
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
