@@ -30,4 +30,5 @@ const mapDispatchToProps = (dispatch: any): MapDispatchPropsType => { // FIXME A
   }
 }
 
+// --------- Новая контейнерная компонента
 export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)

@@ -1,11 +1,4 @@
-import React from 'react';
-import {
-  DialogsDataType,
-  DialogsPageType,
-  MessagesDataType,
-  sendMessageAC,
-  updateTypedMessageTextAC
-} from "../../redux/dialogs-reducer";
+import {DialogsDataType, MessagesDataType, sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {StateType} from "../../redux/store-redux";

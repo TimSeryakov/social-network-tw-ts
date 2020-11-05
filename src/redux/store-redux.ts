@@ -13,6 +13,14 @@ export type StateType = {
   sidebar: SidebarType
 }
 
+export type StoreType = {
+  _state: StateType
+  _callSubscriber: () => void
+  getState: () => StateType
+  subscribe: (observer: () => void) => void
+  dispatch: (action: ActionsTypes) => void
+}
+
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            UpdateTypedMessageTextActionType | SendMessageActionType
 
