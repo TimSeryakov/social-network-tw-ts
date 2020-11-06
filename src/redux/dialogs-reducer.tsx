@@ -58,8 +58,10 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
     case SEND_MESSAGE:
       if (state.typedMessageText) {
         // State deep copy before change
-        const stateCopy = {...state}
-        stateCopy.messagesData = [...state.messagesData]
+        const stateCopy = {
+          ...state,
+          messagesData: [...state.messagesData]
+        }
 
         const newMessage: MessagesDataType = {id: v1(), belongsToUser: true, text: stateCopy.typedMessageText}
         stateCopy.messagesData.push(newMessage)

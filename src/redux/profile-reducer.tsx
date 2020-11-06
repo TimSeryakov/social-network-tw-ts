@@ -35,8 +35,10 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
     case ADD_POST:
       if (state.typedPostText) {
         // State deep copy before change
-        const stateCopy = {...state}
-        stateCopy.postsData = [...state.postsData]
+        const stateCopy = {
+          ...state,
+          postsData: [...state.postsData]
+        }
 
         const newPost: PostsDataType = {id: v1(), text: stateCopy.typedPostText, likesCount: 0}
         stateCopy.postsData.push(newPost)
