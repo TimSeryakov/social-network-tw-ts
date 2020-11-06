@@ -15,7 +15,7 @@ type MapDispatchPropsType = {
 }
 
 const mapStateToProps = (state: StateType): MapStatePropsType => {
-  return {
+  return { // При изменении каждого будет производиться перерисовка
     dialogsData: state.dialogsPage.dialogsData,
     messagesData: state.dialogsPage.messagesData,
     typedMessageText: state.dialogsPage.typedMessageText

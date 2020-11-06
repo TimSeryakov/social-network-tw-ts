@@ -16,7 +16,7 @@ type MapDispatchPropsType = {
 }
 
 const mapStateToProps = (state: StateType): MapStatePropsType => {
-  return {
+  return { // При изменении каждого будет производиться перерисовка
     borders: "t",
     postsData: state.profilePage.postsData,
     typedPostText: state.profilePage.typedPostText
