@@ -48,31 +48,31 @@ export function Dialogs(props: PropsType) {
   }
 
   return (
-      <section className="h-full flex flex-col">
+      <section className="flex flex-col h-full">
 
         <PageTitle title="Your dialogs"/>
 
         <div className="flex flex-auto flex-grow">
 
-          <div className="bg-theme-bg-primary border-r border-theme-border sm:w-4/12">
-              <h3 className="text-sm sm:text-base text-center sm:text-left py-2 px-4 border-t border-b border-theme-border text-theme-text bg-theme-bg-secondary">Friends</h3>
+          <div className="border-r bg-theme-bg-primary border-theme-border sm:w-4/12">
+              <h3 className="px-4 py-2 text-sm text-center border-t border-b sm:text-base sm:text-left border-theme-border text-theme-text bg-theme-bg-secondary">Friends</h3>
 
             {dialogsList}
 
           </div>
 
-          <div className="bg-theme-bg-primary border-t border-theme-border sm:w-8/12 flex flex-auto flex-col">
+          <div className="flex flex-col flex-auto border-t bg-theme-bg-primary border-theme-border sm:w-8/12">
             <div className="flex-grow">
 
               {messagesList}
 
             </div>
 
-            <div className="border-theme-border border-t pt-3">  {/*<InputMessageSection/>*/}
+            <div className="pt-3 border-t border-theme-border">  {/*<InputMessageSection/>*/}
 
               <div className="flex mx-3 mb-3">
                 <textarea
-                    className="flex-grow w-full border-theme-border px-3 py-1 mr-2 border bg-theme-bg-third rounded-md text-white focus:outline-none focus:shadow-outline placeholder-gray-700"
+                    className="flex-grow w-full px-3 py-1 mr-2 text-white placeholder-gray-700 border rounded-md resize-none border-theme-border bg-theme-bg-third focus:outline-none focus:shadow-outline"
                     placeholder="Write message..."
                     onChange={onNewMessageTextAreaChange}
                     onKeyPress={onNewMessageKeyPress}
@@ -80,7 +80,7 @@ export function Dialogs(props: PropsType) {
                     ref={textAreaRef}
                 />
                 <button
-                    className="bg-theme-accent-alternative text-white px-4 py-2 rounded-md focus:outline-none focus:shadow-outline"
+                    className="px-4 py-2 text-white rounded-md bg-theme-accent-alternative focus:outline-none focus:shadow-outline"
                     onClick={onSendMessageClick}
                 >
                   Send

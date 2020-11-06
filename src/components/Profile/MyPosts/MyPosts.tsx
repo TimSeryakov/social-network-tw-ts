@@ -55,7 +55,7 @@ export function MyPosts (props: PropsType) {
 
         <div className="flex px-4 py-4 pb-3 border-b border-theme-border">
           <textarea
-            className="flex-grow px-3 py-1 mr-2 text-white border rounded-md border-theme-border bg-theme-bg-third focus:outline-none focus:shadow-outline placeholder-gray-700"
+            className="flex-grow px-3 py-1 mr-2 text-white placeholder-gray-700 border rounded-md resize-none border-theme-border bg-theme-bg-third focus:outline-none focus:shadow-outline"
             placeholder="What's new..."
             value = {props.typedPostText}
             onChange={onAddPostTextAreaChange}
