@@ -22,6 +22,7 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
     typedPostText: state.profilePage.typedPostText
   }
 }
+
 const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void): MapDispatchPropsType => {
   return {
     updateTypedPostText: (newValue: string) => {dispatch(updateTypedPostTextAC(newValue))},

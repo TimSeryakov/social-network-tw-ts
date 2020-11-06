@@ -4,7 +4,7 @@ import {ActionsTypes} from "./store-redux";
 const initialState = {
   postsData: [
     {id: v1(), text: "Сбербанк выкупил актрису Зою Бербер и назвал Сбербербер.", likesCount: 29},
-    {id: v1(), text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.", likesCount: 11},
+    {id: v1(), text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.", likesCount: 11    },
     {id: v1(), text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 42},
   ] as Array<PostsDataType>,
   typedPostText: "" as string,
@@ -34,32 +34,28 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
   switch (action.type) {
     case ADD_POST:
       if (state.typedPostText) {
-        // State deep copy before change
-        const stateCopy = {
-          ...state,
-          postsData: [...state.postsData]
-        }
+        const newPost = state.typedPostText
 
-        const newPost: PostsDataType = {id: v1(), text: stateCopy.typedPostText, likesCount: 0}
-        stateCopy.postsData.push(newPost)
-        stateCopy.typedPostText = ""
-      return stateCopy
+        // State deep copy before change and return
+        return {
+          ...state,
+          postsData: [...state.postsData, {id: v1(), text: newPost, likesCount: 0}],
+          typedPostText: ""
+        }
       }
       return state
     case UPDATE_TYPED_POST_TEXT:
-      const stateCopy = {...state}
-      stateCopy.typedPostText = action.newValue
-      return stateCopy
+      return {...state, typedPostText: action.newValue}
     default:
       return state
   }
 }
 
 export const addPostAC = (): AddPostActionType =>
-    ({ type: ADD_POST })
+    ({type: ADD_POST})
 
 export const updateTypedPostTextAC = (newValue: string): UpdateTypedPostTextActionType =>
-    ({ type: UPDATE_TYPED_POST_TEXT, newValue: newValue })
+    ({type: UPDATE_TYPED_POST_TEXT, newValue: newValue})
 
 
 export default profileReducer

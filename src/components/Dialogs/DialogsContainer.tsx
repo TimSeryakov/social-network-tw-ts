@@ -21,6 +21,7 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
     typedMessageText: state.dialogsPage.typedMessageText
   }
 }
+
 const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void): MapDispatchPropsType => {
   return {
     updateTypedMessageText: (newValue: string) => {dispatch(updateTypedMessageTextAC(newValue))},
