@@ -16,7 +16,7 @@ type UserCardPropsType = {
 
 export const UserCard = (props: UserCardPropsType) => {
 
-  const userCardStyle = `${parseBordersProps(props.borders)} mt-3 mb-3 mx-4 flex flex-col pt-5 pb-10 px-4 md:p-0 sm:flex-row md:hover:bg-theme-bg-third`
+  const userCardStyle = `${parseBordersProps(props.borders)} mt-3 mb-3 mx-4 flex flex-col pt-5 pb-8 px-4 md:p-0 sm:flex-row md:hover:bg-theme-bg-third`
   const followButtonStyle = `px-4 py-2 w-32 text-white rounded-md bg-theme-accent-alternative focus:outline-none hover:bg-theme-accent-alternative-hover`
   const unFollowButtonStyle = `px-4 py-2 w-32 text-theme-accent-alternative border border-theme-accent-alternative rounded-md focus:outline-none hover:text-theme-accent-alternative-hover hover:border-theme-accent-alternative-hover`
   return (
