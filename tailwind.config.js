@@ -31,6 +31,7 @@ module.exports = {
         "theme-border": "#161a20", // borders
         "theme-accent": "#bd93f9", // accent
         "theme-accent-alternative": "#4e4ad8", // accent
+        "theme-accent-alternative-hover": "#6561E6", // accent
         "theme-placeholder": "#1b1f25", // placeholder
         "theme-badge": "#2b3037", // BETA badge
         "theme-white": "#ffffff", // bugfix?

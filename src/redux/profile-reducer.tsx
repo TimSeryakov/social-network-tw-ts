@@ -6,13 +6,13 @@ const initialState = {
     {id: v1(), text: "Сбербанк выкупил актрису Зою Бербер и назвал Сбербербер.", likesCount: 29},
     {id: v1(), text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.", likesCount: 11    },
     {id: v1(), text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 42},
-  ] as Array<PostsDataType>,
+  ] as Array<PostDataType>,
   typedPostText: "" as string,
 }
 
 export type ProfilePageType = typeof initialState
 
-export type PostsDataType = {
+export type PostDataType = {
   id: string
   text: string
   likesCount: number

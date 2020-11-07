@@ -2,13 +2,13 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Post} from "./Post/Post"
 import {BordersPropsType, parseBordersProps} from "../../common/utils/parseBordersProps";
 import {scroller} from 'react-scroll';
-import {PostsDataType} from "../../../redux/profile-reducer";
+import {PostDataType} from "../../../redux/profile-reducer";
 
 
 type PropsType = {
   borders: BordersPropsType
 
-  postsData: Array<PostsDataType>
+  postsData: Array<PostDataType>
   addPost: () => void
 
   typedPostText: string

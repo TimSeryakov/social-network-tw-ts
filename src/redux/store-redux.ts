@@ -6,10 +6,17 @@ import dialogsReducer, {
 } from "./dialogs-reducer";
 import profileReducer, {AddPostActionType, ProfilePageType, UpdateTypedPostTextActionType} from "./profile-reducer";
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
+import usersReducer, {
+  FollowActionType,
+  SetUsersDataActionType,
+  UnfollowActionType,
+  UsersPageType
+} from "./users-reducer";
 
 export type StateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
+  usersPage: UsersPageType
   sidebar: SidebarType
 }
 
@@ -22,11 +29,13 @@ export type StoreType = {
 }
 
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
-                           UpdateTypedMessageTextActionType | SendMessageActionType
+                           UpdateTypedMessageTextActionType | SendMessageActionType |
+                           FollowActionType | UnfollowActionType | SetUsersDataActionType
 
 let reducers = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
+  usersPage: usersReducer,
   sidebar: sidebarReducer
 })
 

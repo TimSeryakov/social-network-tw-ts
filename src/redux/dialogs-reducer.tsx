@@ -14,7 +14,7 @@ const initialState = {
     {id: v1(), name: "Johnny", avatar: samurai, unreadMessages: 1},
     {id: v1(), name: "Flint", avatar: fuji, unreadMessages: 0},
     {id: v1(), name: "Jackie", avatar: luckycat, unreadMessages: 999},
-  ] as Array<DialogsDataType>,
+  ] as Array<DialogDataType>,
   messagesData: [
     {id: v1(), belongsToUser: false, text: "Hi"},
     {id: v1(), belongsToUser: false, text: "How r you"},
@@ -23,19 +23,19 @@ const initialState = {
     {id: v1(), belongsToUser: false, text: "please"},
     {id: v1(), belongsToUser: true, text: "Hi, im there! 👋"},
     {id: v1(), belongsToUser: false, text: "really 👻"},
-  ] as Array<MessagesDataType>,
+  ] as Array<MessageDataType>,
   typedMessageText: "" as string,
 }
 
 export type DialogsPageType = typeof initialState
 
-export type DialogsDataType = {
+export type DialogDataType = {
   id: string
   name: string
   avatar: string
   unreadMessages: number
 }
-export type MessagesDataType = {
+export type MessageDataType = {
   id: string
   belongsToUser: boolean
   text: string

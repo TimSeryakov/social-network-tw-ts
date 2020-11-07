@@ -3,12 +3,12 @@ import {PageTitle} from "../PageTitle/PageTitle";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 import * as Scroll from 'react-scroll';
-import {DialogsDataType, MessagesDataType} from "../../redux/dialogs-reducer";
+import {DialogDataType, MessageDataType} from "../../redux/dialogs-reducer";
 
 type PropsType = {
-  dialogsData: Array<DialogsDataType>
+  dialogsData: Array<DialogDataType>
 
-  messagesData: Array<MessagesDataType>
+  messagesData: Array<MessageDataType>
   sendMessage: ()  => void
 
   typedMessageText: string

@@ -6,7 +6,7 @@ export function ProfileInfo () {
       <section className="pt-4 pb-10 px-4 flex">
           <div className="p-3 flex-shrink-0">
             <img
-                className="w-32 h-32 bg-theme-bg-secondary rounded-full border border-theme-border flex items-center justify-center"
+                className="w-32 h-32 bg-theme-bg-secondary rounded-full border border-theme-border"
                 src={fuji}
                 alt="avatar"
             />
