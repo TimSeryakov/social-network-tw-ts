@@ -1,24 +1,28 @@
 import {ActionsTypes} from "./store-redux";
-import {v1} from "uuid";
 
 const initialState = {
-  usersData: [
-    {id: v1(), avatar: "https://avatarfiles.alphacoders.com/259/thumb-1920-25909.png", followed: true, fullName: "Asya", status: "Change the world by being yourself. 💪", location: {city: "Minsk", country: "Belarus"}},
-    {id: v1(), avatar: "https://avatarfiles.alphacoders.com/699/thumb-1920-69905.png", followed: false, fullName: "Kira", status: "‍🚀 Хочу на курсы повышения зарплаты!", location: {city: "Moscow", country: "Russia"}},
-    {id: v1(), avatar: "https://avatarfiles.alphacoders.com/832/thumb-1920-83296.png", followed: true, fullName: "Nata", status: "У меня есть изюминка. У меня много изюминок. Я практически кекс. 🎂", location: {city: "Kiev", country: "Ukraine"}},
-  ] as Array<UserDataType>
+  usersData: []
 }
 
-export type UsersPageType = typeof initialState
+export type UsersPageType = {
+  usersData: Array<UserDataType>
+}
 
 export type UserDataType = {
-  id: string
-  avatar: string
+  name: string
+  id: number
+  uniqueUrlName: string | null
+  photos: UserDataPhotosType
+  status: string | null
   followed: boolean
-  status: string
-  fullName: string
   location: UsersLocationType
 }
+
+type UserDataPhotosType = {
+  small: string | null
+  large: string | null
+}
+
 
 export type UsersLocationType = {
   city: string
@@ -27,12 +31,12 @@ export type UsersLocationType = {
 
 export type FollowActionType = {
   type: typeof FOLLOW
-  userID: string
+  userID: number
 }
 
 export type UnfollowActionType = {
   type: typeof UNFOLLOW
-  userID: string
+  userID: number
 }
 
 export type SetUsersDataActionType = {
@@ -78,9 +82,9 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
 }
 
 
-export const followAC = (userID: string): FollowActionType =>
+export const followAC = (userID: number): FollowActionType =>
     ({type: FOLLOW, userID: userID})
-export const unfollowAC = (userID: string): UnfollowActionType =>
+export const unfollowAC = (userID: number): UnfollowActionType =>
     ({type: UNFOLLOW, userID: userID})
 export const setUsers = (usersData: any): SetUsersDataActionType =>
     ({type: SET_USERS, usersData: usersData})
