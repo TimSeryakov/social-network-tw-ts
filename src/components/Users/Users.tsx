@@ -13,37 +13,39 @@ type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
 
-  if (props.usersData.length === 0) {
-    axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-      props.setUsersFn(response.data.items)
-    })
+  const getUsers = () => {
+    if (props.usersData.length === 0) {
+      axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+        props.setUsersFn(response.data.items)
+      })
+    }
   }
 
-  return (
-      <section>
+    return (
+        <section>
 
-        <PageTitle title="Profile info"/>
+          <PageTitle title="Profile info"/>
 
-        <div className="border-theme-border border-t">
-          {
-            props.usersData.map(u =>
-                <UserCard borders={"trbl"}
-                          key={u.id.toString()}
-                          id={u.id}
-                          photo={u.photos.small}
-                          followed={u.followed}
-                          name={u.name}
-                          status={u.status}
-                          location={{city: "location.city", country: "location.country"}}
-                          onClickFn={u.followed ? () => {
-                            props.unfollowFn(u.id)
-                          } : () => {
-                            props.followFn(u.id)
-                          }}
-                />)
-          }
-        </div>
+          <div className="border-theme-border border-t">
+            {
+              props.usersData.map(u =>
+                  <UserCard borders={"trbl"}
+                            key={u.id.toString()}
+                            id={u.id}
+                            photo={u.photos.small}
+                            followed={u.followed}
+                            name={u.name}
+                            status={u.status}
+                            location={{city: "location.city", country: "location.country"}}
+                            onClickFn={u.followed ? () => {
+                              props.unfollowFn(u.id)
+                            } : () => {
+                              props.followFn(u.id)
+                            }}
+                  />)
+            }
+          </div>
 
-      </section>
-  )
+        </section>
+    )
 }
