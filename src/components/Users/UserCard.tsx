@@ -36,7 +36,7 @@ export const UserCard = (props: UserCardPropsType) => {
             </p>
           </div>
         </div>
-        <div className={"flex items-center justify-center w-full pt-8 sm:w-48 text-center sm:text-left"}>
+        <div className={"flex items-center justify-center w-full pt-8 sm:w-48 sm:pt-0 text-center sm:text-left"}>
           <button
               className={props.followed ? unFollowButtonStyle : followButtonStyle}
               onClick={props.onClickFn}

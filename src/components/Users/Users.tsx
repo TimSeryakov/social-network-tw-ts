@@ -11,24 +11,28 @@ type UsersPropsType = {
   unfollowFn: (userID: number) => void
 }
 
-export const Users = (props: UsersPropsType) => {
+export class Users extends React.Component<UsersPropsType> {
 
-  const getUsers = () => {
-    if (props.usersData.length === 0) {
-      axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-        props.setUsersFn(response.data.items)
-      })
-    }
+  constructor(props: any) {
+    super(props)
+
+    axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+      this.props.setUsersFn(response.data.items)
+    })
+
   }
+
+
+  render() {
 
     return (
         <section>
 
-          <PageTitle title="Profile info"/>
+          <PageTitle title="Users"/>
 
           <div className="border-theme-border border-t">
             {
-              props.usersData.map(u =>
+              this.props.usersData.map(u =>
                   <UserCard borders={"trbl"}
                             key={u.id.toString()}
                             id={u.id}
@@ -38,9 +42,9 @@ export const Users = (props: UsersPropsType) => {
                             status={u.status}
                             location={{city: "location.city", country: "location.country"}}
                             onClickFn={u.followed ? () => {
-                              props.unfollowFn(u.id)
+                              this.props.unfollowFn(u.id)
                             } : () => {
-                              props.followFn(u.id)
+                              this.props.followFn(u.id)
                             }}
                   />)
             }
@@ -48,4 +52,5 @@ export const Users = (props: UsersPropsType) => {
 
         </section>
     )
+  }
 }
