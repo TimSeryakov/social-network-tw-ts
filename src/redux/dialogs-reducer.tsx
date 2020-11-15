@@ -50,8 +50,8 @@ export type SendMessageActionType = {
   type: typeof SEND_MESSAGE
 }
 
-const SEND_MESSAGE = "SEND-MESSAGE"
-const UPDATE_TYPED_MESSAGE_TEXT = "UPDATE-TYPED-MESSAGE-TEXT"
+export const SEND_MESSAGE = "SEND-MESSAGE"
+export const UPDATE_TYPED_MESSAGE_TEXT = "UPDATE-TYPED-MESSAGE-TEXT"
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
   switch (action.type) {
