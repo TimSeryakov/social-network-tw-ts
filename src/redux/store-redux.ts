@@ -7,10 +7,11 @@ import dialogsReducer, {
 import profileReducer, {AddPostActionType, ProfilePageType, UpdateTypedPostTextActionType} from "./profile-reducer";
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
 import usersReducer, {
-  FollowActionType,
+  FollowActionType, SetCurrentPageActionType, SetTotalUsersCountActionType,
   SetUsersDataActionType,
   UnfollowActionType,
-  UsersPageType
+  UsersPageType,
+
 } from "./users-reducer";
 
 export type StateType = {
@@ -30,7 +31,8 @@ export type StoreType = {
 
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            UpdateTypedMessageTextActionType | SendMessageActionType |
-                           FollowActionType | UnfollowActionType | SetUsersDataActionType
+                           FollowActionType | UnfollowActionType | SetUsersDataActionType |
+                           SetCurrentPageActionType | SetTotalUsersCountActionType
 
 let reducers = combineReducers({
   profilePage: profileReducer,
