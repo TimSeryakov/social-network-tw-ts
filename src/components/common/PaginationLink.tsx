@@ -13,8 +13,8 @@ type PaginationLinkPropsType =  DefaultButtonPropsType & {
       }
   ) => {
 
-  const style = `${active ? 'bg-theme-bg-third text-white' : 'text-theme-text hover:bg-theme-bg-third'} 
-                 inline-block px-5 py-3 mx-2 border border-theme-border hover:text-white`
+  const style = `${active ? 'bg-theme-bg-third text-white px-6 py-4' : 'text-theme-text hover:bg-theme-bg-third py-3'} 
+                 inline-block px-5 mx-2 border border-theme-border hover:text-white`
 
   return (
     <button className={style} {...restProps}/>

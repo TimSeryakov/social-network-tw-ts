@@ -23,14 +23,14 @@ export class Users extends React.Component<UsersPropsType> {
   componentDidMount() {
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
       this.props.setUsersFn(response.data.items)
-      // this.props.setTotalUsersCountFn(response.data.totalCount)
+      this.props.setTotalUsersCountFn(response.data.totalCount)
     })
   }
 
   onPaginationLinkClick = (pageNumber: number) => {
-
       this.props.setCurrentPageFn(pageNumber)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
       this.props.setUsersFn(response.data.items)
     })
   }
@@ -39,10 +39,24 @@ export class Users extends React.Component<UsersPropsType> {
 
     const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
     const pages = []
+    const paginationArr = []
+
+    if (this.props.currentPage <= 3) {
+      for (let i = 1; i <= 5; i++) { paginationArr.push(i) }
+
+    } else if (this.props.currentPage >= this.props.totalUsersCount - 2) {
+      for (let i = this.props.totalUsersCount - 4; i <= this.props.totalUsersCount; i++) { paginationArr.push(i) }
+
+    } else {
+      for (let i = this.props.currentPage - 2; i <= this.props.currentPage + 2; i++) { paginationArr.push(i) }
+    }
+
+
 
     for (let i = 1; i <= pagesCount; i++) {
       pages.push(i)
     }
+
     return (
         <section className="h-full">
 
@@ -73,7 +87,7 @@ export class Users extends React.Component<UsersPropsType> {
 
                 <div className="flex items-center justify-center pt-2 pb-6 sm:pb-5">
 
-                  { pages.map(p => <PaginationLink key={p}
+                  { paginationArr.map(p => <PaginationLink key={p}
                                                    active={ p === this.props.currentPage }
                                                    onClick={ (/*e*/) => { this.onPaginationLinkClick(p) } }
 

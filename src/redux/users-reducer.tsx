@@ -3,7 +3,7 @@ import {ActionsTypes} from "./store-redux";
 const initialState = {
   usersData: [],
   pageSize: 5,
-  totalUsersCount: 20,
+  totalUsersCount: 10,
   currentPage: 1
 }
 
