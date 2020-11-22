@@ -29,7 +29,7 @@ type UsersContainersPropsType = {
 const SAMURAI_API = axios.create({
       baseURL: 'https://social-network.samuraijs.com/api/1.0/',
       withCredentials: true,
-      headers: {'API-KEY': process.env.SAMURAI_API_KEY}
+      headers: {'API-KEY': 'a8759703-3778-4991-8eb8-854329d491d1'}
     }
 )
 
