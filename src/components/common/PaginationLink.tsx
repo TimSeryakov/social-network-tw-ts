@@ -7,7 +7,7 @@ type PaginationLinkPropsType =  DefaultButtonPropsType & {
 }
 
 
-  export const PaginationLink: FC<PaginationLinkPropsType> = (
+export const PaginationLink: FC<PaginationLinkPropsType> = (
       {
         active, ...restProps
       }

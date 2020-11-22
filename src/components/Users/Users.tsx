@@ -3,21 +3,21 @@ import {UserDataType} from "../../redux/users-reducer"
 import {UserCard} from "./UserCard"
 import {PageTitle} from "../PageTitle/PageTitle"
 import {PaginationLink} from "../common/PaginationLink";
-import {Loading} from "../common/Loading";
-import {LoadingCircle} from "../common/LoadingCircle";
+import {Preloader} from "../common/Preloader";
+import {PreloaderCircle} from "../common/PreloaderCircle";
 
 type UsersPropsType = {
   usersData: Array<UserDataType>
   pageSize: number
   totalUsersCount: number
   currentPage: number
-  setUsersFn: (usersData: UserDataType) => void
-  setCurrentPageFn: (pageNumber: number) => void
-  setTotalUsersCountFn: (usersCount: number) => void
+  setUsers: (usersData: UserDataType) => void
+  setCurrentPage: (pageNumber: number) => void
+  setTotalUsersCount: (usersCount: number) => void
   followFn: (userID: number) => void
   unfollowFn: (userID: number) => void
   onPaginationLinkClick: (pageNumber: number) => void
-  usersLoading: boolean
+  isFetching: boolean
 }
 
 export function Users(props: UsersPropsType) {
@@ -70,7 +70,7 @@ export function Users(props: UsersPropsType) {
               </div>
 
               <div className="flex items-center justify-center pt-2 pb-6 sm:pb-5">
-                { props.usersLoading && <div className="hidden sm:block mr-3 w-6"/> }
+                { props.isFetching && <div className="hidden sm:block mr-3 w-6"/> }
 
                 {
                    paginationArr.map(p => {
@@ -87,13 +87,13 @@ export function Users(props: UsersPropsType) {
                   )
                 }
 
-                { props.usersLoading && <div className="hidden sm:block ml-3 w-6"><LoadingCircle/></div> }
+                { props.isFetching && <div className="hidden sm:block ml-3 w-6"> <PreloaderCircle/> </div> }
               </div>
             </>
 
             :
 
-            <Loading borders="t"/>
+            <Preloader borders="t"/>
 
         }
 

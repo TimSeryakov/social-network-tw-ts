@@ -8,7 +8,7 @@ import profileReducer, {AddPostActionType, ProfilePageType, UpdateTypedPostTextA
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
 import usersReducer, {
   FollowActionType, SetCurrentPageActionType, SetTotalUsersCountActionType,
-  SetUsersDataActionType, setUsersLoadingActionType,
+  SetUsersDataActionType, setUsersFetchingActionType,
   UnfollowActionType,
   UsersPageType,
 
@@ -32,7 +32,7 @@ export type StoreType = {
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            UpdateTypedMessageTextActionType | SendMessageActionType |
                            FollowActionType | UnfollowActionType | SetUsersDataActionType |
-                           SetCurrentPageActionType | SetTotalUsersCountActionType | setUsersLoadingActionType
+                           SetCurrentPageActionType | SetTotalUsersCountActionType | setUsersFetchingActionType
 
 let reducers = combineReducers({
   profilePage: profileReducer,

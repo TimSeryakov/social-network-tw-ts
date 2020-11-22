@@ -3,7 +3,7 @@ import {
   followAC,
   setCurrentPageAC,
   setTotalUsersCountAC,
-  setUsersAC, setUsersLoadingAC,
+  setUsersAC, setUsersFetchingAC,
   unfollowAC,
   UserDataType
 } from "../../redux/users-reducer"
@@ -12,40 +12,45 @@ import {Users} from "./Users";
 import {ActionsTypes, StateType} from "../../redux/store-redux";
 import {connect} from "react-redux";
 
-type UsersAPISideEffectsPropsType = {
+type UsersContainersPropsType = {
   usersData: Array<UserDataType>
   pageSize: number
   totalUsersCount: number
   currentPage: number
-  setUsersFn: (usersData: UserDataType) => void
-  setCurrentPageFn: (pageNumber: number) => void
-  setTotalUsersCountFn: (usersCount: number) => void
+  setUsers: (usersData: UserDataType) => void
+  setCurrentPage: (pageNumber: number) => void
+  setTotalUsersCount: (usersCount: number) => void
   followFn: (userID: number) => void
   unfollowFn: (userID: number) => void
-  usersLoading: boolean
-  setLoadingFn: (loading: boolean) => void
+  setFetching: (isFetching: boolean) => void
+  isFetching: boolean
 }
 
-class UsersContainer extends React.Component<UsersAPISideEffectsPropsType> {
+class UsersContainer extends React.Component<UsersContainersPropsType> {
 
   componentDidMount() {
+    this.props.setFetching(true)
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
          .then(response => {
-            this.props.setUsersFn(response.data.items)
-            this.props.setTotalUsersCountFn(response.data.totalCount)
+            this.props.setUsers(response.data.items)
+            this.props.setTotalUsersCount(response.data.totalCount)
           })
+        .then(() => {
+          this.props.setFetching(false)
+        })
+
   }
 
   onPaginationLinkClick = (pageNumber: number) => {
-      this.props.setLoadingFn(true)
-      this.props.setCurrentPageFn(pageNumber)
+      this.props.setFetching(true)
+      this.props.setCurrentPage(pageNumber)
 
       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
            .then(response => {
-              this.props.setUsersFn(response.data.items)
+              this.props.setUsers(response.data.items)
             })
             .then(() => {
-              this.props.setLoadingFn(false)
+              this.props.setFetching(false)
             })
 
 
@@ -57,13 +62,13 @@ class UsersContainer extends React.Component<UsersAPISideEffectsPropsType> {
                   pageSize={this.props.pageSize}
                   totalUsersCount={this.props.totalUsersCount}
                   currentPage={this.props.currentPage}
-                  setUsersFn={this.props.setUsersFn}
-                  setCurrentPageFn={this.props.setCurrentPageFn}
-                  setTotalUsersCountFn={this.props.setTotalUsersCountFn}
+                  setUsers={this.props.setUsers}
+                  setCurrentPage={this.props.setCurrentPage}
+                  setTotalUsersCount={this.props.setTotalUsersCount}
                   followFn={this.props.followFn}
                   unfollowFn={this.props.unfollowFn}
                   onPaginationLinkClick={this.onPaginationLinkClick}
-                  usersLoading={this.props.usersLoading}
+                  isFetching={this.props.isFetching}
            />
   }
 }
@@ -76,7 +81,7 @@ const mapStateToProps = (state: StateType) => {
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    usersLoading: state.usersPage.usersLoading
+    isFetching: state.usersPage.isFetching
   }
 }
 
@@ -88,17 +93,17 @@ const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void) => {
     unfollowFn: (userID: number) => {
       dispatch(unfollowAC(userID))
     },
-    setUsersFn: (usersData: UserDataType) => {
+    setUsers: (usersData: UserDataType) => {
       dispatch(setUsersAC(usersData))
     },
-    setCurrentPageFn: (pageNumber: number) => {
+    setCurrentPage: (pageNumber: number) => {
       dispatch(setCurrentPageAC(pageNumber))
     },
-    setTotalUsersCountFn: (usersCount: number) => {
+    setTotalUsersCount: (usersCount: number) => {
       dispatch(setTotalUsersCountAC(usersCount))
     },
-    setLoadingFn: (loading: boolean) => {
-      dispatch(setUsersLoadingAC(loading))
+    setFetching: (isFetching: boolean) => {
+      dispatch(setUsersFetchingAC(isFetching))
     }
   }
 }
