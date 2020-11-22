@@ -1,7 +1,7 @@
 export type BordersPropsType = "t" | "r" | "b" | "l" |
                                "tb" | "rl" | "rt" | "tl" |
                                "lb" | "rb" | "trbl" |
-                               "trl" | "tlb" | "lbr"
+                               "trl" | "tlb" | "lbr" | "none"
 
 
 export const parseBordersProps = (arg: string) => {

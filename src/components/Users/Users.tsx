@@ -2,9 +2,9 @@ import React from "react"
 import {UserDataType} from "../../redux/users-reducer"
 import {UserCard} from "./UserCard"
 import {PageTitle} from "../PageTitle/PageTitle"
-import axios from "axios"
 import {PaginationLink} from "../common/PaginationLink";
 import {Loading} from "../common/Loading";
+import {LoadingCircle} from "../common/LoadingCircle";
 
 type UsersPropsType = {
   usersData: Array<UserDataType>
@@ -16,97 +16,86 @@ type UsersPropsType = {
   setTotalUsersCountFn: (usersCount: number) => void
   followFn: (userID: number) => void
   unfollowFn: (userID: number) => void
+  onPaginationLinkClick: (pageNumber: number) => void
+  usersLoading: boolean
 }
 
-export class Users extends React.Component<UsersPropsType> {
+export function Users(props: UsersPropsType) {
 
-  componentDidMount() {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-      this.props.setUsersFn(response.data.items)
-      this.props.setTotalUsersCountFn(response.data.totalCount)
-    })
-  }
+  const paginationArr = []
 
-  onPaginationLinkClick = (pageNumber: number) => {
-      this.props.setCurrentPageFn(pageNumber)
-
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-      this.props.setUsersFn(response.data.items)
-    })
-  }
-
-  render() {
-
-    const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-    const pages = []
-    const paginationArr = []
-
-    if (this.props.currentPage <= 3) {
-      for (let i = 1; i <= 5; i++) { paginationArr.push(i) }
-
-    } else if (this.props.currentPage >= this.props.totalUsersCount - 2) {
-      for (let i = this.props.totalUsersCount - 4; i <= this.props.totalUsersCount; i++) { paginationArr.push(i) }
-
-    } else {
-      for (let i = this.props.currentPage - 2; i <= this.props.currentPage + 2; i++) { paginationArr.push(i) }
+  if (props.currentPage <= 3) {
+    for (let i = 1; i <= 5; i++) {
+      paginationArr.push(i)
     }
 
-
-
-    for (let i = 1; i <= pagesCount; i++) {
-      pages.push(i)
+  } else if (props.currentPage >= props.totalUsersCount - 2) {
+    for (let i = props.totalUsersCount - 4; i <= props.totalUsersCount; i++) {
+      paginationArr.push(i)
     }
 
-    return (
-        <section className="h-full">
-
-          <PageTitle title="Users"/>
-
-          { this.props.usersData.length > 0 ?
-
-              <>
-                <div className="border-t border-theme-border">
-                  {
-                    this.props.usersData.map(u =>
-                        <UserCard borders={"trbl"}
-                                  key={u.id.toString()}
-                                  id={u.id}
-                                  photo={u.photos.small}
-                                  followed={u.followed}
-                                  name={u.name}
-                                  status={u.status}
-                                  location={{city: "location.city", country: "location.country"}}
-                                  onClickFn={u.followed ? () => {
-                                    this.props.unfollowFn(u.id)
-                                  } : () => {
-                                    this.props.followFn(u.id)
-                                  }}
-                        />)
-                  }
-                </div>
-
-                <div className="flex items-center justify-center pt-2 pb-6 sm:pb-5">
-
-                  { paginationArr.map(p => <PaginationLink key={p}
-                                                   active={ p === this.props.currentPage }
-                                                   onClick={ (/*e*/) => { this.onPaginationLinkClick(p) } }
-
-                  >
-                    {p}
-                  </PaginationLink>
-
-                  ) }
-
-                </div>
-              </>
-
-              :
-
-              <Loading borders={"t"}/>
-
-          }
-
-        </section>
-    )
+  } else {
+    for (let i = props.currentPage - 2; i <= props.currentPage + 2; i++) {
+      paginationArr.push(i)
+    }
   }
+
+  return (
+      <section className="h-full">
+
+        <PageTitle title="Users"/>
+
+        {props.usersData.length > 0 ?
+
+            <>
+              <div className="border-t border-theme-border">
+                {
+                  props.usersData.map(u =>
+                      <UserCard borders={"trbl"}
+                                key={u.id.toString()}
+                                id={u.id}
+                                photo={u.photos.small}
+                                followed={u.followed}
+                                name={u.name}
+                                status={u.status}
+                                location={{city: "location.city", country: "location.country"}}
+                                onClickFn={u.followed ? () => {
+                                  props.unfollowFn(u.id)
+                                } : () => {
+                                  props.followFn(u.id)
+                                }}
+                      />)
+                }
+              </div>
+
+              <div className="flex items-center justify-center pt-2 pb-6 sm:pb-5">
+                { props.usersLoading && <div className="mr-3 w-6"/> }
+
+                {
+                   paginationArr.map(p => {
+                    return <PaginationLink key={p}
+                                           active={p === props.currentPage}
+                                           onClick={(/*e*/) => {
+                                             props.onPaginationLinkClick(p)
+                                           }}
+
+                           >
+                             {p}
+                          </PaginationLink>
+                    }
+                  )
+                }
+
+                { props.usersLoading && <div className="ml-3 w-6"><LoadingCircle/></div> }
+              </div>
+            </>
+
+            :
+
+            <Loading borders={"t"}/>
+
+        }
+
+      </section>
+  )
 }
