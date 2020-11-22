@@ -25,16 +25,19 @@ type UsersContainersPropsType = {
   setFetching: (isFetching: boolean) => void
   isFetching: boolean
 }
-const API_KEY = process.env.SAMURAI_API_KEY
-console.log(API_KEY)
-const BASE_URL = "https://social-network.samuraijs.com/api/1.0"
+
+const SAMURAI_API = axios.create({
+      baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+      withCredentials: true,
+      headers: {'API-KEY': process.env.SAMURAI_API_KEY}
+    }
+)
 
 class UsersContainer extends React.Component<UsersContainersPropsType> {
 
-
   componentDidMount() {
     this.props.setFetching(true)
-    axios.get(`${BASE_URL}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, { headers: { 'API-KEY': process.env.SAMURAI_API_KEY } })
+    SAMURAI_API.get(`users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
          .then(response => {
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
@@ -49,7 +52,7 @@ class UsersContainer extends React.Component<UsersContainersPropsType> {
       this.props.setFetching(true)
       this.props.setCurrentPage(pageNumber)
 
-      axios.get(`${BASE_URL}/users?page=${pageNumber}&count=${this.props.pageSize}`, { headers: { 'API-KEY': process.env.SAMURAI_API_KEY } })
+    SAMURAI_API.get(`users?page=${pageNumber}&count=${this.props.pageSize}`)
            .then(response => {
               this.props.setUsers(response.data.items)
             })
