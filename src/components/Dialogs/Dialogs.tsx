@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import {PageTitle} from "../PageTitle/PageTitle";
+import {PageTitle} from "../common/PageTitle";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 import * as Scroll from 'react-scroll';
