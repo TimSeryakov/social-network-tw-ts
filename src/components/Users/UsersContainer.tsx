@@ -26,11 +26,12 @@ type UsersContainersPropsType = {
   isFetching: boolean
 }
 
+
 class UsersContainer extends React.Component<UsersContainersPropsType> {
 
   componentDidMount() {
     this.props.setFetching(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+    axios.get(`https://cors-anywhere.herokuapp.com/https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {headers: {'Access-Control-Allow-Origin': '*'}})
          .then(response => {
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
@@ -45,7 +46,7 @@ class UsersContainer extends React.Component<UsersContainersPropsType> {
       this.props.setFetching(true)
       this.props.setCurrentPage(pageNumber)
 
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+      axios.get(`https://cors-anywhere.herokuapp.com/https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {headers: {'Access-Control-Allow-Origin': '*'}})
            .then(response => {
               this.props.setUsers(response.data.items)
             })
