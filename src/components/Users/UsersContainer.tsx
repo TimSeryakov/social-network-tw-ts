@@ -26,10 +26,12 @@ type UsersContainersPropsType = {
   isFetching: boolean
 }
 
+const API_KEY = process.env.REACT_APP_SAMURAI_API_KEY
+
 const SAMURAI_API = axios.create({
       baseURL: 'https://social-network.samuraijs.com/api/1.0/',
       withCredentials: true,
-      headers: {'API-KEY': process.env.SAMURAI_API_KEY}
+      headers: {'API-KEY': API_KEY}
     }
 )
 
