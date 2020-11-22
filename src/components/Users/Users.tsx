@@ -45,7 +45,8 @@ export function Users(props: UsersPropsType) {
 
         <PageTitle title="Users"/>
 
-        {props.usersData.length > 0 ?
+        {
+          props.usersData.length > 0 ?
 
             <>
               <div className="border-t border-theme-border">
@@ -92,7 +93,7 @@ export function Users(props: UsersPropsType) {
 
             :
 
-            <Loading borders={"t"}/>
+            <Loading borders="t"/>
 
         }
 

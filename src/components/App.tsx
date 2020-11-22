@@ -6,7 +6,7 @@ import {MainMenu} from "./MainMenu/MainMenu";
 import {Footer} from "./Footer/Footer";
 import {Profile} from "./Profile/Profile";
 import {DialogsContainer} from './Dialogs/DialogsContainer';
-import {UsersContainer} from "./Users/UsersContainer";
+import UsersContainer from "./Users/UsersContainer";
 
 
 function App() {
