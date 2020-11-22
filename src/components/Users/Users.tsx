@@ -69,7 +69,7 @@ export function Users(props: UsersPropsType) {
               </div>
 
               <div className="flex items-center justify-center pt-2 pb-6 sm:pb-5">
-                { props.usersLoading && <div className="mr-3 w-6"/> }
+                { props.usersLoading && <div className="hidden sm:block mr-3 w-6"/> }
 
                 {
                    paginationArr.map(p => {
@@ -86,7 +86,7 @@ export function Users(props: UsersPropsType) {
                   )
                 }
 
-                { props.usersLoading && <div className="ml-3 w-6"><LoadingCircle/></div> }
+                { props.usersLoading && <div className="hidden sm:block ml-3 w-6"><LoadingCircle/></div> }
               </div>
             </>
 
