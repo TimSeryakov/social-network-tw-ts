@@ -1,12 +1,12 @@
-import React from 'react';
-import {Route} from 'react-router-dom';
-import './App.css';
-import {Header} from "./Header/Header";
-import {MainMenu} from "./MainMenu/MainMenu";
-import {Footer} from "./Footer/Footer";
-import {Profile} from "./Profile/Profile";
-import {DialogsContainer} from './Dialogs/DialogsContainer';
-import UsersContainer from "./Users/UsersContainer";
+import React from 'react'
+import {Route} from 'react-router-dom'
+import './App.css'
+import {Header} from "./Header/Header"
+import {MainMenu} from "./MainMenu/MainMenu"
+import {Footer} from "./Footer/Footer"
+import {DialogsContainer} from './Dialogs/DialogsContainer'
+import UsersContainer from "./Users/UsersContainer"
+import ProfileContainer from "./Profile/ProfileContainer"
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 
           <main className="flex-grow bg-theme-bg-primary">
             <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
-            <Route path={"/profile"} render={() => <Profile/>}/>
+            <Route path={"/profile"} render={() => <ProfileContainer/>}/>
             <Route path={"/users"} render={() => <UsersContainer/>}/>
           </main>
 

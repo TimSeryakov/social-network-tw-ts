@@ -46,7 +46,6 @@ class UsersContainer extends React.Component<UsersContainersPropsType> {
         .then(() => {
           this.props.setUsersFetching(false)
         })
-
   }
 
   onPaginationLinkClick = (pageNumber: number) => {

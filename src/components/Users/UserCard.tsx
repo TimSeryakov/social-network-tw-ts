@@ -1,7 +1,7 @@
 import React from "react"
 import {UsersLocationType} from "../../redux/users-reducer"
 import {BordersPropsType, parseBordersProps} from "../common/utils/parseBordersProps"
-import anonymous from './nyancat.png'
+import anonymous from '../../assets/img/nyancat.png'
 import {NavLink} from "react-router-dom";
 
 type UserCardPropsType = {
@@ -32,7 +32,7 @@ export const UserCard = (props: UserCardPropsType) => {
       <div className={userCardStyle} key={props.key}>
 
         <div className={"w-full md:w-40 flex items-center justify-center"}>
-          <NavLink to={`/profile${props.id}`}>
+          <NavLink to={`/profile/${props.id}`} className={"inline-block rounded-full"}>
             <img
               className={"w-40 h-40 md:w-32 md:h-32 bg-theme-bg-secondary rounded-full border border-theme-border my-1 md:my-3"}
               src={props.photo ? props.photo : anonymous}

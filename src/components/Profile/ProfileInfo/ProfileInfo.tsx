@@ -1,13 +1,23 @@
-import React from 'react';
-import fuji from "../../../assets/img/fuji.png";
+import React from 'react'
+import {Preloader} from "../../common/Preloader"
+import {UserProfileData} from "../../../redux/profile-reducer"
+import noPhotoImage from '../../../assets/img/nyancat.png'
 
-export function ProfileInfo () {
+
+type ProfileInfoPropsType = {
+  profileData: UserProfileData
+}
+
+export function ProfileInfo (props: ProfileInfoPropsType) {
+
+  if (!props.profileData) { return <Preloader message={"Hey!"}/>  }
   return (
       <section className="pt-4 pb-10 px-4 flex">
+
           <div className="p-3 flex-shrink-0">
             <img
                 className="w-32 h-32 bg-theme-bg-secondary rounded-full border border-theme-border"
-                src={fuji}
+                src={noPhotoImage}
                 alt="avatar"
             />
           </div>
@@ -31,7 +41,7 @@ export function ProfileInfo () {
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Interstellar</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#UK Music</span>
                 <span
-                    className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Atmospheric Drum'n'Bass</span>
+                    className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Liquid Drum'n'Bass</span>
                 <span className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Drumfunk</span>
                 <span
                     className="bg-theme-bg-third inline-block py-1 px-3 mr-2 my-1 rounded-md">#Old School Hip-Hop</span>
