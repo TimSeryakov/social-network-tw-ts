@@ -6,7 +6,7 @@ const initialState = {
     {id: v1(), text: "Сбербанк выкупил актрису Зою Бербер и назвал Сбербербер.", likesCount: 29},
     {id: v1(), text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.", likesCount: 11    },
     {id: v1(), text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 42},
-  ] as Array<PostDataType>,
+  ] as PostDataType[], // Array<PostDataType>
   typedPostText: "" as string,
 }
 
@@ -55,7 +55,7 @@ export const addPostAC = (): AddPostActionType =>
     ({type: ADD_POST})
 
 export const updateTypedPostTextAC = (newValue: string): UpdateTypedPostTextActionType =>
-    ({type: UPDATE_TYPED_POST_TEXT, newValue: newValue})
+    ({type: UPDATE_TYPED_POST_TEXT, newValue})
 
 
 export default profileReducer

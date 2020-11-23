@@ -8,8 +8,8 @@ import dialogsReducer, {
 } from "./dialogs-reducer";
 
 type StartStateType = {
-  dialogsData: Array<DialogDataType>
-  messagesData: Array<MessageDataType>
+  dialogsData: DialogDataType[] // Array<DialogDataType>
+  messagesData: MessageDataType[] // Array<MessageDataType>
   typedMessageText: string
 }
 
@@ -21,12 +21,12 @@ beforeEach(() => {
       {id: v1(), name: "Max", avatar: samurai, unreadMessages: 0},
       {id: v1(), name: "Bob", avatar: samurai, unreadMessages: 1},
       {id: v1(), name: "Larry", avatar: samurai, unreadMessages: 99},
-    ] as Array<DialogDataType>,
+    ] as DialogDataType[], // Array<DialogDataType>
     messagesData: [
       {id: v1(), belongsToUser: false, text: "Hi"},
       {id: v1(), belongsToUser: false, text: "Unit tests is really cool!"},
       {id: v1(), belongsToUser: false, text: "really?"},
-    ] as Array<MessageDataType>,
+    ] as MessageDataType[], // Array<MessageDataType>
     typedMessageText: "" as string,
   }
 })

@@ -5,7 +5,7 @@ export type BordersPropsType = "t" | "r" | "b" | "l" |
 
 
 export const parseBordersProps = (arg: string) => {
-  let bordersStyle: string = 'border-theme-border '
+  let bordersStyle = 'border-theme-border '
 
   if (arg.includes('t')) {bordersStyle += 'border-t '}
   if (arg.includes('b')) {bordersStyle += 'border-b '}

@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export type UsersPageType = {
-  usersData: Array<UserDataType>
+  usersData: UserDataType[] // Array<UserDataType>
   pageSize: number
   totalUsersCount: number
   currentPage: number
@@ -48,7 +48,7 @@ export type UnfollowActionType = {
 
 export type SetUsersDataActionType = {
   type: typeof SET_USERS
-  usersData: any
+  usersData: UserDataType[] // Array<UserDataType>
 }
 
 export type SetCurrentPageActionType = {
@@ -118,7 +118,7 @@ export const setFollow = (userID: number): FollowActionType =>
     ({ type: FOLLOW, userID })
 export const setUnfollow = (userID: number): UnfollowActionType =>
     ({ type: UNFOLLOW, userID })
-export const setUsers = (usersData: UserDataType): SetUsersDataActionType =>
+export const setUsers = (usersData: UserDataType[]): SetUsersDataActionType =>
     ({ type: SET_USERS, usersData })
 export const setCurrentPage = (pageNumber: number): SetCurrentPageActionType =>
     ({ type: SET_CURRENT_PAGE, pageNumber })

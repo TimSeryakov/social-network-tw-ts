@@ -8,7 +8,7 @@ import {PostDataType} from "../../../redux/profile-reducer";
 type PropsType = {
   borders: BordersPropsType
 
-  postsData: Array<PostDataType>
+  postsData: PostDataType[] // Array<PostDataType>
   addPost: () => void
 
   typedPostText: string
@@ -19,7 +19,7 @@ type PropsType = {
 export function MyPosts (props: PropsType) {
 
   const textAreaRef = React.createRef<HTMLTextAreaElement>()
-  const postsList = props.postsData.map(post => <Post text={post.text} likesCount={post.likesCount}/>).reverse()
+  const postsList = props.postsData.map(post => <Post key={post.id} text={post.text} likesCount={post.likesCount}/>).reverse()
 
   const onAddPostClick = () => {
 

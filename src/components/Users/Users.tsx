@@ -7,11 +7,11 @@ import {Preloader} from "../common/Preloader";
 import {PreloaderCircle} from "../common/PreloaderCircle";
 
 type UsersPropsType = {
-  usersData: Array<UserDataType>
+  usersData: UserDataType[] // Array<UserDataType>
   pageSize: number
   totalUsersCount: number
   currentPage: number
-  setUsers: (usersData: UserDataType) => void
+  setUsers: (usersData: UserDataType[]) => void
   setCurrentPage: (pageNumber: number) => void
   setTotalUsersCount: (usersCount: number) => void
   setFollow: (userID: number) => void

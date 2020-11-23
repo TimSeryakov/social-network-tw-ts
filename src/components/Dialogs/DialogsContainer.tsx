@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 import {ActionsTypes, StateType} from "../../redux/store-redux";
 
 type MapStatePropsType = {
-  dialogsData: Array<DialogDataType>
-  messagesData: Array<MessageDataType>
+  dialogsData: DialogDataType[] // Array<DialogDataType>
+  messagesData: MessageDataType[] // Array<MessageDataType>
   typedMessageText: string
 }
 

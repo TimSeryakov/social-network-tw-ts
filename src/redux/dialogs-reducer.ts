@@ -14,7 +14,7 @@ const initialState = {
     {id: v1(), name: "Johnny", avatar: samurai, unreadMessages: 1},
     {id: v1(), name: "Flint", avatar: fuji, unreadMessages: 0},
     {id: v1(), name: "Jackie", avatar: luckycat, unreadMessages: 999},
-  ] as Array<DialogDataType>,
+  ] as DialogDataType[], // Array<DialogDataType>
   messagesData: [
     {id: v1(), belongsToUser: false, text: "Hi"},
     {id: v1(), belongsToUser: false, text: "How r you"},
@@ -23,7 +23,7 @@ const initialState = {
     {id: v1(), belongsToUser: false, text: "please"},
     {id: v1(), belongsToUser: true, text: "Hi, im there! 👋"},
     {id: v1(), belongsToUser: false, text: "really 👻"},
-  ] as Array<MessageDataType>,
+  ] as MessageDataType[], // Array<MessageDataType>
   typedMessageText: "" as string,
 }
 
@@ -75,10 +75,10 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
 }
 
 export const sendMessageAC = (): SendMessageActionType =>
-    ({type: SEND_MESSAGE})
+    ({ type: SEND_MESSAGE })
 
 export const updateTypedMessageTextAC = (newValue: string): UpdateTypedMessageTextActionType =>
-    ({type: UPDATE_TYPED_MESSAGE_TEXT, newValue: newValue})
+    ({ type: UPDATE_TYPED_MESSAGE_TEXT, newValue })
 
 
 export default dialogsReducer

@@ -34,13 +34,13 @@ export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            FollowActionType | UnfollowActionType | SetUsersDataActionType |
                            SetCurrentPageActionType | SetTotalUsersCountActionType | setUsersFetchingActionType
 
-let reducers = combineReducers({
+const reducers = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   usersPage: usersReducer,
   sidebar: sidebarReducer
 })
 
-let store = createStore(reducers)
+const store = createStore(reducers)
 
 export default store

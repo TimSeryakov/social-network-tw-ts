@@ -14,11 +14,11 @@ import {StateType} from "../../redux/store-redux";
 import {connect} from "react-redux";
 
 type UsersContainersPropsType = {
-  usersData: Array<UserDataType>
+  usersData: UserDataType[] // Array<UserDataType>
   pageSize: number
   totalUsersCount: number
   currentPage: number
-  setUsers: (usersData: UserDataType) => void
+  setUsers: (usersData: UserDataType[]) => void
   setCurrentPage: (pageNumber: number) => void
   setTotalUsersCount: (usersCount: number) => void
   setFollow: (userID: number) => void
@@ -92,31 +92,7 @@ const mapStateToProps = (state: StateType) => {
     isFetching: state.usersPage.isUsersFetching
   }
 }
-// Развёрнуто:
-// const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void) => {
-//   return {
-//     followFn: (userID: number) => {
-//       dispatch(followAC(userID))
-//     },
-//     unfollowFn: (userID: number) => {
-//       dispatch(unfollowAC(userID))
-//     },
-//     setUsers: (usersData: UserDataType) => {
-//       dispatch(setUsersAC(usersData))
-//     },
-//     setCurrentPage: (pageNumber: number) => {
-//       dispatch(setCurrentPageAC(pageNumber))
-//     },
-//     setTotalUsersCount: (usersCount: number) => {
-//       dispatch(setTotalUsersCountAC(usersCount))
-//     },
-//     setFetching: (isFetching: boolean) => {
-//       dispatch(setUsersFetchingAC(isFetching))
-//     }
-//   }
-// }
 
-// Но лучше так:
 export default connect(mapStateToProps, {
     setFollow,
     setUnfollow,

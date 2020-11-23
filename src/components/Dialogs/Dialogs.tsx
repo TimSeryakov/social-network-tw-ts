@@ -6,9 +6,9 @@ import * as Scroll from 'react-scroll';
 import {DialogDataType, MessageDataType} from "../../redux/dialogs-reducer";
 
 type PropsType = {
-  dialogsData: Array<DialogDataType>
+  dialogsData: DialogDataType[] // Array<DialogDataType>
 
-  messagesData: Array<MessageDataType>
+  messagesData: MessageDataType[] // Array<MessageDataType>
   sendMessage: ()  => void
 
   typedMessageText: string
@@ -22,10 +22,10 @@ export function Dialogs(props: PropsType) {
   const scroll = Scroll.animateScroll;
 
   const dialogsList = props.dialogsData.map(d =>
-      <DialogItem id={d.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
+      <DialogItem key={d.id} id={d.id} name={d.name} avatar={d.avatar} unreadMessages={d.unreadMessages}/>)
 
   const messagesList = props.messagesData.map(m =>
-      <MessageItem id={m.id} belongsToUser={m.belongsToUser} text={m.text}/>)
+      <MessageItem key={m.id} id={m.id} belongsToUser={m.belongsToUser} text={m.text}/>)
 
   const onSendMessageClick = () => {
     textAreaRef.current && textAreaRef.current.focus();

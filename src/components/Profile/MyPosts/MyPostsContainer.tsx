@@ -6,7 +6,7 @@ import {BordersPropsType} from "../../common/utils/parseBordersProps";
 
 type MapStatePropsType = {
   borders: BordersPropsType
-  postsData: Array<PostDataType>
+  postsData: PostDataType[] // Array<PostDataType>
   typedPostText: string
 }
 
