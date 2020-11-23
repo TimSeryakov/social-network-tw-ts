@@ -5,7 +5,7 @@ const initialState = {
   pageSize: 5,
   totalUsersCount: 10,
   currentPage: 1,
-  isFetching: false
+  isUsersFetching: false
 }
 
 export type UsersPageType = {
@@ -13,7 +13,7 @@ export type UsersPageType = {
   pageSize: number
   totalUsersCount: number
   currentPage: number
-  isFetching: boolean
+  isUsersFetching: boolean
 }
 
 export type UserDataType = {
@@ -107,24 +107,24 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
       return {...state, totalUsersCount: action.usersCount}
 
     case SET_USERS_IS_FETCHING:
-      return {...state, isFetching: action.isFetching}
+      return {...state, isUsersFetching: action.isFetching}
 
     default:
         return state
   }
 }
 
-export const followAC = (userID: number): FollowActionType =>
+export const setFollow = (userID: number): FollowActionType =>
     ({ type: FOLLOW, userID })
-export const unfollowAC = (userID: number): UnfollowActionType =>
+export const setUnfollow = (userID: number): UnfollowActionType =>
     ({ type: UNFOLLOW, userID })
-export const setUsersAC = (usersData: UserDataType): SetUsersDataActionType =>
+export const setUsers = (usersData: UserDataType): SetUsersDataActionType =>
     ({ type: SET_USERS, usersData })
-export const setCurrentPageAC = (pageNumber: number): SetCurrentPageActionType =>
+export const setCurrentPage = (pageNumber: number): SetCurrentPageActionType =>
     ({ type: SET_CURRENT_PAGE, pageNumber })
-export const setTotalUsersCountAC = (usersCount: number): SetTotalUsersCountActionType =>
+export const setTotalUsersCount = (usersCount: number): SetTotalUsersCountActionType =>
     ({ type: SET_TOTAL_USERS_COUNT, usersCount })
-export const setUsersFetchingAC = (isFetching: boolean): setUsersFetchingActionType =>
+export const setUsersFetching = (isFetching: boolean): setUsersFetchingActionType =>
     ({ type: SET_USERS_IS_FETCHING, isFetching })
 
 export default usersReducer

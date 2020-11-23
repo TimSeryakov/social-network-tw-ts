@@ -14,8 +14,8 @@ type UsersPropsType = {
   setUsers: (usersData: UserDataType) => void
   setCurrentPage: (pageNumber: number) => void
   setTotalUsersCount: (usersCount: number) => void
-  followFn: (userID: number) => void
-  unfollowFn: (userID: number) => void
+  setFollow: (userID: number) => void
+  setUnfollow: (userID: number) => void
   onPaginationLinkClick: (pageNumber: number) => void
   isFetching: boolean
 }
@@ -61,9 +61,9 @@ export function Users(props: UsersPropsType) {
                                 status={u.status}
                                 location={{city: "location.city", country: "location.country"}}
                                 onClickFn={u.followed ? () => {
-                                  props.unfollowFn(u.id)
+                                  props.setUnfollow(u.id)
                                 } : () => {
-                                  props.followFn(u.id)
+                                  props.setFollow(u.id)
                                 }}
                       />)
                 }
