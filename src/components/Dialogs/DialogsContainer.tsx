@@ -1,7 +1,7 @@
 import {DialogDataType, MessageDataType, sendMessageAC, updateTypedMessageTextAC} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
-import {ActionsTypes, StateType} from "../../redux/store-redux";
+import {ActionsTypes, RootStateType} from "../../redux/store-redux";
 
 type MapStatePropsType = {
   dialogsData: DialogDataType[] // Array<DialogDataType>
@@ -15,7 +15,7 @@ type MapDispatchPropsType = {
 }
 
 // Принимает весь state и возвращает только те данные, которые нам понадобятся в компоненте
-const mapStateToProps = (state: StateType): MapStatePropsType => {
+const mapStateToProps = (state: RootStateType): MapStatePropsType => {
   return { // При изменении каждого будет производиться перерисовка
     dialogsData: state.dialogsPage.dialogsData,
     messagesData: state.dialogsPage.messagesData,

@@ -10,7 +10,7 @@ import {
 } from "../../redux/users-reducer"
 import axios from "axios"
 import {Users} from "./Users";
-import {StateType} from "../../redux/store-redux";
+import {RootStateType} from "../../redux/store-redux";
 import {connect} from "react-redux";
 
 type UsersContainersPropsType = {
@@ -82,7 +82,7 @@ class UsersContainer extends React.Component<UsersContainersPropsType> {
 
 
 // Принимает весь state и возвращает только те данные, которые нам понадобятся в компоненте
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: RootStateType) => {
   return {
     usersData: state.usersPage.usersData,
     pageSize: state.usersPage.pageSize,

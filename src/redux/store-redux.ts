@@ -19,7 +19,7 @@ import usersReducer, {
 
 } from "./users-reducer";
 
-export type StateType = {
+export type RootStateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
   usersPage: UsersPageType
@@ -27,9 +27,9 @@ export type StateType = {
 }
 
 export type StoreType = {
-  _state: StateType
+  _state: RootStateType
   _callSubscriber: () => void
-  getState: () => StateType
+  getState: () => RootStateType
   subscribe: (observer: () => void) => void
   dispatch: (action: ActionsTypes) => void
 }

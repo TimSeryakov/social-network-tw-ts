@@ -3,13 +3,24 @@ import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {setCurrentUserProfile, UserProfileData} from "../../redux/profile-reducer";
-import {StateType} from '../../redux/store-redux';
+import {RootStateType} from '../../redux/store-redux';
+import {RouteComponentProps, withRouter } from 'react-router-dom';
 
 
-type ProfileContainerPropsType = {
+type MapDispatchToPropsType = {
   setCurrentUserProfile: (userProfile: UserProfileData) => void
+}
+
+type MapStateToPropsType = {
   profileData: UserProfileData
 }
+
+type PathParamsType = {
+  userID: string,
+}
+
+type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamsType>
+
 
 const SAMURAI_API = axios.create({
       baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -21,22 +32,29 @@ const SAMURAI_API = axios.create({
 export class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
   componentDidMount() {
-      SAMURAI_API.get(`profile/2`)
+
+    let userID: string
+    if (!this.props.match.params.userID) {
+      userID = String(12409)
+    } else {
+      userID = this.props.match.params.userID
+    }
+
+      SAMURAI_API.get(`profile/${userID}`)
           .then(response => {
             this.props.setCurrentUserProfile(response.data)
           })
     }
 
   render() {
-    return (
-            <Profile {...this.props} profileData={this.props.profileData}/>
-    )
+    return <Profile {...this.props} profileData={this.props.profileData}/>
   }
 }
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: RootStateType): MapStateToPropsType  => ({
   profileData: state.profilePage.currentUserProfile
 })
 
 
-export default connect(mapStateToProps, {setCurrentUserProfile})(ProfileContainer)
+// @ts-ignore
+export default connect(mapStateToProps, {setCurrentUserProfile})(withRouter(ProfileContainer))

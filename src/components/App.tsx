@@ -20,9 +20,9 @@ function App() {
           <MainMenu borders="r"/>
 
           <main className="flex-grow bg-theme-bg-primary">
-            <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
-            <Route path={"/profile"} render={() => <ProfileContainer/>}/>
-            <Route path={"/users"} render={() => <UsersContainer/>}/>
+            <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+            <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
+            <Route path="/users" render={() => <UsersContainer/>}/>
           </main>
 
         </div>

@@ -47,14 +47,14 @@ module.exports = {
     container: false,
   },
   plugins: [
-    /*  require("tailwindcss-pixel-dimensions")({
+      require("tailwindcss-pixel-dimensions")({
         width: {
-          total: 500, // 900 is the default
+          total: 200, // 900 is the default
         },
         height: {
-          total: 900, // 900 is the default
+          total: 200, // 900 is the default
         },
-      }),*/
+      }),
     function ({addComponents}) {
       addComponents({
         ".container": {

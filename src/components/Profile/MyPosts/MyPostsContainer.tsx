@@ -1,7 +1,7 @@
 import {addPost, PostDataType, updateTypedPostText} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
-import {ActionsTypes, StateType} from "../../../redux/store-redux";
+import {ActionsTypes, RootStateType} from "../../../redux/store-redux";
 import {BordersPropsType} from "../../common/utils/parseBordersProps";
 
 type MapStatePropsType = {
@@ -16,7 +16,7 @@ type MapDispatchPropsType = {
 }
 
 // Принимает весь state и возвращает только те данные, которые нам понадобятся в компоненте
-const mapStateToProps = (state: StateType): MapStatePropsType => {
+const mapStateToProps = (state: RootStateType): MapStatePropsType => {
   return { // При изменении каждого будет производиться перерисовка
     borders: "t",
     postsData: state.profilePage.postsData,

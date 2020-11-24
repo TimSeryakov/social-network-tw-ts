@@ -18,7 +18,7 @@ export function Profile (props: ProfilePropsTypes) {
 
         <div className="border-theme-border border-t">
 
-          <ProfileInfo profileData={ props.profileData} />
+          <ProfileInfo profileData={props.profileData} />
 
           <MyPostsContainer/>
 

@@ -14,9 +14,7 @@ export const rerenderEntireTree = () => {
         </Provider>
       </BrowserRouter>,
       document.getElementById('root')
-  );
+  )
 }
 
 rerenderEntireTree()
-// store.subscribe(() => {rerenderEntireTree()})
-

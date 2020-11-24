@@ -21,24 +21,28 @@ export type PostDataType = {
 
 export type UserProfileData = {
   aboutMe: null | string
-  contacts: {
-    facebook: null | string
-    website: null | string
-    vk: null | string
-    twitter: null | string
-    instagram: null | string
-    youtube: null | string
-    github: null | string
-    mainLink: null
-  },
+  contacts: ContactsType
   lookingForAJob: boolean
   lookingForAJobDescription: null | string
-  fullName: null | string
+  fullName: string
   userId: number
-  photos: {
-    small: null | string
-    large: null | string
-  }
+  photos: PhotosType
+}
+
+type PhotosType = {
+  small: null | string
+  large: null | string
+}
+
+type ContactsType = {
+  facebook: null | string
+  website: null | string
+  vk: null | string
+  twitter: null | string
+  instagram: null | string
+  youtube: null | string
+  github: null | string
+  mainLink: null
 }
 
 export type UpdateTypedPostTextActionType = {
