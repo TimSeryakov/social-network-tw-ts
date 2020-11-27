@@ -1,19 +1,19 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
 import './App.css'
-import {Header} from "./Header/Header"
 import {MainMenu} from "./MainMenu/MainMenu"
 import {Footer} from "./Footer/Footer"
 import {DialogsContainer} from './Dialogs/DialogsContainer'
 import UsersContainer from "./Users/UsersContainer"
 import ProfileContainer from "./Profile/ProfileContainer"
+import {HeaderContainer} from './Header/HeaderContainer'
 
 
 function App() {
   return (
       <div className="container shadow-xl h-full min-h-screen flex flex-col border border-theme-border">
 
-        <Header borders="b"/>
+        <HeaderContainer borders="b"/>
 
         <div className="flex flex-auto">
 

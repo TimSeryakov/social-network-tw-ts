@@ -61,7 +61,7 @@ export type SetTotalUsersCountActionType = {
   usersCount: number
 }
 
-export type setUsersFetchingActionType = {
+export type SetUsersFetchingActionType = {
   type: typeof SET_USERS_IS_FETCHING
   isFetching: boolean
 }
@@ -124,7 +124,7 @@ export const setCurrentPage = (pageNumber: number): SetCurrentPageActionType =>
     ({ type: SET_CURRENT_PAGE, pageNumber })
 export const setTotalUsersCount = (usersCount: number): SetTotalUsersCountActionType =>
     ({ type: SET_TOTAL_USERS_COUNT, usersCount })
-export const setUsersFetching = (isFetching: boolean): setUsersFetchingActionType =>
+export const setUsersFetching = (isFetching: boolean): SetUsersFetchingActionType =>
     ({ type: SET_USERS_IS_FETCHING, isFetching })
 
 export default usersReducer

@@ -13,17 +13,19 @@ import profileReducer, {
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
 import usersReducer, {
   FollowActionType, SetCurrentPageActionType, SetTotalUsersCountActionType,
-  SetUsersDataActionType, setUsersFetchingActionType,
+  SetUsersDataActionType, SetUsersFetchingActionType,
   UnfollowActionType,
   UsersPageType,
 
 } from "./users-reducer";
+import authReducer, {AuthStateType, SetUserDataActionType} from "./auth-reducer";
 
 export type RootStateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
   usersPage: UsersPageType
   sidebar: SidebarType
+  auth: AuthStateType
 }
 
 export type StoreType = {
@@ -38,13 +40,15 @@ export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            UpdateTypedMessageTextActionType | SendMessageActionType |
                            FollowActionType | UnfollowActionType | SetUsersDataActionType |
                            SetCurrentPageActionType | SetTotalUsersCountActionType |
-                           setUsersFetchingActionType | SetCurrentUserProfileActionType
+                           SetUsersFetchingActionType | SetCurrentUserProfileActionType |
+                           SetUserDataActionType
 
 const reducers = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   usersPage: usersReducer,
-  sidebar: sidebarReducer
+  sidebar: sidebarReducer,
+  auth: authReducer
 })
 
 const store = createStore(reducers)
