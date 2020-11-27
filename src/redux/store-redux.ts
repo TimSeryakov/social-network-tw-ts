@@ -18,7 +18,7 @@ import usersReducer, {
   UsersPageType,
 
 } from "./users-reducer";
-import authReducer, {AuthStateType, SetUserDataActionType} from "./auth-reducer";
+import authReducer, {AuthDataFetchingActionType, AuthStateType, SetUserDataActionType} from "./auth-reducer";
 
 export type RootStateType = {
   profilePage: ProfilePageType
@@ -41,7 +41,7 @@ export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            FollowActionType | UnfollowActionType | SetUsersDataActionType |
                            SetCurrentPageActionType | SetTotalUsersCountActionType |
                            SetUsersFetchingActionType | SetCurrentUserProfileActionType |
-                           SetUserDataActionType
+                           SetUserDataActionType | AuthDataFetchingActionType
 
 const reducers = combineReducers({
   profilePage: profileReducer,

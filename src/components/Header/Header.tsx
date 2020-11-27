@@ -4,6 +4,10 @@ import {NavLink} from "react-router-dom";
 
 type HeaderPropsType ={
   borders: BordersPropsType
+  isAuth: boolean
+  userLogin: string
+  isAuthDataFetching: boolean
+
 }
 
 

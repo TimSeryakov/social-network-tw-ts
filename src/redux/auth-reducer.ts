@@ -4,18 +4,20 @@ const initialState: AuthStateType = {
   userID: null,
   email: null,
   login: null,
-  isUsersFetching: false
+  isAuth: false,
+  isAuthDataFetching: false
 }
 
 export type AuthStateType = {
   userID: number | null
   email: string | null
   login: string | null
-  isUsersFetching: boolean
+  isAuth: boolean
+  isAuthDataFetching: boolean
 }
 
 
-type UserAuthDataType = {
+export type UserAuthDataType = {
   userID: number
   email: string
   login: string
@@ -24,6 +26,7 @@ type UserAuthDataType = {
 
 export enum AUTH {
   SET_USER_DATA = 'SET_USER_DATA',
+  SET_AUTH_DATA_FETCHING = 'SET_AUTH_DATA_FETCHING'
 }
 
 
@@ -32,7 +35,15 @@ const authReducer = (state: AuthStateType = initialState, action: ActionsTypes):
     case AUTH.SET_USER_DATA: {
       return {
         ...state,
-        ...action.userAuthData
+        ...action.userAuthData,
+        isAuth: true
+      }
+    }
+
+     case AUTH.SET_AUTH_DATA_FETCHING: {
+      return {
+        ...state,
+        isAuthDataFetching: action.isAuthDataFetching
       }
     }
 
@@ -46,8 +57,16 @@ export type SetUserDataActionType = {
   userAuthData: UserAuthDataType
 }
 
-export const setUserData = (userAuthData: UserAuthDataType): SetUserDataActionType =>
+export type AuthDataFetchingActionType = {
+  type: typeof AUTH.SET_AUTH_DATA_FETCHING
+  isAuthDataFetching: boolean
+}
+
+export const setAuthUserData = (userAuthData: UserAuthDataType): SetUserDataActionType =>
     ({ type: AUTH.SET_USER_DATA, userAuthData })
+
+export const setAuthDataFetching = (isAuthDataFetching: boolean): AuthDataFetchingActionType =>
+    ({ type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching })
 
 
 

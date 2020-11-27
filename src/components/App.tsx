@@ -6,7 +6,7 @@ import {Footer} from "./Footer/Footer"
 import {DialogsContainer} from './Dialogs/DialogsContainer'
 import UsersContainer from "./Users/UsersContainer"
 import ProfileContainer from "./Profile/ProfileContainer"
-import {HeaderContainer} from './Header/HeaderContainer'
+import HeaderContainer from './Header/HeaderContainer'
 
 
 function App() {
