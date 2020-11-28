@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 type HeaderPropsType ={
   borders: BordersPropsType
   isAuth: boolean
-  userLogin: string
+  userLogin: string | null
   isAuthDataFetching: boolean
 
 }
