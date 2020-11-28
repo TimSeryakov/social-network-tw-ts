@@ -7,7 +7,6 @@ type HeaderPropsType ={
   isAuth: boolean
   userLogin: string | null
   isAuthDataFetching: boolean
-
 }
 
 
@@ -33,8 +32,13 @@ export function Header (props: HeaderPropsType) {
           </button>
           <ul className={ `${ !navbarOpen && "hidden" } sm:flex flex-col sm:flex-row items-end sm:items-center justify-end`}>
             <li className="p-4"><a href="/about" className="text-xl text-theme-text hover:text-white">About</a></li>
-            <li className="p-4"><NavLink to="/login" className="text-xl text-theme-text hover:text-white">Login</NavLink></li>
-            <li className="p-4"><a href="/signup" className="text-xl text-theme-text hover:text-white">Signup</a></li>
+            {
+              props.isAuth ?
+                <li className="p-4"><span className="text-xl text-theme-text">[ {props.userLogin} ]</span></li>
+                :
+                <li className="p-4"><NavLink to="/login" className="text-xl text-theme-text hover:text-white">Login</NavLink></li>
+            }
+            {/*<li className="p-4"><a href="/signup" className="text-xl text-theme-text hover:text-white">Signup</a></li>*/}
           </ul>
         </nav>
       </header>

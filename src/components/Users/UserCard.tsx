@@ -6,7 +6,6 @@ import {NavLink} from "react-router-dom";
 
 type UserCardPropsType = {
   borders: BordersPropsType
-  key: string
   id: number
   photo: string | null
   followed: boolean
@@ -29,7 +28,7 @@ export const UserCard = (props: UserCardPropsType) => {
                                 hover:border-theme-accent-alternative-hover`
 
   return (
-      <div className={userCardStyle} key={props.key}>
+      <div className={userCardStyle}>
 
         <div className={"w-full md:w-40 flex items-center justify-center"}>
           <NavLink to={`/profile/${props.id}`} className={"inline-block rounded-full"}>
