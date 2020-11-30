@@ -4,9 +4,9 @@ import {
   setCurrentPage,
   setTotalUsersCount,
   setUsers,
-  setUsersFetching,
+  setUsersDataFetching,
   setUnfollow,
-  UserDataType
+  UserDataType, setUserFollowStatusFetching
 } from "../../redux/users-reducer"
 import axios from "axios"
 import {Users} from "./Users";
@@ -23,8 +23,10 @@ type UsersContainersPropsType = {
   setTotalUsersCount: (usersCount: number) => void
   setFollow: (userID: number) => void
   setUnfollow: (userID: number) => void
-  setUsersFetching: (isFetching: boolean) => void
-  isFetching: boolean
+  setUsersDataFetching: (isFetching: boolean) => void
+  setUserFollowStatusFetching: (isFetching: boolean) => void
+  isUsersDataFetching: boolean
+  isUserFollowStatusFetching: boolean
 }
 
 const SAMURAI_API = axios.create({
@@ -37,19 +39,19 @@ const SAMURAI_API = axios.create({
 class UsersContainer extends React.Component<UsersContainersPropsType> {
 
   componentDidMount() {
-    this.props.setUsersFetching(true)
+    this.props.setUsersDataFetching(true)
     SAMURAI_API.get(`users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
          .then(response => {
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
           })
         .then(() => {
-          this.props.setUsersFetching(false)
+          this.props.setUsersDataFetching(false)
         })
   }
 
   onPaginationLinkClick = (pageNumber: number) => {
-      this.props.setUsersFetching(true)
+      this.props.setUsersDataFetching(true)
       this.props.setCurrentPage(pageNumber)
 
     SAMURAI_API.get(`users?page=${pageNumber}&count=${this.props.pageSize}`)
@@ -57,7 +59,7 @@ class UsersContainer extends React.Component<UsersContainersPropsType> {
               this.props.setUsers(response.data.items)
             })
             .then(() => {
-              this.props.setUsersFetching(false)
+              this.props.setUsersDataFetching(false)
             })
 
 
@@ -75,7 +77,9 @@ class UsersContainer extends React.Component<UsersContainersPropsType> {
                   setFollow={this.props.setFollow}
                   setUnfollow={this.props.setUnfollow}
                   onPaginationLinkClick={this.onPaginationLinkClick}
-                  isFetching={this.props.isFetching}
+                  isUsersDataFetching={this.props.isUsersDataFetching}
+                  setUserFollowStatusFetching={this.props.setUserFollowStatusFetching}
+                  isUserFollowStatusFetching={this.props.isUserFollowStatusFetching}
            />
   }
 }
@@ -88,7 +92,8 @@ const mapStateToProps = (state: RootStateType) => {
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isUsersFetching
+    isUsersDataFetching: state.usersPage.isUsersDataFetching,
+    isUserFollowStatusFetching: state.usersPage.isUserFollowStatusFetching
   }
 }
 
@@ -98,5 +103,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    setUsersFetching
+    setUsersDataFetching,
+    setUserFollowStatusFetching
   })(UsersContainer)

@@ -5,6 +5,15 @@ import {PageTitle} from "../common/PageTitle"
 import {PaginationLink} from "../common/PaginationLink";
 import {Preloader} from "../common/Preloader";
 import {PreloaderCircle} from "../common/PreloaderCircle";
+import axios from "axios";
+
+const SAMURAI_API = axios.create({
+      baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+      withCredentials: true,
+      headers: {'API-KEY': process.env.REACT_APP_SAMURAI_API_KEY}
+    }
+)
+
 
 type UsersPropsType = {
   usersData: UserDataType[] // Array<UserDataType>
@@ -17,7 +26,9 @@ type UsersPropsType = {
   setFollow: (userID: number) => void
   setUnfollow: (userID: number) => void
   onPaginationLinkClick: (pageNumber: number) => void
-  isFetching: boolean
+  isUsersDataFetching: boolean
+  setUserFollowStatusFetching: (isFetching: boolean) => void
+  isUserFollowStatusFetching: boolean
 }
 
 export function Users(props: UsersPropsType) {
@@ -43,7 +54,7 @@ export function Users(props: UsersPropsType) {
   return (
       <section className="h-full">
 
-        <PageTitle title="Users"/>
+        <PageTitle title="Users" isFetching={props.isUserFollowStatusFetching}/>
 
         {
           props.usersData.length > 0 ?
@@ -60,17 +71,42 @@ export function Users(props: UsersPropsType) {
                                 name={u.name}
                                 status={u.status}
                                 location={{city: "location.city", country: "location.country"}}
-                                onClickFn={u.followed ? () => {
-                                  props.setUnfollow(u.id)
-                                } : () => {
-                                  props.setFollow(u.id)
-                                }}
+                                onClickFn={
+                                  u.followed ?
+                                      () => {
+                                              props.setUserFollowStatusFetching(true)
+                                              SAMURAI_API.delete(`follow/${u.id}`)
+                                                  .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                      props.setUnfollow(u.id)
+                                                    }
+                                                  })
+                                                  .then(() => {
+                                                    props.setUserFollowStatusFetching(false)
+                                                  })
+                                            }
+
+                                      :
+
+                                      () => {
+                                              props.setUserFollowStatusFetching(true)
+                                              SAMURAI_API.post(`follow/${u.id}`)
+                                                  .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                      props.setFollow(u.id)
+                                                    }
+                                                  })
+                                                  .then(() => {
+                                                    props.setUserFollowStatusFetching(false)
+                                                  })
+                                            }
+                                }
                       />)
                 }
               </div>
 
               <div className="flex items-center justify-center pt-2 pb-6 sm:pb-5">
-                { props.isFetching && <div className="hidden sm:block mr-3 w-6"/> }
+                { props.isUsersDataFetching && <div className="hidden sm:block mr-3 w-6"/> } {/* для симметрии */}
 
                 {
                    paginationArr.map(p => {
@@ -87,7 +123,7 @@ export function Users(props: UsersPropsType) {
                   )
                 }
 
-                { props.isFetching && <div className="hidden sm:block ml-3 w-6"> <PreloaderCircle/> </div> }
+                { props.isUsersDataFetching && <div className="hidden sm:block ml-3 w-6"> <PreloaderCircle/> </div> }
               </div>
             </>
 

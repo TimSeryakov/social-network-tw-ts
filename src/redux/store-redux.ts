@@ -12,7 +12,7 @@ import profileReducer, {
 } from "./profile-reducer";
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
 import usersReducer, {
-  FollowActionType, SetCurrentPageActionType, SetTotalUsersCountActionType,
+  FollowActionType, SetCurrentPageActionType, SetTotalUsersCountActionType, SetUserFollowStatusFetchingActionType,
   SetUsersDataActionType, SetUsersFetchingActionType,
   UnfollowActionType,
   UsersPageType,
@@ -41,7 +41,8 @@ export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            FollowActionType | UnfollowActionType | SetUsersDataActionType |
                            SetCurrentPageActionType | SetTotalUsersCountActionType |
                            SetUsersFetchingActionType | SetCurrentUserProfileActionType |
-                           SetUserDataActionType | AuthDataFetchingActionType
+                           SetUserDataActionType | AuthDataFetchingActionType |
+                           SetUserFollowStatusFetchingActionType
 
 const reducers = combineReducers({
   profilePage: profileReducer,
