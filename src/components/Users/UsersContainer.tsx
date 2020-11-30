@@ -1,17 +1,18 @@
 import React from "react"
 import {
-  setFollow,
   setCurrentPage,
+  setFollow,
   setTotalUsersCount,
+  setUnfollow,
+  setUserFollowStatusFetching,
   setUsers,
   setUsersDataFetching,
-  setUnfollow,
-  UserDataType, setUserFollowStatusFetching
+  UserDataType
 } from "../../redux/users-reducer"
-import axios from "axios"
 import {Users} from "./Users";
 import {RootStateType} from "../../redux/store-redux";
 import {connect} from "react-redux";
+import {USERS_API} from "../../api/api";
 
 type UsersContainersPropsType = {
   usersData: UserDataType[] // Array<UserDataType>
@@ -29,40 +30,28 @@ type UsersContainersPropsType = {
   isUserFollowStatusFetching: boolean
 }
 
-const SAMURAI_API = axios.create({
-      baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-      withCredentials: true,
-      headers: {'API-KEY': process.env.REACT_APP_SAMURAI_API_KEY}
-    }
-)
 
 class UsersContainer extends React.Component<UsersContainersPropsType> {
 
   componentDidMount() {
     this.props.setUsersDataFetching(true)
-    SAMURAI_API.get(`users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-         .then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
+    USERS_API.getUsersDataFromServer(this.props.currentPage, this.props.pageSize)
+         .then(data => {
+            this.props.setUsers(data.items)
+            this.props.setTotalUsersCount(data.totalCount)
+            this.props.setUsersDataFetching(false)
           })
-        .then(() => {
-          this.props.setUsersDataFetching(false)
-        })
   }
 
   onPaginationLinkClick = (pageNumber: number) => {
       this.props.setUsersDataFetching(true)
       this.props.setCurrentPage(pageNumber)
 
-    SAMURAI_API.get(`users?page=${pageNumber}&count=${this.props.pageSize}`)
-           .then(response => {
-              this.props.setUsers(response.data.items)
-            })
-            .then(() => {
+    USERS_API.getUsersDataFromServer(pageNumber, this.props.pageSize)
+           .then(data => {
+              this.props.setUsers(data.items)
               this.props.setUsersDataFetching(false)
             })
-
-
   }
 
   render() {
