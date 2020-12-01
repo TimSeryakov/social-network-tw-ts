@@ -42,19 +42,22 @@ module.exports = {
       "ubuntu": ["Ubuntu", ...defaultTheme.fontFamily.sans],
     },
   },
-  variants: {},
+  variants: {
+    opacity: ['disabled'],
+    cursor: ['responsive', 'disabled'],
+  },
   corePlugins: {
     container: false,
   },
   plugins: [
-      require("tailwindcss-pixel-dimensions")({
-        width: {
-          total: 200, // 900 is the default
-        },
-        height: {
-          total: 200, // 900 is the default
-        },
-      }),
+    require("tailwindcss-pixel-dimensions")({
+      width: {
+        total: 200, // 900 is the default
+      },
+      height: {
+        total: 200, // 900 is the default
+      },
+    }),
     function ({addComponents}) {
       addComponents({
         ".container": {

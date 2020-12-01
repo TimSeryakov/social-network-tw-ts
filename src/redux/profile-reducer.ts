@@ -1,6 +1,5 @@
 import {v1} from "uuid";
 import {ActionsTypes} from "./store-redux";
-import {AUTH, AuthDataFetchingActionType} from "./auth-reducer";
 
 const initialState = {
   postsData: [

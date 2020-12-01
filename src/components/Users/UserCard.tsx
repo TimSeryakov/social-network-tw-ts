@@ -13,6 +13,7 @@ type UserCardPropsType = {
   name: string
   location: UsersLocationType
   onClickFn: () => void
+  isUserFollowStatusFetching: number[]
 }
 
 export const UserCard = (props: UserCardPropsType) => {
@@ -22,10 +23,12 @@ export const UserCard = (props: UserCardPropsType) => {
                                 md:flex-row`
   const followButtonStyle =    `px-4 py-2 w-32 text-white rounded-md border border-theme-accent-alternative 
                                 bg-theme-accent-alternative focus:outline-none hover:bg-theme-accent-alternative-hover 
-                                hover:border-theme-accent-alternative`
+                                hover:border-theme-accent-alternative 
+                                disabled:opacity-50 disabled:cursor-wait`
   const unFollowButtonStyle =  `px-4 py-2 w-32 text-theme-accent-alternative border border-theme-accent-alternative 
                                 rounded-md focus:outline-none hover:text-theme-accent-alternative-hover 
-                                hover:border-theme-accent-alternative-hover`
+                                hover:border-theme-accent-alternative-hover 
+                                disabled:opacity-50 disabled:cursor-wait`
 
   return (
       <div className={userCardStyle}>
@@ -54,6 +57,7 @@ export const UserCard = (props: UserCardPropsType) => {
           <button
               className={props.followed ? unFollowButtonStyle : followButtonStyle}
               onClick={props.onClickFn}
+              disabled={props.isUserFollowStatusFetching.some(id => id === props.id)}
           >
             {props.followed ? "Unfollow" : "Follow"}
           </button>

@@ -27,8 +27,8 @@ type UsersPropsType = {
   setUnfollow: (userID: number) => void
   onPaginationLinkClick: (pageNumber: number) => void
   isUsersDataFetching: boolean
-  setUserFollowStatusFetching: (isFetching: boolean) => void
-  isUserFollowStatusFetching: boolean
+  setUserFollowStatusFetching: (isFetching: boolean, userID: number) => void
+  isUserFollowStatusFetching: number[]
 }
 
 export function Users(props: UsersPropsType) {
@@ -54,7 +54,7 @@ export function Users(props: UsersPropsType) {
   return (
       <section className="h-full">
 
-        <PageTitle title="Users" isFetching={props.isUserFollowStatusFetching}/>
+        <PageTitle title="Users" isFetching={!!props.isUserFollowStatusFetching.length}/>
 
         {
           props.usersData.length > 0 ?
@@ -71,33 +71,30 @@ export function Users(props: UsersPropsType) {
                                 name={u.name}
                                 status={u.status}
                                 location={{city: "location.city", country: "location.country"}}
+                                isUserFollowStatusFetching={props.isUserFollowStatusFetching}
                                 onClickFn={
                                   u.followed ?
                                       () => {
-                                              props.setUserFollowStatusFetching(true)
+                                              props.setUserFollowStatusFetching(true, u.id)
                                               SAMURAI_API.delete(`follow/${u.id}`)
                                                   .then(response => {
                                                     if (response.data.resultCode === 0) {
                                                       props.setUnfollow(u.id)
                                                     }
-                                                  })
-                                                  .then(() => {
-                                                    props.setUserFollowStatusFetching(false)
+                                                    props.setUserFollowStatusFetching(false, u.id)
                                                   })
                                             }
 
                                       :
 
                                       () => {
-                                              props.setUserFollowStatusFetching(true)
+                                              props.setUserFollowStatusFetching(true, u.id)
                                               SAMURAI_API.post(`follow/${u.id}`)
                                                   .then(response => {
                                                     if (response.data.resultCode === 0) {
                                                       props.setFollow(u.id)
                                                     }
-                                                  })
-                                                  .then(() => {
-                                                    props.setUserFollowStatusFetching(false)
+                                                    props.setUserFollowStatusFetching(false, u.id)
                                                   })
                                             }
                                 }

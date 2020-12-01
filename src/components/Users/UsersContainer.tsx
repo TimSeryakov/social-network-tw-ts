@@ -46,8 +46,8 @@ function UsersContainer() {
     dispatch(setUnfollow(userID))
   }
 
-  const setUserFollowStatusFetchingFn = (isFetching: boolean) => {
-    dispatch(setUserFollowStatusFetching(isFetching))
+  const setUserFollowStatusFetchingFn = (isFetching: boolean, userID: number) => {
+    dispatch(setUserFollowStatusFetching(isFetching, userID))
   }
 
 
