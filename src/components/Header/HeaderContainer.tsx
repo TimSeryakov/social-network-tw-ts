@@ -8,11 +8,6 @@ import {AUTH_API} from "../../api/api";
 
 type HeaderContainerPropsType ={
   borders: BordersPropsType
-  // setAuthUserData: (userAuthData: UserAuthDataType) => void
-  // setAuthDataFetching: (isAuthDataFetching: boolean) => void
-  // isAuth: boolean
-  // userLogin: string | null
-  // isAuthDataFetching: boolean
 }
 
 function HeaderContainer(props: HeaderContainerPropsType) {

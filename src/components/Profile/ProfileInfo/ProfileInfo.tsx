@@ -1,11 +1,11 @@
 import React from 'react'
 import {Preloader} from "../../common/Preloader"
-import {UserProfileData} from "../../../redux/profile-reducer"
+import {UserProfileDataType} from "../../../redux/profile-reducer"
 import noPhotoImage from '../../../assets/img/nyancat.png'
 
 
 type ProfileInfoPropsType = {
-  profileData: UserProfileData
+  profileData: UserProfileDataType
 }
 
 export function ProfileInfo (props: ProfileInfoPropsType) {

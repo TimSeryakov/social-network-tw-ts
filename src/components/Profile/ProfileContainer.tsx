@@ -1,50 +1,49 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Profile} from "./Profile";
-import {connect} from "react-redux";
-import {setCurrentUserProfile, UserProfileData} from "../../redux/profile-reducer";
-import {RootStateType} from '../../redux/store-redux';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {getProfileDataFromServer} from '../../api/api';
-
-
-type MapDispatchToPropsType = {
-  setCurrentUserProfile: (userProfile: UserProfileData) => void
-}
-
-type MapStateToPropsType = {
-  profileData: UserProfileData
-}
+import {getProfileDataFromServer} from "../../api/api";
+import {useDispatch, useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store-redux";
+import {setCurrentUserProfile, setProfileDataFetching, UserProfileDataType} from "../../redux/profile-reducer";
 
 type PathParamsType = {
   userID: string,
 }
 
-type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamsType>
+type ProfileContainerPropsType = RouteComponentProps<PathParamsType>
 
-export class ProfileContainer extends React.Component<ProfileContainerPropsType> {
+export function ProfileContainer(props: ProfileContainerPropsType) {
 
-  componentDidMount() {
+  const {currentUserProfile, isProfileDataFetching} = useSelector((state: RootStateType) => state.profilePage)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
     let userID: string
-    if (!this.props.match.params.userID) {
+    if (!props.match.params.userID) {
       userID = String(12409)
     } else {
-      userID = this.props.match.params.userID
+      userID = props.match.params.userID
     }
 
+    dispatch(setProfileDataFetching(true))
     getProfileDataFromServer(userID)
-          .then(data => {
-            this.props.setCurrentUserProfile(data)
-          })
-    }
+        .then(data => {
+          dispatch(setCurrentUserProfile(data))
+          dispatch(setProfileDataFetching(false))
+        })
+  }, [props.match.params.userID, dispatch])
 
-  render() {
-    return <Profile {...this.props} profileData={this.props.profileData}/>
+
+  const setCurrentUserProfileFn = (userProfile: UserProfileDataType) => {
+    dispatch(setCurrentUserProfile(userProfile))
   }
+
+  return <Profile
+            {...props}
+            profileData={currentUserProfile}
+            setCurrentUserProfile={setCurrentUserProfileFn}
+            isProfileDataFetching={isProfileDataFetching}
+  />
 }
 
-const mapStateToProps = (state: RootStateType): MapStateToPropsType  => ({
-  profileData: state.profilePage.currentUserProfile
-})
-
-
-export default connect(mapStateToProps, {setCurrentUserProfile})(withRouter(ProfileContainer))
+export default withRouter(ProfileContainer)

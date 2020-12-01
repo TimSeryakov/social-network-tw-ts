@@ -5,7 +5,7 @@ import dialogsReducer, {
   UpdateTypedMessageTextActionType
 } from "./dialogs-reducer";
 import profileReducer, {
-  AddPostActionType,
+  AddPostActionType, ProfileDataFetchingActionType,
   ProfilePageType,
   SetCurrentUserProfileActionType,
   UpdateTypedPostTextActionType
@@ -42,7 +42,7 @@ export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            SetCurrentPageActionType | SetTotalUsersCountActionType |
                            SetUsersFetchingActionType | SetCurrentUserProfileActionType |
                            SetUserDataActionType | AuthDataFetchingActionType |
-                           SetUserFollowStatusFetchingActionType
+                           SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType
 
 const reducers = combineReducers({
   profilePage: profileReducer,
