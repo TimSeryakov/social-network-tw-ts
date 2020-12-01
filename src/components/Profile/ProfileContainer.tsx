@@ -24,7 +24,6 @@ type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToPropsType & 
 export class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
   componentDidMount() {
-
     let userID: string
     if (!this.props.match.params.userID) {
       userID = String(12409)
@@ -34,7 +33,7 @@ export class ProfileContainer extends React.Component<ProfileContainerPropsType>
 
     getProfileDataFromServer(userID)
           .then(data => {
-            this.props.setCurrentUserProfile(data.data)
+            this.props.setCurrentUserProfile(data)
           })
     }
 

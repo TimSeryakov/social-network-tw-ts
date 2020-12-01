@@ -54,4 +54,8 @@ const reducers = combineReducers({
 
 const store = createStore(reducers)
 
+
+// @ts-ignore
+window.state = store.getState()
+
 export default store
