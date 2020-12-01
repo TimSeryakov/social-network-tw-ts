@@ -41,7 +41,7 @@ export const UserCard = (props: UserCardPropsType) => {
         </div>
 
         <div className={"flex-1 py-2 text-center md:text-left"}>
-          <h3 className={"text-white text-xl"}>{props.name}</h3>
+          <h3 className={"text-white text-xl"}><NavLink to={`/profile/${props.id}`}>{props.name}</NavLink></h3>
           <h4 className={"text-theme-text"}>{props.location.city}, {props.location.country}</h4>
           <div className={"mt-6"}>
             <p className={"text-theme-text"}>
