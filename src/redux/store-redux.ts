@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import dialogsReducer, {
   DialogsPageType,
   SendMessageActionType,
@@ -19,6 +19,7 @@ import usersReducer, {
 
 } from "./users-reducer";
 import authReducer, {AuthDataFetchingActionType, AuthStateType, SetUserDataActionType} from "./auth-reducer";
+import logger from "redux-logger";
 
 export type RootStateType = {
   profilePage: ProfilePageType
@@ -52,7 +53,7 @@ const reducers = combineReducers({
   auth: authReducer
 })
 
-const store = createStore(reducers)
+const store = createStore(reducers, applyMiddleware(logger))
 
 
 // @ts-ignore
