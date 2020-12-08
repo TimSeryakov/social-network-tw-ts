@@ -4,6 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 import * as Scroll from 'react-scroll';
 import {DialogDataType, MessageDataType} from "../../redux/dialogs-reducer";
+import { Redirect } from 'react-router-dom';
 
 type PropsType = {
   dialogsData: DialogDataType[] // Array<DialogDataType>
@@ -13,6 +14,8 @@ type PropsType = {
 
   typedMessageText: string
   updateTypedMessageText: (newValue: string) => void
+
+  isAuth: boolean
 }
 
 export function Dialogs(props: PropsType) {
@@ -46,6 +49,8 @@ export function Dialogs(props: PropsType) {
       onSendMessageClick()
     }
   }
+
+  if (!props.isAuth) return <Redirect to="/login"/>
 
   return (
       <section className="flex flex-col h-full">

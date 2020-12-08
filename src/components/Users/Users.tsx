@@ -5,6 +5,7 @@ import {PageTitle} from "../common/PageTitle"
 import {PaginationLink} from "../common/PaginationLink";
 import {Preloader} from "../common/Preloader";
 import {PreloaderCircle} from "../common/PreloaderCircle";
+import { Redirect } from "react-router-dom";
 
 
 type UsersPropsType = {
@@ -15,7 +16,10 @@ type UsersPropsType = {
   isUsersDataFetching: boolean
   isUserFollowStatusFetching: number[]
   follow: (userID: number) => void
-  unFollow: (userID: number) => void }
+  unFollow: (userID: number) => void
+  isAuth: boolean
+}
+
 
 export function Users(props: UsersPropsType) {
 
@@ -36,6 +40,8 @@ export function Users(props: UsersPropsType) {
       paginationArr.push(i)
     }
   }
+
+  if (!props.isAuth) return <Redirect to="/login"/>
 
   return (
       <section className="h-full">

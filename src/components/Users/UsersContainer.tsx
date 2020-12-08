@@ -7,6 +7,7 @@ import {follow, requestUsers, unFollow} from "../../redux/users-reducer";
 function UsersContainer() {
 
   const {usersData, pageSize, totalUsersCount, currentPage, isUsersDataFetching, isUserFollowStatusFetching} = useSelector((state: RootStateType) => state.usersPage)
+  const {isAuth} = useSelector((state: RootStateType) => state.auth)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function UsersContainer() {
                 isUserFollowStatusFetching={isUserFollowStatusFetching}
                 follow={followFn}
                 unFollow={unFollowFn}
+                isAuth={isAuth}
   />
 }
 
