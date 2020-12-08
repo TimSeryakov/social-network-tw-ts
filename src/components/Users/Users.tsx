@@ -15,8 +15,7 @@ type UsersPropsType = {
   isUsersDataFetching: boolean
   isUserFollowStatusFetching: number[]
   follow: (userID: number) => void
-  unFollow: (userID: number) => void
-}
+  unFollow: (userID: number) => void }
 
 export function Users(props: UsersPropsType) {
 

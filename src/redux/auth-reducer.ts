@@ -1,4 +1,5 @@
-import {ActionsTypes} from "./store-redux";
+import {ActionsTypes, DispatchType} from "./store-redux";
+import {AUTH_API} from "../api/api";
 
 const initialState: AuthStateType = {
   userID: null,
@@ -39,14 +40,12 @@ const authReducer = (state: AuthStateType = initialState, action: ActionsTypes):
         isAuth: true
       }
     }
-
-     case AUTH.SET_AUTH_DATA_FETCHING: {
+    case AUTH.SET_AUTH_DATA_FETCHING: {
       return {
         ...state,
         isAuthDataFetching: action.isAuthDataFetching
       }
     }
-
     default:
         return state
   }
@@ -68,6 +67,21 @@ export const setAuthUserData = (userAuthData: UserAuthDataType): SetUserDataActi
 export const setAuthDataFetching = (isAuthDataFetching: boolean): AuthDataFetchingActionType =>
     ({ type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching })
 
+
+export const requestAuthUserData = () => {
+
+  return (dispatch: DispatchType /*, getState: GetStateType*/) => {
+    dispatch(setAuthDataFetching(true))
+
+    AUTH_API.getAuthDataFromServer()
+        .then(data => {
+          if (data.resultCode === 0) {
+            dispatch(setAuthUserData(data.data))
+            dispatch(setAuthDataFetching(false))
+          }
+        })
+  }
+}
 
 
 export default authReducer

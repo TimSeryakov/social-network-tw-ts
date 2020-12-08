@@ -1,5 +1,6 @@
 import {v1} from "uuid";
-import {ActionsTypes} from "./store-redux";
+import {ActionsTypes, DispatchType} from "./store-redux";
+import {PROFILE_API} from "../api/api";
 
 const initialState = {
   postsData: [
@@ -88,17 +89,14 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
       return state
     case PROFILE.UPDATE_TYPED_POST_TEXT:
       return {...state, typedPostText: action.newValue}
-
     case PROFILE.SET_CURRENT_USER_PROFILE:
       return {...state, currentUserProfile: action.userProfileData}
-
     case PROFILE.SET_PROFILE_DATA_FETCHING: {
       return {
         ...state,
         isProfileDataFetching: action.isProfileDataFetching
       }
     }
-
     default:
       return state
   }
@@ -115,5 +113,19 @@ export const setCurrentUserProfile = (userProfileData: UserProfileDataType): Set
 
 export const setProfileDataFetching = (isProfileDataFetching: boolean): ProfileDataFetchingActionType =>
     ({ type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching })
+
+
+export const requestProfileData = (userID: string) => {
+
+  return (dispatch: DispatchType /*, getState: GetStateType*/) => {
+    dispatch(setProfileDataFetching(true))
+
+    PROFILE_API.getProfileDataFromServer(userID)
+        .then(data => {
+          dispatch(setCurrentUserProfile(data))
+          dispatch(setProfileDataFetching(false))
+        })
+  }
+}
 
 export default profileReducer

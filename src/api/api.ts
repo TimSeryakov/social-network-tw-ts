@@ -23,13 +23,15 @@ export const USERS_API = {
 }
 
 export const AUTH_API = {
- getAuthDataFromServer () {
+  getAuthDataFromServer() {
     return SAMURAI_API.get(`auth/me`)
         .then(response => response.data)
   }
 }
 
-export const getProfileDataFromServer = (userID: string) => {
-  return SAMURAI_API.get(`profile/${userID}`)
-      .then(response => response.data)
+export const PROFILE_API = {
+  getProfileDataFromServer (userID: string) {
+    return SAMURAI_API.get(`profile/${userID}`)
+        .then(response => response.data)
+  }
 }
