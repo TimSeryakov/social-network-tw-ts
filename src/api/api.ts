@@ -13,25 +13,23 @@ export const USERS_API = {
         .then(response => response.data)
   },
 
-  follow(userID: number) {
+  followUser(userID: number) {
     return SAMURAI_API.post(`follow/${userID}`)
   },
 
-  unFollow(userID: number) {
+  unFollowUser(userID: number) {
     return SAMURAI_API.delete(`follow/${userID}`)
   },
+
+  getProfileDataFromServer (userID: string) {
+    return SAMURAI_API.get(`profile/${userID}`)
+        .then(response => response.data)
+  }
 }
 
 export const AUTH_API = {
   getAuthDataFromServer() {
     return SAMURAI_API.get(`auth/me`)
-        .then(response => response.data)
-  }
-}
-
-export const PROFILE_API = {
-  getProfileDataFromServer (userID: string) {
-    return SAMURAI_API.get(`profile/${userID}`)
         .then(response => response.data)
   }
 }

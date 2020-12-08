@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {ActionsTypes, DispatchType} from "./store-redux";
-import {PROFILE_API} from "../api/api";
+import {USERS_API} from "../api/api";
 
 const initialState = {
   postsData: [
@@ -69,7 +69,6 @@ export type SetCurrentUserProfileActionType = {
   userProfileData: UserProfileDataType
 }
 
-
 export type ProfileDataFetchingActionType = {
   type: typeof PROFILE.SET_PROFILE_DATA_FETCHING
   isProfileDataFetching: boolean
@@ -120,7 +119,7 @@ export const requestProfileData = (userID: string) => {
   return (dispatch: DispatchType /*, getState: GetStateType*/) => {
     dispatch(setProfileDataFetching(true))
 
-    PROFILE_API.getProfileDataFromServer(userID)
+    USERS_API.getProfileDataFromServer(userID)
         .then(data => {
           dispatch(setCurrentUserProfile(data))
           dispatch(setProfileDataFetching(false))

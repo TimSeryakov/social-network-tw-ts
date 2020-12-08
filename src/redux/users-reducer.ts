@@ -97,7 +97,6 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
           return u
         })
       }
-
     case USERS.UNFOLLOW:
       return {
         ...state,
@@ -108,19 +107,14 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
           return u
         })
       }
-
     case USERS.SET_USERS:
       return {...state, usersData: [...action.usersData]}
-
     case USERS.SET_CURRENT_PAGE:
       return {...state, currentPage: action.pageNumber}
-
     case USERS.SET_TOTAL_USERS_COUNT:
       return {...state, totalUsersCount: action.usersCount}
-
     case USERS.SET_USERS_IS_FETCHING:
       return {...state, isUsersDataFetching: action.isFetching}
-
     case USERS.SET_USER_FOLLOW_STATUS_IS_FETCHING:
 
       return {
@@ -129,7 +123,6 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
                   ? [...state.isUserFollowStatusFetching, action.userID]
                   : state.isUserFollowStatusFetching.filter(id => id !== action.userID)
       }
-
     default:
         return state
   }
@@ -171,7 +164,7 @@ export const follow = (userID: number) => {
   return (dispatch: DispatchType /*, getState: GetStateType*/) => {
     dispatch(setUserFollowStatusFetching(true, userID))
 
-    USERS_API.follow(userID)
+    USERS_API.followUser(userID)
         .then(response => {
           if (response.data.resultCode === 0) {
             dispatch(setFollow(userID))
@@ -186,7 +179,7 @@ export const unFollow = (userID: number) => {
   return (dispatch: DispatchType /*, getState: GetStateType*/) => {
     dispatch(setUserFollowStatusFetching(true, userID))
 
-    USERS_API.unFollow(userID)
+    USERS_API.unFollowUser(userID)
         .then(response => {
           if (response.data.resultCode === 0) {
             dispatch(setUnfollow(userID))
