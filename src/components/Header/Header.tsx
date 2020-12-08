@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {BordersPropsType, parseBordersProps} from "../common/utils/parseBordersProps";
-import {NavLink} from "react-router-dom";
 
 type HeaderPropsType ={
   borders: BordersPropsType
