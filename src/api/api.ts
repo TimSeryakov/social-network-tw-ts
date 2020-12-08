@@ -11,7 +11,15 @@ export const USERS_API = {
   getUsersDataFromServer (pageNumber: number = 1, pageSize: number = 5) {
     return SAMURAI_API.get(`users?page=${pageNumber}&count=${pageSize}`)
         .then(response => response.data)
-  }
+  },
+
+  follow(userID: number) {
+    return SAMURAI_API.post(`follow/${userID}`)
+  },
+
+  unFollow(userID: number) {
+    return SAMURAI_API.delete(`follow/${userID}`)
+  },
 }
 
 export const AUTH_API = {

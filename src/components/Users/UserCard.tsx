@@ -33,27 +33,27 @@ export const UserCard = (props: UserCardPropsType) => {
   return (
       <div className={userCardStyle}>
 
-        <div className={"w-full md:w-40 flex items-center justify-center"}>
-          <NavLink to={`/profile/${props.id}`} className={"inline-block rounded-full"}>
+        <div className="w-full md:w-40 flex items-center justify-center">
+          <NavLink to={`/profile/${props.id}`} className="inline-block rounded-full">
             <img
-              className={"w-40 h-40 md:w-32 md:h-32 bg-theme-bg-secondary rounded-full border border-theme-border my-1 md:my-3"}
+              className="w-40 h-40 md:w-32 md:h-32 bg-theme-bg-secondary rounded-full border border-theme-border my-1 md:my-3"
               src={props.photo ? props.photo : anonymous}
               alt={`Avatar of ${props.name}`}
             />
           </NavLink>
         </div>
 
-        <div className={"flex-1 py-2 text-center md:text-left"}>
-          <h3 className={"text-white text-xl"}><NavLink to={`/profile/${props.id}`}>{props.name}</NavLink></h3>
-          <h4 className={"text-theme-text"}>{props.location.city}, {props.location.country}</h4>
-          <div className={"mt-6"}>
-            <p className={"text-theme-text"}>
+        <div className="flex-1 py-2 text-center md:text-left">
+          <h3 className="text-white text-xl"><NavLink to={`/profile/${props.id}`}>{props.name}</NavLink></h3>
+          <h4 className="text-theme-text">{props.location.city}, {props.location.country}</h4>
+          <div className="mt-6">
+            <p className="text-theme-text">
               {props.status}
             </p>
           </div>
         </div>
 
-        <div className={"flex items-center justify-center w-full pt-8 md:w-48 md:pt-0 text-center md:text-left"}>
+        <div className="flex items-center justify-center w-full pt-8 md:w-48 md:pt-0 text-center md:text-left">
           <button
               className={props.followed ? unFollowButtonStyle : followButtonStyle}
               onClick={props.onClickFn}

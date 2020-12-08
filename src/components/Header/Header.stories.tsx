@@ -8,4 +8,4 @@ export default {
   component: Header,
 };
 
-export const HeaderSection = () => <Header borders="trbl" isAuthDataFetching={false} isAuth={true} userLogin={"User"}/>
+export const HeaderSection = () => <Header borders="trbl" isAuthDataFetching={false} isAuth={true} userLogin="User"/>

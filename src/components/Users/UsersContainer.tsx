@@ -1,16 +1,8 @@
 import React, {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux";
-import {USERS_API} from "../../api/api";
 import {Users} from "./Users";
 import {RootStateType} from "../../redux/store-redux";
-import {
-  setCurrentPage,
-  setFollow,
-  setTotalUsersCount,
-  setUnfollow, setUserFollowStatusFetching,
-  setUsers,
-  setUsersDataFetching
-} from "../../redux/users-reducer";
+import {follow, requestUsers, unFollow} from "../../redux/users-reducer";
 
 function UsersContainer() {
 
@@ -18,53 +10,30 @@ function UsersContainer() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setUsersDataFetching(true))
-    USERS_API.getUsersDataFromServer(currentPage, pageSize)
-        .then(data => {
-          dispatch(setUsers(data.items))
-          dispatch(setTotalUsersCount(data.totalCount))
-          dispatch(setUsersDataFetching(false))
-        })
-  }, [currentPage, pageSize, dispatch]) // указывать dispatch
+    dispatch(requestUsers(currentPage, pageSize))
+  }, [currentPage, pageSize, dispatch]) // указывать dispatch чтобы не ругался
+                                             // хотя он и не может измениться
 
   const onPaginationLinkClick = (pageNumber: number) => {
-    dispatch(setUsersDataFetching(true))
-    dispatch(setCurrentPage(pageNumber))
-
-    USERS_API.getUsersDataFromServer(pageNumber, pageSize)
-        .then(data => {
-          dispatch(setUsers(data.items))
-          dispatch(setUsersDataFetching(false))
-        })
+    dispatch(requestUsers(pageNumber, pageSize))
   }
 
-  const setFollowFn = (userID: number) => {
-    dispatch(setFollow(userID))
-  }
+ const followFn = (userID: number) => {
+    dispatch(follow(userID))
+ }
 
-  const setUnfollowFn = (userID: number) => {
-    dispatch(setUnfollow(userID))
-  }
-
-  const setUserFollowStatusFetchingFn = (isFetching: boolean, userID: number) => {
-    dispatch(setUserFollowStatusFetching(isFetching, userID))
-  }
-
-
+ const unFollowFn = (userID: number) => {
+    dispatch(unFollow(userID))
+ }
 
   return <Users usersData={usersData}
-                pageSize={pageSize}
                 totalUsersCount={totalUsersCount}
                 currentPage={currentPage}
-                setUsers={setUsers}
-                setCurrentPage={setCurrentPage}
-                setTotalUsersCount={setTotalUsersCount}
-                setFollow={setFollowFn}
-                setUnfollow={setUnfollowFn}
                 onPaginationLinkClick={onPaginationLinkClick}
                 isUsersDataFetching={isUsersDataFetching}
-                setUserFollowStatusFetching={setUserFollowStatusFetchingFn}
                 isUserFollowStatusFetching={isUserFollowStatusFetching}
+                follow={followFn}
+                unFollow={unFollowFn}
   />
 }
 

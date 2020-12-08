@@ -35,4 +35,4 @@ function App() {
 
 export default App
 
-// <Route path={"/dialogs"} component={Dialogs}/>
+// <Route path="/dialogs" component={Dialogs}/>

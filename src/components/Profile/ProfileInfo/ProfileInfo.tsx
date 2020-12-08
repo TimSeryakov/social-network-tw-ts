@@ -10,7 +10,7 @@ type ProfileInfoPropsType = {
 
 export function ProfileInfo (props: ProfileInfoPropsType) {
 
-  if (!props.profileData) { return <Preloader message={"Loading user's data..."}/>  }
+  if (!props.profileData) { return <Preloader message="Loading user's data..."/>  }
   return (
       <section className="pt-4 pb-10 px-4 flex flex-col sm:flex-row">
 

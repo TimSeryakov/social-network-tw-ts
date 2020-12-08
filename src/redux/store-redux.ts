@@ -5,21 +5,27 @@ import dialogsReducer, {
   UpdateTypedMessageTextActionType
 } from "./dialogs-reducer";
 import profileReducer, {
-  AddPostActionType, ProfileDataFetchingActionType,
+  AddPostActionType,
+  ProfileDataFetchingActionType,
   ProfilePageType,
   SetCurrentUserProfileActionType,
   UpdateTypedPostTextActionType
 } from "./profile-reducer";
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
 import usersReducer, {
-  FollowActionType, SetCurrentPageActionType, SetTotalUsersCountActionType, SetUserFollowStatusFetchingActionType,
-  SetUsersDataActionType, SetUsersFetchingActionType,
+  FollowActionType,
+  SetCurrentPageActionType,
+  SetTotalUsersCountActionType,
+  SetUserFollowStatusFetchingActionType,
+  SetUsersDataActionType,
+  SetUsersFetchingActionType,
   UnfollowActionType,
   UsersPageType,
-
 } from "./users-reducer";
 import authReducer, {AuthDataFetchingActionType, AuthStateType, SetUserDataActionType} from "./auth-reducer";
 import logger from "redux-logger";
+import thunkMiddleware from "redux-thunk";
+import {Dispatch} from "react";
 
 export type RootStateType = {
   profilePage: ProfilePageType
@@ -37,6 +43,9 @@ export type StoreType = {
   dispatch: (action: ActionsTypes) => void
 }
 
+export type GetStateType = () => RootStateType
+export type DispatchType = Dispatch<ActionsTypes>
+
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            UpdateTypedMessageTextActionType | SendMessageActionType |
                            FollowActionType | UnfollowActionType | SetUsersDataActionType |
@@ -44,6 +53,7 @@ export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            SetUsersFetchingActionType | SetCurrentUserProfileActionType |
                            SetUserDataActionType | AuthDataFetchingActionType |
                            SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType
+
 
 const reducers = combineReducers({
   profilePage: profileReducer,
@@ -53,7 +63,7 @@ const reducers = combineReducers({
   auth: authReducer
 })
 
-const store = createStore(reducers, applyMiddleware(logger))
+const store = createStore(reducers, applyMiddleware(thunkMiddleware ,logger))
 
 
 // @ts-ignore

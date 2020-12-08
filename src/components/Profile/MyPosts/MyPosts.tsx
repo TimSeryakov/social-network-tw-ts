@@ -50,7 +50,7 @@ export function MyPosts (props: PropsType) {
 
   return ( // TODO Вынести в отдельный компонент и сделать его универсальным
       <section className={`${parseBordersProps(props.borders)} text-theme-text bg-theme-bg-primary`}
-               id={"add-post-textarea"}
+               id="add-post-textarea"
       >
 
         <div className="flex px-4 py-4 pb-3 border-b border-theme-border">

@@ -41,21 +41,24 @@ export type MessageDataType = {
   text: string
 }
 
+export enum DIALOGS {
+  SEND_MESSAGE = "SEND-MESSAGE",
+  UPDATE_TYPED_MESSAGE_TEXT = "UPDATE-TYPED-MESSAGE-TEXT"
+}
+
 export type UpdateTypedMessageTextActionType = {
-  type: typeof UPDATE_TYPED_MESSAGE_TEXT
+  type: typeof DIALOGS.UPDATE_TYPED_MESSAGE_TEXT
   newValue: string
 }
 
 export type SendMessageActionType = {
-  type: typeof SEND_MESSAGE
+  type: typeof DIALOGS.SEND_MESSAGE
 }
 
-export const SEND_MESSAGE = "SEND-MESSAGE"
-export const UPDATE_TYPED_MESSAGE_TEXT = "UPDATE-TYPED-MESSAGE-TEXT"
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
   switch (action.type) {
-    case SEND_MESSAGE:
+    case DIALOGS.SEND_MESSAGE:
       if (state.typedMessageText) {
         const newMessage = state.typedMessageText
 
@@ -67,7 +70,7 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
         }
       }
       return state
-    case UPDATE_TYPED_MESSAGE_TEXT:
+    case DIALOGS.UPDATE_TYPED_MESSAGE_TEXT:
       return {...state, typedMessageText: action.newValue}
     default:
       return state
@@ -75,10 +78,10 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
 }
 
 export const sendMessageAC = (): SendMessageActionType =>
-    ({ type: SEND_MESSAGE })
+    ({ type: DIALOGS.SEND_MESSAGE })
 
 export const updateTypedMessageTextAC = (newValue: string): UpdateTypedMessageTextActionType =>
-    ({ type: UPDATE_TYPED_MESSAGE_TEXT, newValue })
+    ({ type: DIALOGS.UPDATE_TYPED_MESSAGE_TEXT, newValue })
 
 
 export default dialogsReducer

@@ -1,4 +1,5 @@
-import {ActionsTypes} from "./store-redux";
+import {ActionsTypes, DispatchType} from "./store-redux";
+import {USERS_API} from "../api/api";
 
 const initialState = {
   usersData: [],
@@ -38,53 +39,55 @@ export type UsersLocationType = {
   country: string
 }
 
+export enum USERS {
+  FOLLOW = "FOLLOW",
+  UNFOLLOW = "UNFOLLOW",
+  SET_USERS = "SET_USERS",
+  SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
+  SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT",
+  SET_USERS_IS_FETCHING = "SET_USERS_IS_FETCHING",
+  SET_USER_FOLLOW_STATUS_IS_FETCHING = "SET_USER_FOLLOW_STATUS_IS_FETCHING"
+}
+
 export type FollowActionType = {
-  type: typeof FOLLOW
+  type: typeof USERS.FOLLOW
   userID: number
 }
 
 export type UnfollowActionType = {
-  type: typeof UNFOLLOW
+  type: typeof USERS.UNFOLLOW
   userID: number
 }
 
 export type SetUsersDataActionType = {
-  type: typeof SET_USERS
+  type: typeof USERS.SET_USERS
   usersData: UserDataType[] // Array<UserDataType>
 }
 
 export type SetCurrentPageActionType = {
-  type: typeof SET_CURRENT_PAGE
+  type: typeof USERS.SET_CURRENT_PAGE
   pageNumber: number
 }
 
 export type SetTotalUsersCountActionType = {
-  type: typeof SET_TOTAL_USERS_COUNT
+  type: typeof USERS.SET_TOTAL_USERS_COUNT
   usersCount: number
 }
 
 export type SetUsersFetchingActionType = {
-  type: typeof SET_USERS_IS_FETCHING
+  type: typeof USERS.SET_USERS_IS_FETCHING
   isFetching: boolean
 }
 
 export type SetUserFollowStatusFetchingActionType = {
-  type: typeof SET_USER_FOLLOW_STATUS_IS_FETCHING
+  type: typeof USERS.SET_USER_FOLLOW_STATUS_IS_FETCHING
   isFetching: boolean
   userID: number
 }
 
-const FOLLOW = "FOLLOW"
-const UNFOLLOW = "UNFOLLOW"
-const SET_USERS = "SET_USERS"
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
-const SET_USERS_IS_FETCHING = "SET_USERS_IS_FETCHING"
-const SET_USER_FOLLOW_STATUS_IS_FETCHING = "SET_USER_FOLLOW_STATUS_IS_FETCHING"
-
 const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes): UsersPageType => {
   switch (action.type) {
-    case FOLLOW:
+    case USERS.FOLLOW:
       return {
         ...state,
         usersData: state.usersData.map(u => {
@@ -95,7 +98,7 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
         })
       }
 
-    case UNFOLLOW:
+    case USERS.UNFOLLOW:
       return {
         ...state,
         usersData: state.usersData.map(u => {
@@ -106,19 +109,19 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
         })
       }
 
-    case SET_USERS:
+    case USERS.SET_USERS:
       return {...state, usersData: [...action.usersData]}
 
-    case SET_CURRENT_PAGE:
+    case USERS.SET_CURRENT_PAGE:
       return {...state, currentPage: action.pageNumber}
 
-    case SET_TOTAL_USERS_COUNT:
+    case USERS.SET_TOTAL_USERS_COUNT:
       return {...state, totalUsersCount: action.usersCount}
 
-    case SET_USERS_IS_FETCHING:
+    case USERS.SET_USERS_IS_FETCHING:
       return {...state, isUsersDataFetching: action.isFetching}
 
-    case SET_USER_FOLLOW_STATUS_IS_FETCHING:
+    case USERS.SET_USER_FOLLOW_STATUS_IS_FETCHING:
 
       return {
               ...state,
@@ -133,25 +136,65 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
 }
 
 export const setFollow = (userID: number): FollowActionType =>
-    ({ type: FOLLOW, userID })
+    ({ type: USERS.FOLLOW, userID })
 export const setUnfollow = (userID: number): UnfollowActionType =>
-    ({ type: UNFOLLOW, userID })
+    ({ type: USERS.UNFOLLOW, userID })
 export const setUsers = (usersData: UserDataType[]): SetUsersDataActionType =>
-    ({ type: SET_USERS, usersData })
+    ({ type: USERS.SET_USERS, usersData })
 export const setCurrentPage = (pageNumber: number): SetCurrentPageActionType =>
-    ({ type: SET_CURRENT_PAGE, pageNumber })
+    ({ type: USERS.SET_CURRENT_PAGE, pageNumber })
 export const setTotalUsersCount = (usersCount: number): SetTotalUsersCountActionType =>
-    ({ type: SET_TOTAL_USERS_COUNT, usersCount })
+    ({ type: USERS.SET_TOTAL_USERS_COUNT, usersCount })
 export const setUsersDataFetching = (isFetching: boolean): SetUsersFetchingActionType =>
-    ({ type: SET_USERS_IS_FETCHING, isFetching })
+    ({ type: USERS.SET_USERS_IS_FETCHING, isFetching })
 export const setUserFollowStatusFetching = ( isFetching: boolean, userID: number): SetUserFollowStatusFetchingActionType =>
-    ({ type: SET_USER_FOLLOW_STATUS_IS_FETCHING, isFetching, userID })
+    ({ type: USERS.SET_USER_FOLLOW_STATUS_IS_FETCHING, isFetching, userID })
+
+
+export const requestUsers = (currentPage: number, pageSize: number) => {
+
+  return (dispatch: DispatchType /*, getState: GetStateType*/) => {
+    dispatch(setUsersDataFetching(true))
+
+    USERS_API.getUsersDataFromServer(currentPage, pageSize)
+        .then(data => {
+          dispatch(setUsers(data.items))
+          dispatch(setTotalUsersCount(data.totalCount))
+          dispatch(setUsersDataFetching(false))
+          dispatch(setCurrentPage(currentPage))
+        })
+  }
+}
+
+export const follow = (userID: number) => {
+
+  return (dispatch: DispatchType /*, getState: GetStateType*/) => {
+    dispatch(setUserFollowStatusFetching(true, userID))
+
+    USERS_API.follow(userID)
+        .then(response => {
+          if (response.data.resultCode === 0) {
+            dispatch(setFollow(userID))
+          }
+          dispatch(setUserFollowStatusFetching(false, userID))
+        })
+  }
+}
+
+export const unFollow = (userID: number) => {
+
+  return (dispatch: DispatchType /*, getState: GetStateType*/) => {
+    dispatch(setUserFollowStatusFetching(true, userID))
+
+    USERS_API.unFollow(userID)
+        .then(response => {
+          if (response.data.resultCode === 0) {
+            dispatch(setUnfollow(userID))
+          }
+          dispatch(setUserFollowStatusFetching(false, userID))
+        })
+  }
+}
 
 export default usersReducer
 
-
-
-
-// Одинаковый результат:
-// users: state.users.map(u => u)
-// users: [...state.users]
