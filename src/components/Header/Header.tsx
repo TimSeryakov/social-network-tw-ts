@@ -36,7 +36,7 @@ export function Header (props: HeaderPropsType) {
               props.isAuth ?
                 <li className="p-4"><span className="text-xl text-theme-text">[ {props.userLogin} ]</span></li>
                 :
-                <li className="p-4"><NavLink to="https://social-network.samuraijs.com/login" className="text-xl text-theme-text hover:text-white">Login</NavLink></li>
+                <li className="p-4"><a href="https://social-network.samuraijs.com/login" className="text-xl text-theme-text hover:text-white">Login</a></li>
             }
             {/*<li className="p-4"><a href="/signup" className="text-xl text-theme-text hover:text-white">Signup</a></li>*/}
           </ul>
