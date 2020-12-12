@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 import './App.css'
 import {MainMenu} from "./MainMenu/MainMenu"
 import {Footer} from "./Footer/Footer"
-import {DialogsContainer} from './Dialogs/DialogsContainer'
+import DialogsContainer from './Dialogs/DialogsContainer'
 import UsersContainer from "./Users/UsersContainer"
 import ProfileContainer from "./Profile/ProfileContainer"
 import HeaderContainer from './Header/HeaderContainer'

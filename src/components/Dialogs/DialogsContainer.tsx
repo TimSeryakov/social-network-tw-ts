@@ -2,7 +2,9 @@ import {DialogDataType, MessageDataType, sendMessageAC, updateTypedMessageTextAC
 import {connect} from "react-redux";
 import {ActionsTypes, RootStateType} from "../../redux/store-redux";
 import {withAuthRedirect} from "../HOC/withAuthRedirect";
-import {ProfileContainer} from "../Profile/ProfileContainer";
+import {compose} from "redux";
+import {Dialogs} from "./Dialogs";
+import React from "react";
 
 type MapStatePropsType = {
   dialogsData: DialogDataType[] // Array<DialogDataType>
@@ -33,7 +35,9 @@ const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void): MapDispa
   }
 }
 
-const WithAuthDialogs = withAuthRedirect(ProfileContainer)
 
-// --------- Новая контейнерная компонента
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(WithAuthDialogs)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs)
+

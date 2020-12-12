@@ -3,17 +3,17 @@ import {useDispatch, useSelector} from "react-redux";
 import {Users} from "./Users";
 import {RootStateType} from "../../redux/store-redux";
 import {follow, requestUsers, unFollow} from "../../redux/users-reducer";
+import {compose} from "redux";
+import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
 function UsersContainer() {
 
   const {usersData, pageSize, totalUsersCount, currentPage, isUsersDataFetching, isUserFollowStatusFetching} = useSelector((state: RootStateType) => state.usersPage)
-  const {isAuth} = useSelector((state: RootStateType) => state.auth)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(requestUsers(currentPage, pageSize))
-  }, [currentPage, pageSize, dispatch]) // указывать dispatch чтобы не ругался
-                                             // хотя он и не может измениться
+  }, [currentPage, pageSize, dispatch]) // указывать dispatch чтобы не ругался, хотя он и не может измениться
 
   const onPaginationLinkClick = (pageNumber: number) => {
     dispatch(requestUsers(pageNumber, pageSize))
@@ -35,11 +35,10 @@ function UsersContainer() {
                 isUserFollowStatusFetching={isUserFollowStatusFetching}
                 follow={followFn}
                 unFollow={unFollowFn}
-                isAuth={isAuth}
   />
 }
 
-export default UsersContainer
+export default compose(withAuthRedirect)(UsersContainer)
 
 //
 // // Принимает весь state и возвращает только те данные, которые нам понадобятся в компоненте

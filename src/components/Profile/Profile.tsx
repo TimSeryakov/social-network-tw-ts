@@ -2,8 +2,7 @@ import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PageTitle} from "../common/PageTitle";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import { UserProfileDataType } from '../../redux/profile-reducer';
-import {Redirect} from "react-router-dom";
+import {UserProfileDataType} from '../../redux/profile-reducer';
 
 type ProfilePropsTypes = {
   setCurrentUserProfile: (userProfile: UserProfileDataType) => void
@@ -14,8 +13,6 @@ type ProfilePropsTypes = {
 
 
 export function Profile (props: ProfilePropsTypes) {
-
-  if (!props.isAuth) return <Redirect to="/login"/>
 
   return (
       <section>
