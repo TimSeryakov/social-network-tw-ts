@@ -48,7 +48,7 @@ export function MyPosts (props: PropsType) {
     }
   }
 
-  return ( // TODO Вынести в отдельный компонент и сделать его универсальным
+  return (
       <section className={`${parseBordersProps(props.borders)} text-theme-text bg-theme-bg-primary`}
                id="add-post-textarea"
       >
@@ -57,7 +57,7 @@ export function MyPosts (props: PropsType) {
           <textarea
             className="flex-grow px-3 py-1 mr-2 text-white placeholder-gray-700 border rounded-md resize-none border-theme-border bg-theme-bg-third focus:outline-none focus:shadow-outline"
             placeholder="What's new..."
-            value = {props.typedPostText}
+            value={props.typedPostText}
             onChange={onAddPostTextAreaChange}
             onKeyPress={onAddPostTextAreaKeyPress}
             ref={textAreaRef}

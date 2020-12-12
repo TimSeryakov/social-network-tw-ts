@@ -1,36 +1,47 @@
-import React, {useState} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 
 type ProfileStatusType = {
-  status: string
+    userStatus: string
+    updateUserStatus: (userProfileStatus: string) => void
 }
 
 export const ProfileStatus = (props: ProfileStatusType) => {
-  const [editMode, setEditMode] = useState(false)
-  const activateEditMode = () => {
-    setEditMode(true)
-  }
+    const [editMode, setEditMode] = useState(false)
+    const [status, setStatus] = useState("Loading...")
 
-  const deactivateEditMode = () => {
-    setEditMode(false)
-  }
+    useEffect(() => {
+        setStatus(props.userStatus)
+    }, [props.userStatus])
 
-  return (
-      <div>
-        <div className={`${editMode ? "hidden" : "block"}`}>
-          <span onDoubleClick={activateEditMode}
-                className="text-theme-text"
-          >
-            {props.status}
-          </span>
+    const activateEditMode = () => {
+        setEditMode(true)
+    }
+
+    const deactivateEditMode = () => {
+        setEditMode(false)
+        props.updateUserStatus(status)
+    }
+
+    return (
+        <div>
+            <div className={`${editMode ? "hidden" : "block"}`}>
+                  <span onDoubleClick={activateEditMode}
+                        className="text-theme-text"
+                  >
+                    {status || 'You can change status by double click...'}
+                  </span>
+            </div>
+
+            <div className={`${editMode ? "block" : "hidden"}`}>
+                <input onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    setStatus(e.currentTarget.value)
+                }}
+                       onBlur={deactivateEditMode}
+                       autoFocus={true}
+                       value={status}
+                       className="bg-theme-bg-third border border-theme-border px-3 py-1 rounded-md"
+                />
+            </div>
         </div>
-
-        <div className={`${editMode ? "block" : "hidden"}`}>
-          <input onBlur={deactivateEditMode}
-                 autoFocus={true}
-                 value={props.status}
-                 className="bg-theme-bg-third border border-theme-border px-3 py-1 rounded-md"
-          />
-        </div>
-      </div>
-  )
+    )
 }

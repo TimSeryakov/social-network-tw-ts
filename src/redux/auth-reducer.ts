@@ -73,7 +73,7 @@ export const requestAuthUserData = () => {
   return (dispatch: DispatchType /*, getState: GetStateType*/) => {
     dispatch(setAuthDataFetching(true))
 
-    AUTH_API.getAuthDataFromServer()
+    AUTH_API.getAuthStatus()
         .then(data => {
           if (data.resultCode === 0) {
             dispatch(setAuthUserData(data.data))

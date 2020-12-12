@@ -3,8 +3,13 @@ import {Profile} from "./Profile";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store-redux";
-import {requestProfileData, setCurrentUserProfile, UserProfileDataType} from "../../redux/profile-reducer";
-import {withAuthRedirect} from "../HOC/withAuthRedirect";
+import {
+  requestProfileData,
+  requestProfileUserStatus,
+  setCurrentUserProfile,
+  updateProfileUserStatus,
+  UserProfileDataType
+} from "../../redux/profile-reducer";
 import {compose} from "redux";
 
 const LOCAL_USER = 12409
@@ -17,7 +22,7 @@ type ProfileContainerPropsType = RouteComponentProps<PathParamsType>
 
 export function ProfileContainer(props: ProfileContainerPropsType) {
 
-  const {currentUserProfile, isProfileDataFetching} = useSelector((state: RootStateType) => state.profilePage)
+  const {currentUserProfile, isProfileDataFetching, userProfileStatus} = useSelector((state: RootStateType) => state.profilePage)
   const {isAuth} = useSelector((state: RootStateType) => state.auth)
   const dispatch = useDispatch()
 
@@ -30,6 +35,7 @@ export function ProfileContainer(props: ProfileContainerPropsType) {
     }
 
     dispatch(requestProfileData(userID))
+    dispatch(requestProfileUserStatus(userID))
 
   }, [props.match.params.userID, dispatch])
 
@@ -38,12 +44,18 @@ export function ProfileContainer(props: ProfileContainerPropsType) {
     dispatch(setCurrentUserProfile(userProfile))
   }
 
+  const updateUserStatus = (userProfileStatus: string) => {
+    dispatch(updateProfileUserStatus(userProfileStatus))
+  }
+
 
   return <Profile
             {...props}
             profileData={currentUserProfile}
             setCurrentUserProfile={setCurrentUserProfileFn}
             isProfileDataFetching={isProfileDataFetching}
+            userStatus={userProfileStatus}
+            updateUserStatus={updateUserStatus}
             isAuth={isAuth}
   />
 }

@@ -8,8 +8,10 @@ type ProfilePropsTypes = {
   setCurrentUserProfile: (userProfile: UserProfileDataType) => void
   profileData: UserProfileDataType
   isProfileDataFetching: boolean
+  userStatus: string
+  updateUserStatus: (userProfileStatus: string) => void
   isAuth: boolean
-}
+  }
 
 
 export function Profile (props: ProfilePropsTypes) {
@@ -21,7 +23,11 @@ export function Profile (props: ProfilePropsTypes) {
 
         <div className="border-theme-border border-t">
 
-          <ProfileInfo profileData={props.profileData} />
+          <ProfileInfo profileData={props.profileData}
+                       userStatus={props.userStatus}
+                       updateUserStatus={props.updateUserStatus}
+                       isProfileDataFetching={props.isProfileDataFetching}
+          />
 
           <MyPostsContainer/>
 

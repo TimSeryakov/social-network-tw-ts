@@ -1,15 +1,20 @@
 import {v1} from "uuid";
 import {ActionsTypes, DispatchType} from "./store-redux";
-import {USERS_API} from "../api/api";
+import {PROFILE_API} from "../api/api";
 
 const initialState = {
   postsData: [
     {id: v1(), text: "Сбербанк выкупил актрису Зою Бербер и назвал Сбербербер.", likesCount: 29},
-    {id: v1(), text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.", likesCount: 11    },
+    {
+      id: v1(),
+      text: "На всех корпоративах я всегда бесплатно фотографирую своих коллег. А вот удаляю их фотографии уже за деньги.",
+      likesCount: 11
+    },
     {id: v1(), text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 42},
   ] as PostDataType[], // Array<PostDataType>
   typedPostText: "" as string,
   currentUserProfile: {} as UserProfileDataType,
+  userProfileStatus: "",
   isProfileDataFetching: false
 }
 
@@ -53,6 +58,8 @@ export enum PROFILE {
   UPDATE_TYPED_POST_TEXT = "UPDATE-TYPED-POST-TEXT",
   SET_CURRENT_USER_PROFILE = "SET_CURRENT_USER_PROFILE",
   SET_PROFILE_DATA_FETCHING = 'SET_PROFILE_DATA_FETCHING',
+  GET_PROFILE_USER_STATUS = 'GET_PROFILE_USER_STATUS',
+  SET_PROFILE_USER_STATUS = 'SET_PROFILE_USER_STATUS',
 }
 
 export type UpdateTypedPostTextActionType = {
@@ -72,6 +79,16 @@ export type SetCurrentUserProfileActionType = {
 export type ProfileDataFetchingActionType = {
   type: typeof PROFILE.SET_PROFILE_DATA_FETCHING
   isProfileDataFetching: boolean
+}
+
+export type GetProfileUserStatusActionType = {
+  type: typeof PROFILE.GET_PROFILE_USER_STATUS
+  userID: string
+}
+
+export type SetProfileUserStatusActionType = {
+  type: typeof PROFILE.SET_PROFILE_USER_STATUS
+  userProfileStatus: string
 }
 
 
@@ -96,35 +113,68 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
         isProfileDataFetching: action.isProfileDataFetching
       }
     }
+    case PROFILE.SET_PROFILE_USER_STATUS: {
+      return {
+        ...state,
+        userProfileStatus: action.userProfileStatus
+      }
+    }
     default:
       return state
   }
 }
 
 export const addPost = (): AddPostActionType =>
-    ({ type: PROFILE.ADD_POST })
+    ({type: PROFILE.ADD_POST})
 
 export const updateTypedPostText = (newValue: string): UpdateTypedPostTextActionType =>
-    ({ type: PROFILE.UPDATE_TYPED_POST_TEXT, newValue })
+    ({type: PROFILE.UPDATE_TYPED_POST_TEXT, newValue})
 
 export const setCurrentUserProfile = (userProfileData: UserProfileDataType): SetCurrentUserProfileActionType =>
-    ({ type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData })
+    ({type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData})
 
 export const setProfileDataFetching = (isProfileDataFetching: boolean): ProfileDataFetchingActionType =>
-    ({ type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching })
+    ({type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching})
+
+export const getProfileUserStatus = (userID: string): GetProfileUserStatusActionType =>
+    ({type: PROFILE.GET_PROFILE_USER_STATUS, userID})
+
+export const setProfileUserStatus = (userProfileStatus: string): SetProfileUserStatusActionType =>
+    ({type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus})
 
 
-export const requestProfileData = (userID: string) => {
+export const requestProfileData = (userID: string) => (dispatch: DispatchType /*, getState: GetStateType*/) => {
+  dispatch(setProfileDataFetching(true))
 
-  return (dispatch: DispatchType /*, getState: GetStateType*/) => {
-    dispatch(setProfileDataFetching(true))
-
-    USERS_API.getProfileDataFromServer(userID)
-        .then(data => {
-          dispatch(setCurrentUserProfile(data))
-          dispatch(setProfileDataFetching(false))
-        })
-  }
+  PROFILE_API.getProfileData(userID)
+      .then(data => {
+        dispatch(setCurrentUserProfile(data))
+        dispatch(setProfileDataFetching(false))
+      })
 }
+
+export const requestProfileUserStatus = (userID: string) => (dispatch: DispatchType /*, getState: GetStateType*/) => {
+  dispatch(setProfileDataFetching(true))
+
+  PROFILE_API.getProfileUserStatus(userID)
+      .then(data => {
+        dispatch(setProfileUserStatus(data))
+        dispatch(setProfileDataFetching(false))
+      })
+}
+
+export const updateProfileUserStatus = (userProfileStatus: string) => (dispatch: DispatchType /*, getState: GetStateType*/) => {
+  dispatch(setProfileDataFetching(true))
+
+  PROFILE_API.updateProfileUserStatus(userProfileStatus) // Изменения на сервере
+      .then(data => {
+        if (data.resultCode === 0) {
+          // если на сервере все OK, то наш меняем наш state согласно успешно отправленным данным
+          dispatch(setProfileUserStatus(userProfileStatus)) // Изменения в нашем state
+        }
+        dispatch(setProfileDataFetching(false))
+      })
+}
+
 
 export default profileReducer

@@ -6,9 +6,10 @@ import dialogsReducer, {
 } from "./dialogs-reducer";
 import profileReducer, {
   AddPostActionType,
+  GetProfileUserStatusActionType,
   ProfileDataFetchingActionType,
   ProfilePageType,
-  SetCurrentUserProfileActionType,
+  SetCurrentUserProfileActionType, SetProfileUserStatusActionType,
   UpdateTypedPostTextActionType
 } from "./profile-reducer";
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
@@ -52,7 +53,8 @@ export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
                            SetCurrentPageActionType | SetTotalUsersCountActionType |
                            SetUsersFetchingActionType | SetCurrentUserProfileActionType |
                            SetUserDataActionType | AuthDataFetchingActionType |
-                           SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType
+                           SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType |
+                           GetProfileUserStatusActionType | SetProfileUserStatusActionType
 
 
 const reducers = combineReducers({

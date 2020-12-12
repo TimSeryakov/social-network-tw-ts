@@ -149,7 +149,7 @@ export const requestUsers = (currentPage: number, pageSize: number) => {
   return (dispatch: DispatchType /*, getState: GetStateType*/) => {
     dispatch(setUsersDataFetching(true))
 
-    USERS_API.getUsersDataFromServer(currentPage, pageSize)
+    USERS_API.getUsersData(currentPage, pageSize)
         .then(data => {
           dispatch(setUsers(data.items))
           dispatch(setTotalUsersCount(data.totalCount))
