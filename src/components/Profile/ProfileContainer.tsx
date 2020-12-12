@@ -50,6 +50,6 @@ export function ProfileContainer(props: ProfileContainerPropsType) {
 
 
 export default compose<React.ComponentType>(
-    withAuthRedirect,
+    // withAuthRedirect,
     withRouter
 )(ProfileContainer)

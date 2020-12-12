@@ -2,6 +2,7 @@ import React from 'react'
 import {Preloader} from "../../common/Preloader"
 import {UserProfileDataType} from "../../../redux/profile-reducer"
 import noPhotoImage from '../../../assets/img/nyancat.png'
+import {ProfileStatus} from "./ProfileStatus";
 
 
 type ProfileInfoPropsType = {
@@ -25,6 +26,7 @@ export function ProfileInfo (props: ProfileInfoPropsType) {
           <div className="px-4 text-white">
             <div className="">
               <h3 className="text-3xl">{props.profileData.fullName}</h3>
+              <ProfileStatus status="Profile status goes here..."/>
               <p className="text-theme-text">{props.profileData.lookingForAJobDescription}</p>
             </div>
             {props.profileData.aboutMe &&
