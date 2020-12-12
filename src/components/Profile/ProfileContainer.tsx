@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import {Profile} from "./Profile";
-import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store-redux";
 import {requestProfileData, setCurrentUserProfile, UserProfileDataType} from "../../redux/profile-reducer";
+import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
 const LOCAL_USER = 12409
 
@@ -46,4 +47,6 @@ export function ProfileContainer(props: ProfileContainerPropsType) {
   />
 }
 
-export default withRouter(ProfileContainer)
+const WithAuthProfileContainer = withAuthRedirect(ProfileContainer)
+
+export default withRouter(WithAuthProfileContainer)
