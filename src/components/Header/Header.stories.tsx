@@ -4,8 +4,8 @@ import './../../styles/index.css'
 import {Header} from "./Header";
 
 export default {
-  title: 'Header',
-  component: Header,
+    title: 'Header',
+    component: Header,
 };
 
 export const HeaderSection = () => <Header borders="trbl" isAuthDataFetching={false} isAuth={true} userLogin="User"/>

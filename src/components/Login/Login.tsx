@@ -1,27 +1,36 @@
-import React from 'react'
-import {Field, reduxForm} from "redux-form";
+import React, {FC} from 'react'
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+
+type FormDataType = {
+    login: string
+    password: string
+    toRemember: boolean
+}
 
 export const Login = () => {
+    const onSubmit = (formData: FormDataType) => {
+        console.log(formData)
+    }
     return (
         <section className="w-64 mx-auto mt-10 md:mt-24">
-            <LoginReduxForm/>
+            <LoginReduxForm onSubmit={onSubmit}/>
         </section>
     )
 }
 
-const LoginForm = (props: any) => {
+const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <label className="block">
                 <span className="text-gray-700 text-xl">Login</span>
                 <Field component="input" name="login"
-                    className="form-input text-white mt-1 block w-full bg-theme-bg-third border border-theme-border"/>
+                       className="form-input text-white mt-1 block w-full bg-theme-bg-third border border-theme-border"/>
             </label>
 
             <label className="block mt-5">
                 <span className="text-gray-700 text-xl">Password</span>
                 <Field component="input" name="password"
-                    className="form-input text-white mt-1 block w-full bg-theme-bg-third border border-theme-border"/>
+                       className="form-input text-white mt-1 block w-full bg-theme-bg-third border border-theme-border"/>
             </label>
 
             <div className="flex mt-6">
@@ -46,4 +55,4 @@ const LoginForm = (props: any) => {
     )
 }
 
-const LoginReduxForm = reduxForm({form: 'loginForm'})(LoginForm)
+const LoginReduxForm = reduxForm<FormDataType>({form: 'loginForm'})(LoginForm)

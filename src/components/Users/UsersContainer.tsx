@@ -8,34 +8,41 @@ import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
 function UsersContainer() {
 
-  const {usersData, pageSize, totalUsersCount, currentPage, isUsersDataFetching, isUserFollowStatusFetching} = useSelector((state: RootStateType) => state.usersPage)
-  const dispatch = useDispatch()
+    const {
+        usersData,
+        pageSize,
+        totalUsersCount,
+        currentPage,
+        isUsersDataFetching,
+        isUserFollowStatusFetching
+    } = useSelector((state: RootStateType) => state.usersPage)
+    const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(requestUsers(currentPage, pageSize))
-  }, [currentPage, pageSize, dispatch]) // указывать dispatch чтобы не ругался, хотя он и не может измениться
+    useEffect(() => {
+        dispatch(requestUsers(currentPage, pageSize))
+    }, [currentPage, pageSize, dispatch]) // указывать dispatch чтобы не ругался, хотя он и не может измениться
 
-  const onPaginationLinkClick = (pageNumber: number) => {
-    dispatch(requestUsers(pageNumber, pageSize))
-  }
+    const onPaginationLinkClick = (pageNumber: number) => {
+        dispatch(requestUsers(pageNumber, pageSize))
+    }
 
- const followFn = (userID: number) => {
-    dispatch(follow(userID))
- }
+    const followFn = (userID: number) => {
+        dispatch(follow(userID))
+    }
 
- const unFollowFn = (userID: number) => {
-    dispatch(unFollow(userID))
- }
+    const unFollowFn = (userID: number) => {
+        dispatch(unFollow(userID))
+    }
 
-  return <Users usersData={usersData}
-                totalUsersCount={totalUsersCount}
-                currentPage={currentPage}
-                onPaginationLinkClick={onPaginationLinkClick}
-                isUsersDataFetching={isUsersDataFetching}
-                isUserFollowStatusFetching={isUserFollowStatusFetching}
-                follow={followFn}
-                unFollow={unFollowFn}
-  />
+    return <Users usersData={usersData}
+                  totalUsersCount={totalUsersCount}
+                  currentPage={currentPage}
+                  onPaginationLinkClick={onPaginationLinkClick}
+                  isUsersDataFetching={isUsersDataFetching}
+                  isUserFollowStatusFetching={isUserFollowStatusFetching}
+                  follow={followFn}
+                  unFollow={unFollowFn}
+    />
 }
 
 export default compose(withAuthRedirect)(UsersContainer)

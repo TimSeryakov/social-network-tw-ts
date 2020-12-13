@@ -7,14 +7,14 @@ import {Provider} from "react-redux"
 
 
 export const rerenderEntireTree = () => {
-  ReactDOM.render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <App/>
-        </Provider>
-      </BrowserRouter>,
-      document.getElementById('root')
-  )
+    ReactDOM.render(
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>,
+        document.getElementById('root')
+    )
 }
 
 rerenderEntireTree()

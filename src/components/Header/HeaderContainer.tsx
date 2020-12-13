@@ -5,27 +5,26 @@ import {useDispatch, useSelector} from "react-redux";
 import {requestAuthUserData} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/store-redux";
 
-type HeaderContainerPropsType ={
-  borders: BordersPropsType
+type HeaderContainerPropsType = {
+    borders: BordersPropsType
 }
 
 function HeaderContainer(props: HeaderContainerPropsType) {
-  const {userID, isAuth, login : userLogin, isAuthDataFetching} = useSelector((state: RootStateType) => state.auth)
-  const dispatch = useDispatch()
+    const {userID, isAuth, login: userLogin, isAuthDataFetching} = useSelector((state: RootStateType) => state.auth)
+    const dispatch = useDispatch()
 
-  useEffect(() => {
-      if (!userID) dispatch(requestAuthUserData())
-  }, [userID, dispatch])
+    useEffect(() => {
+        if (!userID) dispatch(requestAuthUserData())
+    }, [userID, dispatch])
 
-  return (
-      <Header borders={props.borders}
-              isAuth={isAuth}
-              userLogin={userLogin}
-              isAuthDataFetching={isAuthDataFetching}
-      />
-  )
+    return (
+        <Header borders={props.borders}
+                isAuth={isAuth}
+                userLogin={userLogin}
+                isAuthDataFetching={isAuthDataFetching}
+        />
+    )
 }
-
 
 
 export default HeaderContainer

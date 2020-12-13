@@ -9,7 +9,8 @@ import profileReducer, {
     GetProfileUserStatusActionType,
     ProfileDataFetchingActionType,
     ProfilePageType,
-    SetCurrentUserProfileActionType, SetProfileUserStatusActionType,
+    SetCurrentUserProfileActionType,
+    SetProfileUserStatusActionType,
     UpdateTypedPostTextActionType
 } from "./profile-reducer";
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
@@ -27,7 +28,7 @@ import authReducer, {AuthDataFetchingActionType, AuthStateType, SetUserDataActio
 import logger from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import {Dispatch} from "react";
-import { reducer as reduxFormReducer } from 'redux-form';
+import {reducer as reduxFormReducer} from 'redux-form';
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -50,13 +51,13 @@ export type GetStateType = () => RootStateType
 export type DispatchType = Dispatch<ActionsTypes>
 
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
-            UpdateTypedMessageTextActionType | SendMessageActionType |
-            FollowActionType | UnfollowActionType | SetUsersDataActionType |
-            SetCurrentPageActionType | SetTotalUsersCountActionType |
-            SetUsersFetchingActionType | SetCurrentUserProfileActionType |
-            SetUserDataActionType | AuthDataFetchingActionType |
-            SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType |
-            GetProfileUserStatusActionType | SetProfileUserStatusActionType
+    UpdateTypedMessageTextActionType | SendMessageActionType |
+    FollowActionType | UnfollowActionType | SetUsersDataActionType |
+    SetCurrentPageActionType | SetTotalUsersCountActionType |
+    SetUsersFetchingActionType | SetCurrentUserProfileActionType |
+    SetUserDataActionType | AuthDataFetchingActionType |
+    SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType |
+    GetProfileUserStatusActionType | SetProfileUserStatusActionType
 
 
 const reducers = combineReducers({

@@ -6,8 +6,8 @@ import {BrowserRouter} from "react-router-dom";
 
 
 export default {
-  title: 'AsideMenu',
-  component: MainMenu,
+    title: 'AsideMenu',
+    component: MainMenu,
 };
 
 

@@ -31,17 +31,25 @@ export function Header(props: HeaderPropsType) {
                 >
                     <i className="fas fa-bars"/>
                 </button>
+
                 <ul className={`${!navbarOpen && "hidden"} sm:flex flex-col sm:flex-row items-end sm:items-center justify-end`}>
-                    <li className="p-4"><NavLink to="/about"
-                                                 className="text-xl text-theme-text hover:text-white">About</NavLink>
+                    <li className="p-4">
+                        <NavLink to="/about"
+                                 className="text-xl text-theme-text hover:text-white">About
+                        </NavLink>
                     </li>
                     {
                         props.isAuth ?
-                            <li className="p-4"><span className="text-xl text-theme-text">[ {props.userLogin} ]</span>
+                            <li className="p-4"><span className="text-xl text-theme-text">
+                                [ {props.userLogin} ]
+                            </span>
+
                             </li>
                             :
-                            <li className="p-4"><NavLink to="/login"
-                                                         className="text-xl text-theme-text hover:text-white">Login</NavLink>
+                            <li className="p-4">
+                                <NavLink to="/login"
+                                         className="text-xl text-theme-text hover:text-white">Login
+                                </NavLink>
                             </li>
                     }
                     {/*<li className="p-4"><a href="/signup" className="text-xl text-theme-text hover:text-white">Signup</a></li>*/}
