@@ -15,7 +15,7 @@ type ProfileInfoPropsType = {
 export function ProfileInfo(props: ProfileInfoPropsType) {
 
   if (!props.profileData || props.isProfileDataFetching) {
-    return <section className="h-64"><Preloader message="Loading profile data..."/></section>
+    return <section className="h-64"><Preloader message="Loading profile data..." circle={false}/></section>
   }
 
   return (
