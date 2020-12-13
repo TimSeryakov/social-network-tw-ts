@@ -63,7 +63,8 @@ export function MyPosts (props: PropsType) {
             ref={textAreaRef}
           />
             <button
-                className="px-4 py-2 text-white rounded-md bg-theme-accent-alternative focus:outline-none focus:shadow-outline"
+                className="px-4 py-2 text-white rounded-md bg-theme-accent-alternative focus:outline-none focus:shadow-outline
+                           hover:bg-theme-accent-alternative-hover hover:border-theme-accent-alternative"
                 onClick={onAddPostClick}
             >
               Post

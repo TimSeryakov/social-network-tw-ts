@@ -50,6 +50,7 @@ module.exports = {
     container: false,
   },
   plugins: [
+    require('@tailwindcss/custom-forms'),
     require("tailwindcss-pixel-dimensions")({
       width: {
         total: 200, // 900 is the default
