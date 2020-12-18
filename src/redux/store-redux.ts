@@ -36,7 +36,6 @@ export type RootStateType = {
     usersPage: UsersPageType
     sidebar: SidebarType
     auth: AuthStateType
-
 }
 
 export type StoreType = {
@@ -51,13 +50,13 @@ export type GetStateType = () => RootStateType
 export type DispatchType = Dispatch<ActionsTypes>
 
 export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
-    UpdateTypedMessageTextActionType | SendMessageActionType |
-    FollowActionType | UnfollowActionType | SetUsersDataActionType |
-    SetCurrentPageActionType | SetTotalUsersCountActionType |
-    SetUsersFetchingActionType | SetCurrentUserProfileActionType |
-    SetUserDataActionType | AuthDataFetchingActionType |
-    SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType |
-    GetProfileUserStatusActionType | SetProfileUserStatusActionType
+            UpdateTypedMessageTextActionType | SendMessageActionType |
+            FollowActionType | UnfollowActionType | SetUsersDataActionType |
+            SetCurrentPageActionType | SetTotalUsersCountActionType |
+            SetUsersFetchingActionType | SetCurrentUserProfileActionType |
+            SetUserDataActionType | AuthDataFetchingActionType |
+            SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType |
+            GetProfileUserStatusActionType | SetProfileUserStatusActionType
 
 
 const reducers = combineReducers({
@@ -70,7 +69,6 @@ const reducers = combineReducers({
 })
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware, logger))
-
 
 // @ts-ignore
 window.state = store.getState()

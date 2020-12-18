@@ -24,7 +24,6 @@ const initialState = {
         {id: v1(), belongsToUser: true, text: "Hi, im there! 👋"},
         {id: v1(), belongsToUser: false, text: "really 👻"},
     ] as MessageDataType[], // Array<MessageDataType>
-    typedMessageText: "" as string,
 }
 
 export type DialogsPageType = typeof initialState
@@ -53,33 +52,26 @@ export type UpdateTypedMessageTextActionType = {
 
 export type SendMessageActionType = {
     type: typeof DIALOGS.SEND_MESSAGE
+    messageText: string
 }
 
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {
         case DIALOGS.SEND_MESSAGE:
-            if (state.typedMessageText) {
-                const newMessage = state.typedMessageText
-                return {
-                    ...state,
-                    messagesData: [...state.messagesData, {id: v1(), belongsToUser: true, text: newMessage}],
-                    typedMessageText: ""
-                }
+            debugger
+            const newMessage = action.messageText
+            return {
+                ...state,
+                messagesData: [...state.messagesData, {id: v1(), belongsToUser: true, text: newMessage}],
             }
-            return state
-        case DIALOGS.UPDATE_TYPED_MESSAGE_TEXT:
-            return {...state, typedMessageText: action.newValue}
         default:
             return state
     }
 }
 
-export const sendMessageAC = (): SendMessageActionType =>
-    ({type: DIALOGS.SEND_MESSAGE})
-
-export const updateTypedMessageTextAC = (newValue: string): UpdateTypedMessageTextActionType =>
-    ({type: DIALOGS.UPDATE_TYPED_MESSAGE_TEXT, newValue})
+export const sendMessageAC = (messageText: string): SendMessageActionType =>
+    ({ type: DIALOGS.SEND_MESSAGE, messageText })
 
 
 export default dialogsReducer
