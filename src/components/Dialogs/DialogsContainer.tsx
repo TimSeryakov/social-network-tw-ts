@@ -1,11 +1,11 @@
 import {DialogDataType, MessageDataType, sendMessageAC} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
-import {ActionsTypes, RootStateType} from "../../redux/store-redux";
+import {RootStateType} from "../../redux/store-redux";
 import {withAuthRedirect} from "../HOC/withAuthRedirect";
 import {compose} from "redux";
 import {Dialogs} from "./Dialogs";
 import React from "react";
-import {reset} from "redux-form";
+import {FormAction, reset} from "redux-form";
 
 type MapStatePropsType = {
     dialogsData: DialogDataType[] // Array<DialogDataType>
@@ -26,11 +26,11 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void): MapDispatchPropsType => {
+const mapDispatchToProps = (dispatch: (actions: FormAction) => void): MapDispatchPropsType => {
     return {
         sendMessage: (messageText: string) => {
-            dispatch(reset("dialogSendMessageForm"))
             dispatch(sendMessageAC(messageText))
+            dispatch(reset("dialogsSendMessageForm"))
         }
     }
 }

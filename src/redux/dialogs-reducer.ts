@@ -42,19 +42,12 @@ export type MessageDataType = {
 
 export enum DIALOGS {
     SEND_MESSAGE = "SEND-MESSAGE",
-    UPDATE_TYPED_MESSAGE_TEXT = "UPDATE-TYPED-MESSAGE-TEXT"
-}
-
-export type UpdateTypedMessageTextActionType = {
-    type: typeof DIALOGS.UPDATE_TYPED_MESSAGE_TEXT
-    newValue: string
 }
 
 export type SendMessageActionType = {
     type: typeof DIALOGS.SEND_MESSAGE
     messageText: string
 }
-
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {

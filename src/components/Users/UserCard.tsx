@@ -1,6 +1,6 @@
 import React from "react"
 import {UsersLocationType} from "../../redux/users-reducer"
-import {BordersPropsType, parseBordersProps} from "../common/utils/parseBordersProps"
+import {BordersPropsType, parseBordersProps} from "../common/helpers/parseBordersProps"
 import anonymous from '../../assets/img/nyancat.png'
 import {NavLink} from "react-router-dom";
 

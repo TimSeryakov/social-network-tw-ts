@@ -1,17 +1,12 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import dialogsReducer, {
-    DialogsPageType,
-    SendMessageActionType,
-    UpdateTypedMessageTextActionType
-} from "./dialogs-reducer";
+import dialogsReducer, {DialogsPageType, SendMessageActionType,} from "./dialogs-reducer";
 import profileReducer, {
     AddPostActionType,
     GetProfileUserStatusActionType,
     ProfileDataFetchingActionType,
     ProfilePageType,
     SetCurrentUserProfileActionType,
-    SetProfileUserStatusActionType,
-    UpdateTypedPostTextActionType
+    SetProfileUserStatusActionType
 } from "./profile-reducer";
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
 import usersReducer, {
@@ -49,9 +44,8 @@ export type StoreType = {
 export type GetStateType = () => RootStateType
 export type DispatchType = Dispatch<ActionsTypes>
 
-export type ActionsTypes = AddPostActionType | UpdateTypedPostTextActionType |
-            UpdateTypedMessageTextActionType | SendMessageActionType |
-            FollowActionType | UnfollowActionType | SetUsersDataActionType |
+export type ActionsTypes = AddPostActionType | SendMessageActionType | FollowActionType |
+            UnfollowActionType | SetUsersDataActionType |
             SetCurrentPageActionType | SetTotalUsersCountActionType |
             SetUsersFetchingActionType | SetCurrentUserProfileActionType |
             SetUserDataActionType | AuthDataFetchingActionType |

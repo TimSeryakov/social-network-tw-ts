@@ -4,7 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 import {DialogDataType, MessageDataType} from "../../redux/dialogs-reducer";
 import {Redirect} from 'react-router-dom';
-import DialogsForm, { DialogsFormDataType } from './DialogsForm';
+import DialogsForm, {DialogsFormDataType} from './DialogsForm';
 import * as Scroll from "react-scroll";
 
 type PropsType = {

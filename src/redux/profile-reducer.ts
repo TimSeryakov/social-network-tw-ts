@@ -12,7 +12,6 @@ const initialState = {
         },
         {id: v1(), text: "Ехал в яндекс такси и попал в яндекс пробку...", likesCount: 42},
     ] as PostDataType[], // Array<PostDataType>
-    typedPostText: "" as string,
     currentUserProfile: {} as UserProfileDataType,
     userProfileStatus: "",
     isProfileDataFetching: false
@@ -55,20 +54,16 @@ type ContactsType = {
 
 export enum PROFILE {
     ADD_POST = "ADD-POST",
-    UPDATE_TYPED_POST_TEXT = "UPDATE-TYPED-POST-TEXT",
     SET_CURRENT_USER_PROFILE = "SET_CURRENT_USER_PROFILE",
     SET_PROFILE_DATA_FETCHING = 'SET_PROFILE_DATA_FETCHING',
     GET_PROFILE_USER_STATUS = 'GET_PROFILE_USER_STATUS',
     SET_PROFILE_USER_STATUS = 'SET_PROFILE_USER_STATUS',
 }
 
-export type UpdateTypedPostTextActionType = {
-    type: typeof PROFILE.UPDATE_TYPED_POST_TEXT
-    newValue: string
-}
 
 export type AddPostActionType = {
     type: typeof PROFILE.ADD_POST
+    newPost: string
 }
 
 export type SetCurrentUserProfileActionType = {
@@ -95,16 +90,10 @@ export type SetProfileUserStatusActionType = {
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
     switch (action.type) {
         case PROFILE.ADD_POST:
-            if (state.typedPostText) {
-                return { // State deep copy before change and return
-                    ...state,
-                    postsData: [...state.postsData, {id: v1(), text: state.typedPostText, likesCount: 0}],
-                    typedPostText: ""
-                }
+            return { // State deep copy before change and return
+                ...state,
+                postsData: [...state.postsData, {id: v1(), text: action.newPost, likesCount: 0}],
             }
-            return state
-        case PROFILE.UPDATE_TYPED_POST_TEXT:
-            return {...state, typedPostText: action.newValue}
         case PROFILE.SET_CURRENT_USER_PROFILE:
             return {...state, currentUserProfile: action.userProfileData}
         case PROFILE.SET_PROFILE_DATA_FETCHING: {
@@ -124,23 +113,20 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
     }
 }
 
-export const addPost = (): AddPostActionType =>
-    ({type: PROFILE.ADD_POST})
-
-export const updateTypedPostText = (newValue: string): UpdateTypedPostTextActionType =>
-    ({type: PROFILE.UPDATE_TYPED_POST_TEXT, newValue})
+export const addPost = (newPost: string): AddPostActionType =>
+    ({ type: PROFILE.ADD_POST, newPost })
 
 export const setCurrentUserProfile = (userProfileData: UserProfileDataType): SetCurrentUserProfileActionType =>
-    ({type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData})
+    ({ type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData })
 
 export const setProfileDataFetching = (isProfileDataFetching: boolean): ProfileDataFetchingActionType =>
-    ({type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching})
+    ({ type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching })
 
 export const getProfileUserStatus = (userID: string): GetProfileUserStatusActionType =>
-    ({type: PROFILE.GET_PROFILE_USER_STATUS, userID})
+    ({ type: PROFILE.GET_PROFILE_USER_STATUS, userID })
 
 export const setProfileUserStatus = (userProfileStatus: string): SetProfileUserStatusActionType =>
-    ({type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus})
+    ({ type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus })
 
 
 export const requestProfileData = (userID: string) => (dispatch: DispatchType /*, getState: GetStateType*/) => {

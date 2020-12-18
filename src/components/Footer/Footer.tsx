@@ -1,6 +1,6 @@
 import React from 'react';
 import ninjacat from './../../assets/img/ninjacat.png'
-import {BordersPropsType, parseBordersProps} from "../common/utils/parseBordersProps";
+import {BordersPropsType, parseBordersProps} from "../common/helpers/parseBordersProps";
 
 type FooterPropsType = {
     borders: BordersPropsType

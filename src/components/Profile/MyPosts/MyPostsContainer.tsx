@@ -1,18 +1,17 @@
-import {addPost, PostDataType, updateTypedPostText} from "../../../redux/profile-reducer";
+import {addPost, PostDataType} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
-import {ActionsTypes, RootStateType} from "../../../redux/store-redux";
-import {BordersPropsType} from "../../common/utils/parseBordersProps";
+import {RootStateType} from "../../../redux/store-redux";
+import {BordersPropsType} from "../../common/helpers/parseBordersProps";
+import {FormAction, reset} from "redux-form";
 
 type MapStatePropsType = {
     borders: BordersPropsType
     postsData: PostDataType[] // Array<PostDataType>
-    typedPostText: string
 }
 
 type MapDispatchPropsType = {
-    updateTypedPostText: (newValue: string) => void
-    addPost: () => void
+    addPost: (newPost: string) => void
 }
 
 // Принимает весь state и возвращает только те данные, которые нам понадобятся в компоненте
@@ -20,17 +19,14 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return { // При изменении каждого будет производиться перерисовка
         borders: "t",
         postsData: state.profilePage.postsData,
-        typedPostText: state.profilePage.typedPostText
     }
 }
 
-const mapDispatchToProps = (dispatch: (actions: ActionsTypes) => void): MapDispatchPropsType => {
+const mapDispatchToProps = (dispatch: (actions: FormAction) => void): MapDispatchPropsType => {
     return {
-        updateTypedPostText: (newValue: string) => {
-            dispatch(updateTypedPostText(newValue))
-        },
-        addPost: () => {
-            dispatch(addPost())
+        addPost: (newPost: string) => {
+            dispatch(addPost(newPost))
+            dispatch(reset("AddPostForm"))
         }
 
     }
