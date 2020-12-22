@@ -38,8 +38,16 @@ export const PROFILE_API = {
 }
 
 export const AUTH_API = {
-    getAuthStatus() {
+    me() {
         return SAMURAI_API.get(`auth/me`)
+            .then(response => response.data)
+    },
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return SAMURAI_API.post(`auth/login`,{ email, password, rememberMe })
+            .then(response => response.data)
+    },
+    logout() {
+        return SAMURAI_API.delete(`auth/login`)
             .then(response => response.data)
     }
 }

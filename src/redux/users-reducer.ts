@@ -1,4 +1,4 @@
-import {ActionsTypes, DispatchType} from "./store-redux";
+import {ActionsTypes, ThunkDispatchType} from "./store-redux";
 import {USERS_API} from "../api/api";
 
 const initialState = {
@@ -144,9 +144,9 @@ export const setUserFollowStatusFetching = (isFetching: boolean, userID: number)
     ({type: USERS.SET_USER_FOLLOW_STATUS_IS_FETCHING, isFetching, userID})
 
 
-export const requestUsers = (currentPage: number, pageSize: number) => {
+export const requestUsers = (currentPage: number, pageSize: number): ThunkDispatchType => {
 
-    return (dispatch: DispatchType /*, getState: GetStateType*/) => {
+    return (dispatch, /*getState*/) => {
         dispatch(setUsersDataFetching(true))
 
         USERS_API.getUsersData(currentPage, pageSize)
@@ -159,9 +159,9 @@ export const requestUsers = (currentPage: number, pageSize: number) => {
     }
 }
 
-export const follow = (userID: number) => {
+export const follow = (userID: number): ThunkDispatchType => {
 
-    return (dispatch: DispatchType /*, getState: GetStateType*/) => {
+    return (dispatch, /*getState*/) => {
         dispatch(setUserFollowStatusFetching(true, userID))
 
         USERS_API.followUser(userID)
@@ -174,9 +174,9 @@ export const follow = (userID: number) => {
     }
 }
 
-export const unFollow = (userID: number) => {
+export const unFollow = (userID: number): ThunkDispatchType => {
 
-    return (dispatch: DispatchType /*, getState: GetStateType*/) => {
+    return (dispatch, /*getState*/) => {
         dispatch(setUserFollowStatusFetching(true, userID))
 
         USERS_API.unFollowUser(userID)

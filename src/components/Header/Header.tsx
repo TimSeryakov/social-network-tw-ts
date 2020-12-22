@@ -7,6 +7,7 @@ type HeaderPropsType = {
     isAuth: boolean
     userLogin: string | null
     isAuthDataFetching: boolean
+    logout: () => void
 }
 
 
@@ -40,11 +41,18 @@ export function Header(props: HeaderPropsType) {
                     </li>
                     {
                         props.isAuth ?
-                            <li className="p-4"><span className="text-xl text-theme-text">
-                                [ {props.userLogin} ]
-                            </span>
-
-                            </li>
+                            <>
+                                <li className="p-4">
+                                    <span className="text-xl text-theme-text">
+                                      [ {props.userLogin} ]
+                                    </span>
+                                </li>
+                                <li className="p-4">
+                                    <span className="text-xl text-theme-text">
+                                       <button onClick={props.logout} className="hover:text-white">Logout</button>
+                                    </span>
+                                </li>
+                            </>
                             :
                             <li className="p-4">
                                 <NavLink to="/login"

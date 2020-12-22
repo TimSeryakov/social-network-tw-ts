@@ -11,6 +11,7 @@ import {
     UserProfileDataType
 } from "../../redux/profile-reducer";
 import {compose} from "redux";
+import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
 const LOCAL_USER = 12409
 
@@ -66,6 +67,6 @@ export function ProfileContainer(props: ProfileContainerPropsType) {
 
 
 export default compose<React.ComponentType>(
-    // withAuthRedirect,
+    withAuthRedirect,
     withRouter
 )(ProfileContainer)

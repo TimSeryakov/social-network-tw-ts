@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {ActionsTypes, DispatchType} from "./store-redux";
+import {ActionsTypes, ThunkDispatchType} from "./store-redux";
 import {PROFILE_API} from "../api/api";
 
 const initialState = {
@@ -129,7 +129,7 @@ export const setProfileUserStatus = (userProfileStatus: string): SetProfileUserS
     ({ type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus })
 
 
-export const requestProfileData = (userID: string) => (dispatch: DispatchType /*, getState: GetStateType*/) => {
+export const requestProfileData = (userID: string): ThunkDispatchType => (dispatch, /*getState*/) => {
     dispatch(setProfileDataFetching(true))
 
     PROFILE_API.getProfileData(userID)
@@ -139,7 +139,7 @@ export const requestProfileData = (userID: string) => (dispatch: DispatchType /*
         })
 }
 
-export const requestProfileUserStatus = (userID: string) => (dispatch: DispatchType /*, getState: GetStateType*/) => {
+export const requestProfileUserStatus = (userID: string): ThunkDispatchType => (dispatch, /*getState*/) => {
     dispatch(setProfileDataFetching(true))
 
     PROFILE_API.getProfileUserStatus(userID)
@@ -149,7 +149,7 @@ export const requestProfileUserStatus = (userID: string) => (dispatch: DispatchT
         })
 }
 
-export const updateProfileUserStatus = (userProfileStatus: string) => (dispatch: DispatchType /*, getState: GetStateType*/) => {
+export const updateProfileUserStatus = (userProfileStatus: string): ThunkDispatchType => (dispatch, /*getState*/) => {
     dispatch(setProfileDataFetching(true))
 
     PROFILE_API.updateProfileUserStatus(userProfileStatus) // Изменения на сервере

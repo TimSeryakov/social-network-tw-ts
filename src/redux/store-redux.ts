@@ -21,8 +21,7 @@ import usersReducer, {
 } from "./users-reducer";
 import authReducer, {AuthDataFetchingActionType, AuthStateType, SetUserDataActionType} from "./auth-reducer";
 import logger from "redux-logger";
-import thunkMiddleware from "redux-thunk";
-import {Dispatch} from "react";
+import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as reduxFormReducer} from 'redux-form';
 
 export type RootStateType = {
@@ -41,8 +40,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type GetStateType = () => RootStateType
-export type DispatchType = Dispatch<ActionsTypes>
+export type ThunkDispatchType = ThunkAction<void, RootStateType, unknown, ActionsTypes>
 
 export type ActionsTypes = AddPostActionType | SendMessageActionType | FollowActionType |
             UnfollowActionType | SetUsersDataActionType |
@@ -51,7 +49,6 @@ export type ActionsTypes = AddPostActionType | SendMessageActionType | FollowAct
             SetUserDataActionType | AuthDataFetchingActionType |
             SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType |
             GetProfileUserStatusActionType | SetProfileUserStatusActionType
-
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -63,8 +60,5 @@ const reducers = combineReducers({
 })
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware, logger))
-
-// @ts-ignore
-window.state = store.getState()
 
 export default store
