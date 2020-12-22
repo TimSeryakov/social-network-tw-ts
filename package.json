@@ -50,7 +50,9 @@
     "react-scripts:build": "react-scripts build",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "build-storybook-netlify": "run-s build:css && build-storybook -s public"
+    "build-storybook-netlify": "run-s build:css && build-storybook -s public",
+    "cosmos": "cosmos",
+    "cosmos:export": "cosmos-export"
   },
   "eslintConfig": {
     "extends": "react-app"
