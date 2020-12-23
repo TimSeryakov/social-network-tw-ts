@@ -3,7 +3,6 @@ import samurai from "../assets/img/samurai.png";
 import fuji from "../assets/img/fuji.png";
 import lionstatue from "../assets/img/lionstatue.png";
 import luckycat from "../assets/img/luckycat.png";
-import {ActionsTypes} from "./store-redux";
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Init State
@@ -49,6 +48,13 @@ export type MessageDataType = {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
+// Action Creators Types
+// ---------------------------------------------------------------------------------------------------------------------
+
+export type DialogsActionTypes =
+    | ReturnType<typeof sendMessageAC>
+
+// ---------------------------------------------------------------------------------------------------------------------
 // Enum (const)
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -57,19 +63,10 @@ export enum DIALOGS {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-// Action Creators Types
-// ---------------------------------------------------------------------------------------------------------------------
-
-export type SendMessageActionType = {
-    type: typeof DIALOGS.SEND_MESSAGE
-    messageText: string
-}
-
-// ---------------------------------------------------------------------------------------------------------------------
 // Reducer
 // ---------------------------------------------------------------------------------------------------------------------
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionTypes): DialogsPageType => {
     switch (action.type) {
         case DIALOGS.SEND_MESSAGE:
             debugger
@@ -87,8 +84,8 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
 // Action Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const sendMessageAC = (messageText: string): SendMessageActionType =>
-    ({ type: DIALOGS.SEND_MESSAGE, messageText })
+export const sendMessageAC = (messageText: string) =>
+    ({ type: DIALOGS.SEND_MESSAGE, messageText }) as const
 
 
 export default dialogsReducer

@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {ActionsTypes, ThunkDispatchType} from "./store-redux";
+import {ThunkDispatchType} from "./store-redux";
 import {PROFILE_API} from "../api/api";
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -60,6 +60,17 @@ type ContactsType = {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
+// Action Creators Types
+// ---------------------------------------------------------------------------------------------------------------------
+
+export type ProfileActionTypes =
+    | ReturnType<typeof addPost>
+    | ReturnType<typeof setCurrentUserProfile>
+    | ReturnType<typeof setProfileDataFetching>
+    | ReturnType<typeof getProfileUserStatus>
+    | ReturnType<typeof setProfileUserStatus>
+
+// ---------------------------------------------------------------------------------------------------------------------
 // Enum (const)
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -70,41 +81,11 @@ export enum PROFILE {
     GET_PROFILE_USER_STATUS = 'GET_PROFILE_USER_STATUS',
     SET_PROFILE_USER_STATUS = 'SET_PROFILE_USER_STATUS',
 }
-
-// ---------------------------------------------------------------------------------------------------------------------
-// Action Creators Types
-// ---------------------------------------------------------------------------------------------------------------------
-
-export type AddPostActionType = {
-    type: typeof PROFILE.ADD_POST
-    newPost: string
-}
-
-export type SetCurrentUserProfileActionType = {
-    type: typeof PROFILE.SET_CURRENT_USER_PROFILE
-    userProfileData: UserProfileDataType
-}
-
-export type SetProfileDataFetchingActionType = {
-    type: typeof PROFILE.SET_PROFILE_DATA_FETCHING
-    isProfileDataFetching: boolean
-}
-
-export type GetProfileUserStatusActionType = {
-    type: typeof PROFILE.GET_PROFILE_USER_STATUS
-    userID: string
-}
-
-export type SetProfileUserStatusActionType = {
-    type: typeof PROFILE.SET_PROFILE_USER_STATUS
-    userProfileStatus: string
-}
-
 // ---------------------------------------------------------------------------------------------------------------------
 // Reducer
 // ---------------------------------------------------------------------------------------------------------------------
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
+const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes): ProfilePageType => {
     switch (action.type) {
         case PROFILE.ADD_POST:
             return { // State deep copy before change and return
@@ -134,20 +115,20 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
 // Action Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const addPost = (newPost: string): AddPostActionType =>
-    ({ type: PROFILE.ADD_POST, newPost })
+export const addPost = (newPost: string) =>
+    ({ type: PROFILE.ADD_POST, newPost }) as const
 
-export const setCurrentUserProfile = (userProfileData: UserProfileDataType): SetCurrentUserProfileActionType =>
-    ({ type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData })
+export const setCurrentUserProfile = (userProfileData: UserProfileDataType) =>
+    ({ type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData }) as const
 
-export const setProfileDataFetching = (isProfileDataFetching: boolean): SetProfileDataFetchingActionType =>
-    ({ type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching })
+export const setProfileDataFetching = (isProfileDataFetching: boolean) =>
+    ({ type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching }) as const
 
-export const getProfileUserStatus = (userID: string): GetProfileUserStatusActionType =>
-    ({ type: PROFILE.GET_PROFILE_USER_STATUS, userID })
+export const getProfileUserStatus = (userID: string) =>
+    ({ type: PROFILE.GET_PROFILE_USER_STATUS, userID }) as const
 
-export const setProfileUserStatus = (userProfileStatus: string): SetProfileUserStatusActionType =>
-    ({ type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus })
+export const setProfileUserStatus = (userProfileStatus: string) =>
+    ({ type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus }) as const
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Thunk Creators

@@ -1,4 +1,4 @@
-import {ActionsTypes, ThunkDispatchType} from "./store-redux";
+import {ThunkDispatchType} from "./store-redux";
 import {AUTH_API} from "../api/api";
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -34,6 +34,15 @@ export type UserAuthDataType = {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
+// Action Creators Types
+// ---------------------------------------------------------------------------------------------------------------------
+
+export type AuthActionTypes =
+    | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof setAuthDataFetching>
+    | ReturnType<typeof setAuthServerErrors>
+
+// ---------------------------------------------------------------------------------------------------------------------
 // Enum (const)
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -44,30 +53,10 @@ export enum AUTH {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-// Action Creators Types
-// ---------------------------------------------------------------------------------------------------------------------
-
-export type SetUserDataActionType = {
-    type: typeof AUTH.SET_USER_DATA
-    userAuthData: UserAuthDataType
-    isAuth: boolean
-}
-
-export type SetAuthDataFetchingActionType = {
-    type: typeof AUTH.SET_AUTH_DATA_FETCHING
-    isAuthDataFetching: boolean
-}
-
-export type SetAuthServerErrorActionType = {
-    type: typeof AUTH.SET_AUTH_SERVER_ERRORS
-    serverErrorMessages: string[]
-}
-
-// ---------------------------------------------------------------------------------------------------------------------
 // Reducer
 // ---------------------------------------------------------------------------------------------------------------------
 
-const authReducer = (state: AuthStateType = initialState, action: ActionsTypes): AuthStateType => {
+const authReducer = (state: AuthStateType = initialState, action: AuthActionTypes): AuthStateType => {
     switch (action.type) {
         case AUTH.SET_USER_DATA: {
             return {
@@ -97,14 +86,14 @@ const authReducer = (state: AuthStateType = initialState, action: ActionsTypes):
 // Action Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const setAuthUserData = (userAuthData: UserAuthDataType, isAuth: boolean): SetUserDataActionType =>
-    ({ type: AUTH.SET_USER_DATA, userAuthData, isAuth })
+export const setAuthUserData = (userAuthData: UserAuthDataType, isAuth: boolean) =>
+    ({ type: AUTH.SET_USER_DATA, userAuthData, isAuth }) as const
 
-export const setAuthDataFetching = (isAuthDataFetching: boolean): SetAuthDataFetchingActionType =>
-    ({ type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching })
+export const setAuthDataFetching = (isAuthDataFetching: boolean) =>
+    ({ type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching }) as const
 
-export const setAuthServerErrors = (serverErrorMessages: string[]): SetAuthServerErrorActionType =>
-    ({ type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages })
+export const setAuthServerErrors = (serverErrorMessages: string[]) =>
+    ({ type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages }) as const
 
 
 // ---------------------------------------------------------------------------------------------------------------------

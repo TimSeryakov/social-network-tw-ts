@@ -1,30 +1,9 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import dialogsReducer, {DialogsPageType, SendMessageActionType,} from "./dialogs-reducer";
-import profileReducer, {
-    AddPostActionType,
-    GetProfileUserStatusActionType,
-    SetProfileDataFetchingActionType,
-    ProfilePageType,
-    SetCurrentUserProfileActionType,
-    SetProfileUserStatusActionType
-} from "./profile-reducer";
+import dialogsReducer, {DialogsActionTypes, DialogsPageType} from "./dialogs-reducer";
+import profileReducer, {ProfileActionTypes, ProfilePageType} from "./profile-reducer";
 import sidebarReducer, {SidebarType} from "./sidebar-reducer";
-import usersReducer, {
-    FollowActionType,
-    SetCurrentPageActionType,
-    SetTotalUsersCountActionType,
-    SetUserFollowStatusFetchingActionType,
-    SetUsersDataActionType,
-    SetUsersFetchingActionType,
-    UnfollowActionType,
-    UsersPageType,
-} from "./users-reducer";
-import authReducer, {
-    SetAuthDataFetchingActionType,
-    SetAuthServerErrorActionType,
-    AuthStateType,
-    SetUserDataActionType
-} from "./auth-reducer";
+import usersReducer, {UserActionTypes, UsersPageType,} from "./users-reducer";
+import authReducer, {AuthActionTypes, AuthStateType} from "./auth-reducer";
 import logger from "redux-logger";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as reduxFormReducer} from 'redux-form';
@@ -47,13 +26,12 @@ export type StoreType = {
 
 export type ThunkDispatchType = ThunkAction<void, RootStateType, unknown, ActionsTypes>
 
-export type ActionsTypes = AddPostActionType | SendMessageActionType | FollowActionType |
-            UnfollowActionType | SetUsersDataActionType |
-            SetCurrentPageActionType | SetTotalUsersCountActionType |
-            SetUsersFetchingActionType | SetCurrentUserProfileActionType |
-            SetUserDataActionType | SetAuthDataFetchingActionType |
-            SetUserFollowStatusFetchingActionType | SetProfileDataFetchingActionType |
-            GetProfileUserStatusActionType | SetProfileUserStatusActionType | SetAuthServerErrorActionType
+export type ActionsTypes =
+    | AuthActionTypes
+    | UserActionTypes
+    | ProfileActionTypes
+    | DialogsActionTypes
+
 
 const reducers = combineReducers({
     profilePage: profileReducer,
