@@ -21,12 +21,12 @@ export type StoreType = {
     _callSubscriber: () => void
     getState: () => RootStateType
     subscribe: (observer: () => void) => void
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: RootActionsTypes) => void
 }
 
-export type ThunkDispatchType = ThunkAction<void, RootStateType, unknown, ActionsTypes>
+export type ThunkDispatchType = ThunkAction<void, RootStateType, unknown, RootActionsTypes>
 
-export type ActionsTypes =
+export type RootActionsTypes =
     | AuthActionTypes
     | UserActionTypes
     | ProfileActionTypes
