@@ -1,6 +1,10 @@
 import {ActionsTypes, ThunkDispatchType} from "./store-redux";
 import {USERS_API} from "../api/api";
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Init State
+// ---------------------------------------------------------------------------------------------------------------------
+
 const initialState = {
     usersData: [],
     pageSize: 5,
@@ -9,6 +13,10 @@ const initialState = {
     isUsersDataFetching: false,
     isUserFollowStatusFetching: []
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------------------------------------------------
 
 export type UsersPageType = {
     usersData: UserDataType[] // Array<UserDataType>
@@ -39,6 +47,10 @@ export type UsersLocationType = {
     country: string
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Enum (const)
+// ---------------------------------------------------------------------------------------------------------------------
+
 export enum USERS {
     FOLLOW = "FOLLOW",
     UNFOLLOW = "UNFOLLOW",
@@ -48,6 +60,10 @@ export enum USERS {
     SET_USERS_IS_FETCHING = "SET_USERS_IS_FETCHING",
     SET_USER_FOLLOW_STATUS_IS_FETCHING = "SET_USER_FOLLOW_STATUS_IS_FETCHING"
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Action Creators Types
+// ---------------------------------------------------------------------------------------------------------------------
 
 export type FollowActionType = {
     type: typeof USERS.FOLLOW
@@ -84,6 +100,10 @@ export type SetUserFollowStatusFetchingActionType = {
     isFetching: boolean
     userID: number
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Reducer
+// ---------------------------------------------------------------------------------------------------------------------
 
 const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes): UsersPageType => {
     switch (action.type) {
@@ -128,6 +148,10 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsTypes)
     }
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Action Creators
+// ---------------------------------------------------------------------------------------------------------------------
+
 export const setFollow = (userID: number): FollowActionType =>
     ({type: USERS.FOLLOW, userID})
 export const setUnfollow = (userID: number): UnfollowActionType =>
@@ -143,6 +167,9 @@ export const setUsersDataFetching = (isFetching: boolean): SetUsersFetchingActio
 export const setUserFollowStatusFetching = (isFetching: boolean, userID: number): SetUserFollowStatusFetchingActionType =>
     ({type: USERS.SET_USER_FOLLOW_STATUS_IS_FETCHING, isFetching, userID})
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Thunk Creators
+// ---------------------------------------------------------------------------------------------------------------------
 
 export const requestUsers = (currentPage: number, pageSize: number): ThunkDispatchType => {
 

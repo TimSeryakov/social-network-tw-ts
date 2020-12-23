@@ -2,6 +2,10 @@ import {v1} from "uuid";
 import {ActionsTypes, ThunkDispatchType} from "./store-redux";
 import {PROFILE_API} from "../api/api";
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Init State
+// ---------------------------------------------------------------------------------------------------------------------
+
 const initialState = {
     postsData: [
         {id: v1(), text: "Сбербанк выкупил актрису Зою Бербер и назвал Сбербербер.", likesCount: 29},
@@ -16,6 +20,10 @@ const initialState = {
     userProfileStatus: "",
     isProfileDataFetching: false
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------------------------------------------------
 
 export type ProfilePageType = typeof initialState
 
@@ -51,6 +59,9 @@ type ContactsType = {
     mainLink: null
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Enum (const)
+// ---------------------------------------------------------------------------------------------------------------------
 
 export enum PROFILE {
     ADD_POST = "ADD-POST",
@@ -60,6 +71,9 @@ export enum PROFILE {
     SET_PROFILE_USER_STATUS = 'SET_PROFILE_USER_STATUS',
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Action Creators Types
+// ---------------------------------------------------------------------------------------------------------------------
 
 export type AddPostActionType = {
     type: typeof PROFILE.ADD_POST
@@ -86,6 +100,9 @@ export type SetProfileUserStatusActionType = {
     userProfileStatus: string
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Reducer
+// ---------------------------------------------------------------------------------------------------------------------
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
     switch (action.type) {
@@ -113,6 +130,10 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
     }
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Action Creators
+// ---------------------------------------------------------------------------------------------------------------------
+
 export const addPost = (newPost: string): AddPostActionType =>
     ({ type: PROFILE.ADD_POST, newPost })
 
@@ -128,6 +149,9 @@ export const getProfileUserStatus = (userID: string): GetProfileUserStatusAction
 export const setProfileUserStatus = (userProfileStatus: string): SetProfileUserStatusActionType =>
     ({ type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus })
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Thunk Creators
+// ---------------------------------------------------------------------------------------------------------------------
 
 export const requestProfileData = (userID: string): ThunkDispatchType => (dispatch, /*getState*/) => {
     dispatch(setProfileDataFetching(true))

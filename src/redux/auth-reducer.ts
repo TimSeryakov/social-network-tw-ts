@@ -2,7 +2,7 @@ import {ActionsTypes, ThunkDispatchType} from "./store-redux";
 import {AUTH_API} from "../api/api";
 
 // ---------------------------------------------------------------------------------------------------------------------
-// Types
+// Init State
 // ---------------------------------------------------------------------------------------------------------------------
 
 const initialState: AuthStateType = {
@@ -13,6 +13,10 @@ const initialState: AuthStateType = {
     isAuthDataFetching: false,
     serverErrorMessages: null
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------------------------------------------------
 
 export type AuthStateType = {
     userID: number | null
@@ -94,13 +98,13 @@ const authReducer = (state: AuthStateType = initialState, action: ActionsTypes):
 // ---------------------------------------------------------------------------------------------------------------------
 
 export const setAuthUserData = (userAuthData: UserAuthDataType, isAuth: boolean): SetUserDataActionType =>
-    ({type: AUTH.SET_USER_DATA, userAuthData, isAuth})
+    ({ type: AUTH.SET_USER_DATA, userAuthData, isAuth })
 
 export const setAuthDataFetching = (isAuthDataFetching: boolean): SetAuthDataFetchingActionType =>
-    ({type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching})
+    ({ type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching })
 
-export const setAuthServerError = (serverErrorMessages: string[]): SetAuthServerErrorActionType =>
-    ({type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages})
+export const setAuthServerErrors = (serverErrorMessages: string[]): SetAuthServerErrorActionType =>
+    ({ type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages })
 
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -129,7 +133,7 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
                 dispatch(requestAuthUserData())
                 dispatch(setAuthDataFetching(false))
             } else {
-                dispatch(setAuthServerError(data.messages))
+                dispatch(setAuthServerErrors(data.messages))
             }
         })
 }

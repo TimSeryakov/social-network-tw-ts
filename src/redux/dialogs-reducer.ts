@@ -5,6 +5,10 @@ import lionstatue from "../assets/img/lionstatue.png";
 import luckycat from "../assets/img/luckycat.png";
 import {ActionsTypes} from "./store-redux";
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Init State
+// ---------------------------------------------------------------------------------------------------------------------
+
 const initialState = {
     dialogsData: [
         {id: v1(), name: "Max", avatar: samurai, unreadMessages: 5},
@@ -26,6 +30,10 @@ const initialState = {
     ] as MessageDataType[], // Array<MessageDataType>
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------------------------------------------------
+
 export type DialogsPageType = typeof initialState
 
 export type DialogDataType = {
@@ -40,14 +48,26 @@ export type MessageDataType = {
     text: string
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Enum (const)
+// ---------------------------------------------------------------------------------------------------------------------
+
 export enum DIALOGS {
     SEND_MESSAGE = "SEND-MESSAGE",
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Action Creators Types
+// ---------------------------------------------------------------------------------------------------------------------
 
 export type SendMessageActionType = {
     type: typeof DIALOGS.SEND_MESSAGE
     messageText: string
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Reducer
+// ---------------------------------------------------------------------------------------------------------------------
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes): DialogsPageType => {
     switch (action.type) {
@@ -62,6 +82,10 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
             return state
     }
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Action Creators
+// ---------------------------------------------------------------------------------------------------------------------
 
 export const sendMessageAC = (messageText: string): SendMessageActionType =>
     ({ type: DIALOGS.SEND_MESSAGE, messageText })
