@@ -24,7 +24,9 @@ export function Header(props: HeaderPropsType) {
                         className="absolute inline-block px-2 py-1 ml-4 text-sm uppercase -translate-y-1/2 rounded-sm bg-theme-badge text-theme-text">beta</span>
                 </h1>
             </a>
-            <nav className="flex flex-col items-end">
+            <nav className="flex flex-col items-end"
+                 onClick={() => setNavbarOpen(!navbarOpen)}
+            >
                 <button
                     className="text-theme-text cursor-pointer text-4xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block sm:hidden"
                     type="button"
