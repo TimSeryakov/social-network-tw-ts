@@ -17,7 +17,7 @@ export const MainMenu = (props: MainMenuPropsType) => {
             <ul className="flex flex-row justify-around sm:block sm:border-0 border-t border-theme-border">
                 <li className="border-b border-theme-border">
                     <NavLink to="/profile"
-                             className="block px-4 py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
+                             className="block py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
                              activeClassName="sm:bg-theme-bg-primary border-b-2 sm:border-b-0 sm:border-l-2 border-theme-accent text-theme-white">
                         <i className="far fa-user inline-block sm:w-40px px-4 sm:px-0"/> <span
                         className="hidden sm:inline">Profile</span>
@@ -25,7 +25,7 @@ export const MainMenu = (props: MainMenuPropsType) => {
                 </li>
                 <li className="border-b border-theme-border">
                     <NavLink to="/dialogs"
-                             className="block px-4 py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
+                             className="block py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
                              activeClassName="sm:bg-theme-bg-primary border-b-2 sm:border-b-0 sm:border-l-2 border-theme-accent text-theme-white">
                         <i className="far fa-envelope inline-block sm:w-40px px-4 sm:px-0"/> <span
                         className="hidden sm:inline">Messenger</span>
@@ -33,7 +33,7 @@ export const MainMenu = (props: MainMenuPropsType) => {
                 </li>
                 <li className="border-b border-theme-border">
                     <NavLink to="/news"
-                             className="block px-4 py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
+                             className="block py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
                              activeClassName="sm:bg-theme-bg-primary border-b-2 sm:border-b-0 sm:border-l-2 border-theme-accent text-theme-white">
                         <i className="fas fa-asterisk inline-block sm:w-40px px-4 sm:px-0"/> <span
                         className="hidden sm:inline">News</span>
@@ -41,7 +41,7 @@ export const MainMenu = (props: MainMenuPropsType) => {
                 </li>
                 <li className="border-b border-theme-border">
                     <NavLink to="/music"
-                             className="block px-4 py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
+                             className="block py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
                              activeClassName="sm:bg-theme-bg-primary border-b-2 sm:border-b-0 sm:border-l-2 border-theme-accent text-theme-white">
                         <i className="fas fa-headphones-alt  inline-block sm:w-40px px-4 sm:px-0"/> <span
                         className="hidden sm:inline">Music</span>
@@ -49,7 +49,7 @@ export const MainMenu = (props: MainMenuPropsType) => {
                 </li>
                 <li className="border-b border-theme-border">
                     <NavLink to="/users"
-                             className="block px-4 py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
+                             className="block py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
                              activeClassName="sm:bg-theme-bg-primary border-b-2 sm:border-b-0 sm:border-l-2 border-theme-accent text-theme-white">
                         <i className="fas fa-users inline-block sm:w-40px px-4 sm:px-0"/> <span
                         className="hidden sm:inline">Users</span>
@@ -57,7 +57,7 @@ export const MainMenu = (props: MainMenuPropsType) => {
                 </li>
                 <li className="border-b border-theme-border">
                     <NavLink to="/settings"
-                             className="block px-4 py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
+                             className="block py-4 text-xl border-b-2 sm:pl-6 sm:border-b-0 sm:border-l-2 text-theme-text border-theme-bg-third hover:text-white"
                              activeClassName="sm:bg-theme-bg-primary border-b-2 sm:border-b-0 sm:border-l-2 border-theme-accent text-theme-white">
                         <i className="fas fa-cog inline-block sm:w-40px px-4 sm:px-0"/> <span
                         className="hidden sm:inline">Settings</span>
