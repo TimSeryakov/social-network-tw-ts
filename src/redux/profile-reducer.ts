@@ -71,7 +71,7 @@ export type SetCurrentUserProfileActionType = {
     userProfileData: UserProfileDataType
 }
 
-export type ProfileDataFetchingActionType = {
+export type SetProfileDataFetchingActionType = {
     type: typeof PROFILE.SET_PROFILE_DATA_FETCHING
     isProfileDataFetching: boolean
 }
@@ -119,7 +119,7 @@ export const addPost = (newPost: string): AddPostActionType =>
 export const setCurrentUserProfile = (userProfileData: UserProfileDataType): SetCurrentUserProfileActionType =>
     ({ type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData })
 
-export const setProfileDataFetching = (isProfileDataFetching: boolean): ProfileDataFetchingActionType =>
+export const setProfileDataFetching = (isProfileDataFetching: boolean): SetProfileDataFetchingActionType =>
     ({ type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching })
 
 export const getProfileUserStatus = (userID: string): GetProfileUserStatusActionType =>

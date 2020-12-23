@@ -30,13 +30,15 @@ const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                     <span className="ml-2 text-theme-text"> Remember me</span>
                 </label>
             </div>
-
+            <div>
+                <p className="text-red-400 text-sm">{props.error}</p>
+            </div>
             <div className="mt-10 flex">
                 <button
                     className="px-4 py-2 text-white rounded-md bg-theme-accent-alternative
-                                   focus:outline-none focus:shadow-outline mx-auto w-150px
-                                   hover:bg-theme-accent-alternative-hover
-                                   hover:border-theme-accent-alternative"
+                               focus:outline-none focus:shadow-outline mx-auto w-150px
+                               hover:bg-theme-accent-alternative-hover
+                               hover:border-theme-accent-alternative"
                 >
                     Login
                 </button>

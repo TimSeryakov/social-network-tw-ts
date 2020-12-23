@@ -3,7 +3,7 @@ import dialogsReducer, {DialogsPageType, SendMessageActionType,} from "./dialogs
 import profileReducer, {
     AddPostActionType,
     GetProfileUserStatusActionType,
-    ProfileDataFetchingActionType,
+    SetProfileDataFetchingActionType,
     ProfilePageType,
     SetCurrentUserProfileActionType,
     SetProfileUserStatusActionType
@@ -19,7 +19,12 @@ import usersReducer, {
     UnfollowActionType,
     UsersPageType,
 } from "./users-reducer";
-import authReducer, {AuthDataFetchingActionType, AuthStateType, SetUserDataActionType} from "./auth-reducer";
+import authReducer, {
+    SetAuthDataFetchingActionType,
+    SetAuthServerErrorActionType,
+    AuthStateType,
+    SetUserDataActionType
+} from "./auth-reducer";
 import logger from "redux-logger";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as reduxFormReducer} from 'redux-form';
@@ -46,9 +51,9 @@ export type ActionsTypes = AddPostActionType | SendMessageActionType | FollowAct
             UnfollowActionType | SetUsersDataActionType |
             SetCurrentPageActionType | SetTotalUsersCountActionType |
             SetUsersFetchingActionType | SetCurrentUserProfileActionType |
-            SetUserDataActionType | AuthDataFetchingActionType |
-            SetUserFollowStatusFetchingActionType | ProfileDataFetchingActionType |
-            GetProfileUserStatusActionType | SetProfileUserStatusActionType
+            SetUserDataActionType | SetAuthDataFetchingActionType |
+            SetUserFollowStatusFetchingActionType | SetProfileDataFetchingActionType |
+            GetProfileUserStatusActionType | SetProfileUserStatusActionType | SetAuthServerErrorActionType
 
 const reducers = combineReducers({
     profilePage: profileReducer,

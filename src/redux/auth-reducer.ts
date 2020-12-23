@@ -1,12 +1,17 @@
 import {ActionsTypes, ThunkDispatchType} from "./store-redux";
 import {AUTH_API} from "../api/api";
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------------------------------------------------
+
 const initialState: AuthStateType = {
     userID: null,
     email: null,
     login: null,
     isAuth: false,
-    isAuthDataFetching: false
+    isAuthDataFetching: false,
+    serverErrorMessages: null
 }
 
 export type AuthStateType = {
@@ -15,6 +20,7 @@ export type AuthStateType = {
     login: string | null
     isAuth: boolean
     isAuthDataFetching: boolean
+    serverErrorMessages: string[] | null
 }
 
 export type UserAuthDataType = {
@@ -23,10 +29,39 @@ export type UserAuthDataType = {
     login: string | null
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Enum (const)
+// ---------------------------------------------------------------------------------------------------------------------
+
 export enum AUTH {
     SET_USER_DATA = 'SET_USER_DATA',
-    SET_AUTH_DATA_FETCHING = 'SET_AUTH_DATA_FETCHING'
+    SET_AUTH_DATA_FETCHING = 'SET_AUTH_DATA_FETCHING',
+    SET_AUTH_SERVER_ERRORS = 'SET_AUTH_SERVER_ERRORS'
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Action Creators Types
+// ---------------------------------------------------------------------------------------------------------------------
+
+export type SetUserDataActionType = {
+    type: typeof AUTH.SET_USER_DATA
+    userAuthData: UserAuthDataType
+    isAuth: boolean
+}
+
+export type SetAuthDataFetchingActionType = {
+    type: typeof AUTH.SET_AUTH_DATA_FETCHING
+    isAuthDataFetching: boolean
+}
+
+export type SetAuthServerErrorActionType = {
+    type: typeof AUTH.SET_AUTH_SERVER_ERRORS
+    serverErrorMessages: string[]
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Reducer
+// ---------------------------------------------------------------------------------------------------------------------
 
 const authReducer = (state: AuthStateType = initialState, action: ActionsTypes): AuthStateType => {
     switch (action.type) {
@@ -43,28 +78,34 @@ const authReducer = (state: AuthStateType = initialState, action: ActionsTypes):
                 isAuthDataFetching: action.isAuthDataFetching
             }
         }
+        case AUTH.SET_AUTH_SERVER_ERRORS: {
+            return {
+                ...state,
+                serverErrorMessages: action.serverErrorMessages
+            }
+        }
         default:
             return state
     }
 }
 
-export type SetUserDataActionType = {
-    type: typeof AUTH.SET_USER_DATA
-    userAuthData: UserAuthDataType
-    isAuth: boolean
-}
-
-export type AuthDataFetchingActionType = {
-    type: typeof AUTH.SET_AUTH_DATA_FETCHING
-    isAuthDataFetching: boolean
-}
+// ---------------------------------------------------------------------------------------------------------------------
+// Action Creators
+// ---------------------------------------------------------------------------------------------------------------------
 
 export const setAuthUserData = (userAuthData: UserAuthDataType, isAuth: boolean): SetUserDataActionType =>
     ({type: AUTH.SET_USER_DATA, userAuthData, isAuth})
 
-export const setAuthDataFetching = (isAuthDataFetching: boolean): AuthDataFetchingActionType =>
+export const setAuthDataFetching = (isAuthDataFetching: boolean): SetAuthDataFetchingActionType =>
     ({type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching})
 
+export const setAuthServerError = (serverErrorMessages: string[]): SetAuthServerErrorActionType =>
+    ({type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages})
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Thunk Creators
+// ---------------------------------------------------------------------------------------------------------------------
 
 export const requestAuthUserData = (): ThunkDispatchType => (dispatch/*, getState*/) => {
     dispatch(setAuthDataFetching(true))
@@ -79,6 +120,7 @@ export const requestAuthUserData = (): ThunkDispatchType => (dispatch/*, getStat
 }
 
 export const login = (email: string, password: string, rememberMe: boolean): ThunkDispatchType => (dispatch/*, getState*/) => {
+
     dispatch(setAuthDataFetching(true))
 
     AUTH_API.login(email, password, rememberMe)
@@ -86,6 +128,8 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
             if (data.resultCode === 0) {
                 dispatch(requestAuthUserData())
                 dispatch(setAuthDataFetching(false))
+            } else {
+                dispatch(setAuthServerError(data.messages))
             }
         })
 }
