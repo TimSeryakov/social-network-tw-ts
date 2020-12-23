@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {BordersPropsType} from "../common/helpers/parseBordersProps";
 import {Header} from "./Header";
 import {useDispatch, useSelector} from "react-redux";
-import {logout, requestAuthUserData} from "../../redux/auth-reducer";
+import {logoutTC, requestAuthUserDataTC} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/store-redux";
 import {Redirect} from "react-router-dom";
 
@@ -14,13 +14,13 @@ function HeaderContainer(props: HeaderContainerPropsType) {
     const {userID, isAuth, login: userLogin, isAuthDataFetching} = useSelector((state: RootStateType) => state.auth)
     const dispatch = useDispatch()
     const logoutFn = () => {
-        dispatch(logout())
+        dispatch(logoutTC())
         return <Redirect to={"/login"}/>
     }
 
 
     useEffect(() => {
-        if (!userID) dispatch(requestAuthUserData())
+        if (!userID) dispatch(requestAuthUserDataTC())
     }, [userID, dispatch])
 
     return (

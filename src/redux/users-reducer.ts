@@ -52,13 +52,13 @@ export type UsersLocationType = {
 // ---------------------------------------------------------------------------------------------------------------------
 
 export type UserActionTypes =
-    | ReturnType<typeof setFollow>
-    | ReturnType<typeof setUnfollow>
-    | ReturnType<typeof setUsers>
-    | ReturnType<typeof setCurrentPage>
-    | ReturnType<typeof setTotalUsersCount>
-    | ReturnType<typeof setUsersDataFetching>
-    | ReturnType<typeof setUserFollowStatusFetching>
+    | ReturnType<typeof setFollowAC>
+    | ReturnType<typeof setUnfollowAC>
+    | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setTotalUsersCountAC>
+    | ReturnType<typeof setUsersDataFetchingAC>
+    | ReturnType<typeof setUserFollowStatusFetchingAC>
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Enum (const)
@@ -125,66 +125,66 @@ const usersReducer = (state: UsersPageType = initialState, action: UserActionTyp
 // Action Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const setFollow = (userID: number) =>
-    ({ type: USERS.FOLLOW, userID }) as const
-export const setUnfollow = (userID: number) =>
-    ({ type: USERS.UNFOLLOW, userID }) as const
-export const setUsers = (usersData: UserDataType[]) =>
-    ({ type: USERS.SET_USERS, usersData }) as const
-export const setCurrentPage = (pageNumber: number) =>
-    ({ type: USERS.SET_CURRENT_PAGE, pageNumber }) as const
-export const setTotalUsersCount = (usersCount: number) =>
-    ({ type: USERS.SET_TOTAL_USERS_COUNT, usersCount }) as const
-export const setUsersDataFetching = (isFetching: boolean) =>
-    ({ type: USERS.SET_USERS_IS_FETCHING, isFetching }) as const
-export const setUserFollowStatusFetching = (isFetching: boolean, userID: number) =>
-    ({ type: USERS.SET_USER_FOLLOW_STATUS_IS_FETCHING, isFetching, userID }) as const
+export const setFollowAC = (userID: number) =>
+    ({ type: USERS.FOLLOW, userID } as const)
+export const setUnfollowAC = (userID: number) =>
+    ({ type: USERS.UNFOLLOW, userID } as const)
+export const setUsersAC = (usersData: UserDataType[]) =>
+    ({ type: USERS.SET_USERS, usersData } as const)
+export const setCurrentPageAC = (pageNumber: number) =>
+    ({ type: USERS.SET_CURRENT_PAGE, pageNumber } as const)
+export const setTotalUsersCountAC = (usersCount: number) =>
+    ({ type: USERS.SET_TOTAL_USERS_COUNT, usersCount } as const)
+export const setUsersDataFetchingAC = (isFetching: boolean) =>
+    ({ type: USERS.SET_USERS_IS_FETCHING, isFetching } as const)
+export const setUserFollowStatusFetchingAC = (isFetching: boolean, userID: number) =>
+    ({ type: USERS.SET_USER_FOLLOW_STATUS_IS_FETCHING, isFetching, userID } as const)
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Thunk Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const requestUsers = (currentPage: number, pageSize: number): ThunkDispatchType => {
+export const requestUsersTC = (currentPage: number, pageSize: number): ThunkDispatchType => {
 
     return (dispatch, /*getState*/) => {
-        dispatch(setUsersDataFetching(true))
+        dispatch(setUsersDataFetchingAC(true))
 
         USERS_API.getUsersData(currentPage, pageSize)
             .then(data => {
-                dispatch(setUsers(data.items))
-                dispatch(setTotalUsersCount(data.totalCount))
-                dispatch(setUsersDataFetching(false))
-                dispatch(setCurrentPage(currentPage))
+                dispatch(setUsersAC(data.items))
+                dispatch(setTotalUsersCountAC(data.totalCount))
+                dispatch(setUsersDataFetchingAC(false))
+                dispatch(setCurrentPageAC(currentPage))
             })
     }
 }
 
-export const follow = (userID: number): ThunkDispatchType => {
+export const followTC = (userID: number): ThunkDispatchType => {
 
     return (dispatch, /*getState*/) => {
-        dispatch(setUserFollowStatusFetching(true, userID))
+        dispatch(setUserFollowStatusFetchingAC(true, userID))
 
         USERS_API.followUser(userID)
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    dispatch(setFollow(userID))
+                    dispatch(setFollowAC(userID))
                 }
-                dispatch(setUserFollowStatusFetching(false, userID))
+                dispatch(setUserFollowStatusFetchingAC(false, userID))
             })
     }
 }
 
-export const unFollow = (userID: number): ThunkDispatchType => {
+export const unfollowTC = (userID: number): ThunkDispatchType => {
 
     return (dispatch, /*getState*/) => {
-        dispatch(setUserFollowStatusFetching(true, userID))
+        dispatch(setUserFollowStatusFetchingAC(true, userID))
 
         USERS_API.unFollowUser(userID)
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    dispatch(setUnfollow(userID))
+                    dispatch(setUnfollowAC(userID))
                 }
-                dispatch(setUserFollowStatusFetching(false, userID))
+                dispatch(setUserFollowStatusFetchingAC(false, userID))
             })
     }
 }

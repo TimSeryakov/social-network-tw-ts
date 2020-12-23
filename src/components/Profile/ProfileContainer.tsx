@@ -4,10 +4,10 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store-redux";
 import {
-    requestProfileData,
-    requestProfileUserStatus,
-    setCurrentUserProfile,
-    updateProfileUserStatus,
+    requestProfileDataTC,
+    requestProfileUserStatusTC,
+    setCurrentUserProfileAC,
+    updateProfileUserStatusTC,
     UserProfileDataType
 } from "../../redux/profile-reducer";
 import {compose} from "redux";
@@ -39,18 +39,18 @@ export function ProfileContainer(props: ProfileContainerPropsType) {
             userID = props.match.params.userID
         }
 
-        dispatch(requestProfileData(userID))
-        dispatch(requestProfileUserStatus(userID))
+        dispatch(requestProfileDataTC(userID))
+        dispatch(requestProfileUserStatusTC(userID))
 
     }, [props.match.params.userID, dispatch])
 
 
     const setCurrentUserProfileFn = (userProfile: UserProfileDataType) => {
-        dispatch(setCurrentUserProfile(userProfile))
+        dispatch(setCurrentUserProfileAC(userProfile))
     }
 
     const updateUserStatus = (userProfileStatus: string) => {
-        dispatch(updateProfileUserStatus(userProfileStatus))
+        dispatch(updateProfileUserStatusTC(userProfileStatus))
     }
 
 

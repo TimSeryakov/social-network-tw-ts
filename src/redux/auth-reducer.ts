@@ -38,9 +38,9 @@ export type UserAuthDataType = {
 // ---------------------------------------------------------------------------------------------------------------------
 
 export type AuthActionTypes =
-    | ReturnType<typeof setAuthUserData>
-    | ReturnType<typeof setAuthDataFetching>
-    | ReturnType<typeof setAuthServerErrors>
+    | ReturnType<typeof setAuthUserDataAC>
+    | ReturnType<typeof setAuthDataFetchingAC>
+    | ReturnType<typeof setAuthServerErrorsAC>
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Enum (const)
@@ -86,54 +86,54 @@ const authReducer = (state: AuthStateType = initialState, action: AuthActionType
 // Action Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const setAuthUserData = (userAuthData: UserAuthDataType, isAuth: boolean) =>
-    ({ type: AUTH.SET_USER_DATA, userAuthData, isAuth }) as const
+export const setAuthUserDataAC = (userAuthData: UserAuthDataType, isAuth: boolean) =>
+    ({ type: AUTH.SET_USER_DATA, userAuthData, isAuth } as const)
 
-export const setAuthDataFetching = (isAuthDataFetching: boolean) =>
-    ({ type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching }) as const
+export const setAuthDataFetchingAC = (isAuthDataFetching: boolean) =>
+    ({ type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching } as const)
 
-export const setAuthServerErrors = (serverErrorMessages: string[]) =>
-    ({ type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages }) as const
+export const setAuthServerErrorsAC = (serverErrorMessages: string[]) =>
+    ({ type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages } as const)
 
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Thunk Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const requestAuthUserData = (): ThunkDispatchType => (dispatch/*, getState*/) => {
-    dispatch(setAuthDataFetching(true))
+export const requestAuthUserDataTC = (): ThunkDispatchType => (dispatch/*, getState*/) => {
+    dispatch(setAuthDataFetchingAC(true))
 
     AUTH_API.me()
         .then(data => {
             if (data.resultCode === 0) {
-                dispatch(setAuthUserData(data.data, true))
-                dispatch(setAuthDataFetching(false))
+                dispatch(setAuthUserDataAC(data.data, true))
+                dispatch(setAuthDataFetchingAC(false))
             }
         })
 }
 
-export const login = (email: string, password: string, rememberMe: boolean): ThunkDispatchType => (dispatch/*, getState*/) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkDispatchType => (dispatch/*, getState*/) => {
 
-    dispatch(setAuthDataFetching(true))
+    dispatch(setAuthDataFetchingAC(true))
 
     AUTH_API.login(email, password, rememberMe)
         .then(data => {
             if (data.resultCode === 0) {
-                dispatch(requestAuthUserData())
-                dispatch(setAuthDataFetching(false))
+                dispatch(requestAuthUserDataTC())
+                dispatch(setAuthDataFetchingAC(false))
             } else {
-                dispatch(setAuthServerErrors(data.messages))
+                dispatch(setAuthServerErrorsAC(data.messages))
             }
         })
 }
 
-export const logout = (): ThunkDispatchType => (dispatch/*, getState*/) => {
-    dispatch(setAuthDataFetching(true))
+export const logoutTC = (): ThunkDispatchType => (dispatch/*, getState*/) => {
+    dispatch(setAuthDataFetchingAC(true))
     AUTH_API.logout()
         .then(data => {
             if (data.resultCode === 0) {
-                dispatch(setAuthUserData({ email: null, login: null, userID: null }, false))
-                dispatch(setAuthDataFetching(false))
+                dispatch(setAuthUserDataAC({ email: null, login: null, userID: null }, false))
+                dispatch(setAuthDataFetchingAC(false))
             }
         })
 }

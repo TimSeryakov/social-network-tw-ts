@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginForm, {FormDataType} from "./LoginForm";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../redux/auth-reducer";
+import {loginTC} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/store-redux";
 import { Redirect } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export const Login = () => {
     const dispatch = useDispatch()
 
     const onSubmit = (formData: FormDataType) => {
-        dispatch(login(formData.email, formData.password, formData.rememberMe))
+        dispatch(loginTC(formData.email, formData.password, formData.rememberMe))
     }
 
     if (isAuth) {

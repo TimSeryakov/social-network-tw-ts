@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../redux/auth-reducer";
+import {loginTC} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/store-redux";
 import {Redirect} from 'react-router-dom';
 import {SubmitHandler, useForm} from "react-hook-form";
@@ -18,7 +18,7 @@ export const Login = () => {
 
 
     const onSubmit: SubmitHandler<LoginFormData> = data => {
-        dispatch(login(data.email, data.password, data.rememberMe))
+        dispatch(loginTC(data.email, data.password, data.rememberMe))
     }
 
     if (isAuth) {

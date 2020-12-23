@@ -85,7 +85,7 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsAc
 // ---------------------------------------------------------------------------------------------------------------------
 
 export const sendMessageAC = (messageText: string) =>
-    ({ type: DIALOGS.SEND_MESSAGE, messageText }) as const
+    ({ type: DIALOGS.SEND_MESSAGE, messageText } as const)
 
 
 export default dialogsReducer

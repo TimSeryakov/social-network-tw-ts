@@ -2,7 +2,7 @@ import React, {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux";
 import {Users} from "./Users";
 import {RootStateType} from "../../redux/store-redux";
-import {follow, requestUsers, unFollow} from "../../redux/users-reducer";
+import {followTC, requestUsersTC, unfollowTC} from "../../redux/users-reducer";
 import {compose} from "redux";
 import {withAuthRedirect} from "../HOC/withAuthRedirect";
 
@@ -19,19 +19,19 @@ function UsersContainer() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(requestUsers(currentPage, pageSize))
+        dispatch(requestUsersTC(currentPage, pageSize))
     }, [currentPage, pageSize, dispatch]) // указывать dispatch чтобы не ругался, хотя он и не может измениться
 
     const onPaginationLinkClick = (pageNumber: number) => {
-        dispatch(requestUsers(pageNumber, pageSize))
+        dispatch(requestUsersTC(pageNumber, pageSize))
     }
 
     const followFn = (userID: number) => {
-        dispatch(follow(userID))
+        dispatch(followTC(userID))
     }
 
     const unFollowFn = (userID: number) => {
-        dispatch(unFollow(userID))
+        dispatch(unfollowTC(userID))
     }
 
     return <Users usersData={usersData}

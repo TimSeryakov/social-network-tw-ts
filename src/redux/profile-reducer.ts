@@ -64,11 +64,11 @@ type ContactsType = {
 // ---------------------------------------------------------------------------------------------------------------------
 
 export type ProfileActionTypes =
-    | ReturnType<typeof addPost>
-    | ReturnType<typeof setCurrentUserProfile>
-    | ReturnType<typeof setProfileDataFetching>
-    | ReturnType<typeof getProfileUserStatus>
-    | ReturnType<typeof setProfileUserStatus>
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof setCurrentUserProfileAC>
+    | ReturnType<typeof setProfileDataFetchingAC>
+    | ReturnType<typeof getProfileUserStatusAC>
+    | ReturnType<typeof setProfileUserStatusAC>
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Enum (const)
@@ -115,55 +115,55 @@ const profileReducer = (state: ProfilePageType = initialState, action: ProfileAc
 // Action Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const addPost = (newPost: string) =>
-    ({ type: PROFILE.ADD_POST, newPost }) as const
+export const addPostAC = (newPost: string) =>
+    ({ type: PROFILE.ADD_POST, newPost } as const)
 
-export const setCurrentUserProfile = (userProfileData: UserProfileDataType) =>
-    ({ type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData }) as const
+export const setCurrentUserProfileAC = (userProfileData: UserProfileDataType) =>
+    ({ type: PROFILE.SET_CURRENT_USER_PROFILE, userProfileData } as const)
 
-export const setProfileDataFetching = (isProfileDataFetching: boolean) =>
-    ({ type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching }) as const
+export const setProfileDataFetchingAC = (isProfileDataFetching: boolean) =>
+    ({ type: PROFILE.SET_PROFILE_DATA_FETCHING, isProfileDataFetching } as const)
 
-export const getProfileUserStatus = (userID: string) =>
-    ({ type: PROFILE.GET_PROFILE_USER_STATUS, userID }) as const
+export const getProfileUserStatusAC = (userID: string) =>
+    ({ type: PROFILE.GET_PROFILE_USER_STATUS, userID } as const)
 
-export const setProfileUserStatus = (userProfileStatus: string) =>
-    ({ type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus }) as const
+export const setProfileUserStatusAC = (userProfileStatus: string) =>
+    ({ type: PROFILE.SET_PROFILE_USER_STATUS, userProfileStatus } as const)
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Thunk Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const requestProfileData = (userID: string): ThunkDispatchType => (dispatch, /*getState*/) => {
-    dispatch(setProfileDataFetching(true))
+export const requestProfileDataTC = (userID: string): ThunkDispatchType => (dispatch, /*getState*/) => {
+    dispatch(setProfileDataFetchingAC(true))
 
     PROFILE_API.getProfileData(userID)
         .then(data => {
-            dispatch(setCurrentUserProfile(data))
-            dispatch(setProfileDataFetching(false))
+            dispatch(setCurrentUserProfileAC(data))
+            dispatch(setProfileDataFetchingAC(false))
         })
 }
 
-export const requestProfileUserStatus = (userID: string): ThunkDispatchType => (dispatch, /*getState*/) => {
-    dispatch(setProfileDataFetching(true))
+export const requestProfileUserStatusTC = (userID: string): ThunkDispatchType => (dispatch, /*getState*/) => {
+    dispatch(setProfileDataFetchingAC(true))
 
     PROFILE_API.getProfileUserStatus(userID)
         .then(data => {
-            dispatch(setProfileUserStatus(data))
-            dispatch(setProfileDataFetching(false))
+            dispatch(setProfileUserStatusAC(data))
+            dispatch(setProfileDataFetchingAC(false))
         })
 }
 
-export const updateProfileUserStatus = (userProfileStatus: string): ThunkDispatchType => (dispatch, /*getState*/) => {
-    dispatch(setProfileDataFetching(true))
+export const updateProfileUserStatusTC = (userProfileStatus: string): ThunkDispatchType => (dispatch, /*getState*/) => {
+    dispatch(setProfileDataFetchingAC(true))
 
     PROFILE_API.updateProfileUserStatus(userProfileStatus) // Изменения на сервере
         .then(data => {
             if (data.resultCode === 0) {
                 // если на сервере все OK, то наш меняем наш state согласно успешно отправленным данным
-                dispatch(setProfileUserStatus(userProfileStatus)) // Изменения в нашем state
+                dispatch(setProfileUserStatusAC(userProfileStatus)) // Изменения в нашем state
             }
-            dispatch(setProfileDataFetching(false))
+            dispatch(setProfileDataFetchingAC(false))
         })
 }
 
