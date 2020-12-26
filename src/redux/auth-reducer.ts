@@ -100,21 +100,41 @@ export const setAuthServerErrorsAC = (serverErrorMessages: string[]) =>
 // Thunk Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const requestAuthUserDataTC = (): ThunkDispatchType => (dispatch/*, getState*/) => {
+export const requestAuthUserDataTC = (): ThunkDispatchType => async (dispatch/*, getState*/) => {
     dispatch(setAuthDataFetchingAC(true))
-
-    AUTH_API.me()
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setAuthUserDataAC(data.data, true))
-                dispatch(setAuthDataFetchingAC(false))
-            }
-        })
+    try {
+        const res = await AUTH_API.me()
+        if (res.resultCode === 0) {
+            dispatch(setAuthUserDataAC(res.data, true))
+        }
+    }
+    catch(err) {
+        console.log(err) // TODO сделать через redux?
+    }
+    finally {
+        dispatch(setAuthDataFetchingAC(false))
+    }
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkDispatchType => (dispatch/*, getState*/) => {
-
+export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkDispatchType => async (dispatch/*, getState*/) => {
     dispatch(setAuthDataFetchingAC(true))
+
+    try {
+        const res = await AUTH_API.login(email, password, rememberMe)
+        if (res.resultCode === 0) {
+            dispatch(requestAuthUserDataTC())
+            dispatch(setAuthDataFetchingAC(false))
+        } else {
+            dispatch(setAuthServerErrorsAC(res.messages))
+        }
+    }
+    catch(err) {
+        dispatch(setAuthServerErrorsAC(err.messages))
+    }
+    finally {
+        dispatch(setAuthDataFetchingAC(false))
+    }
+
 
     AUTH_API.login(email, password, rememberMe)
         .then(data => {

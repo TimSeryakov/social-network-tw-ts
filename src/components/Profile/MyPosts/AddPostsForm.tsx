@@ -1,6 +1,6 @@
 import React, {FC, KeyboardEvent} from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {maxLength} from "../../../helpers/validators/validators";
+import {maxLength} from "../../../helpers/validators";
 
 
 type AddPostsFormPropsType = {}

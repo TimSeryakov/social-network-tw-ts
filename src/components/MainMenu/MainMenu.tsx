@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {BordersPropsType, parseBordersProps} from "../common/helpers/parseBordersProps";
+import {BordersPropsType, parseBordersProps} from "../../helpers/parseBordersProps";
 
 type MainMenuPropsType = {
     borders: BordersPropsType

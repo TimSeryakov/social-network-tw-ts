@@ -1,6 +1,6 @@
 import React from 'react';
 import {Post} from "./Post/Post"
-import {BordersPropsType, parseBordersProps} from "../../common/helpers/parseBordersProps";
+import {BordersPropsType, parseBordersProps} from "../../../helpers/parseBordersProps";
 import {scroller} from 'react-scroll';
 import {PostDataType} from "../../../redux/profile-reducer";
 import AddPostsForm, {AddPostsFormDataType} from "./AddPostsForm";

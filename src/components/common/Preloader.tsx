@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {BordersPropsType, parseBordersProps} from "./helpers/parseBordersProps";
+import {BordersPropsType, parseBordersProps} from "../../helpers/parseBordersProps";
 import {PreloaderCircle} from "./PreloaderCircle";
 
 type PreloaderPropsType = {

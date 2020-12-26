@@ -2,7 +2,7 @@ import {addPostAC, PostDataType} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/store-redux";
-import {BordersPropsType} from "../../common/helpers/parseBordersProps";
+import {BordersPropsType} from "../../../helpers/parseBordersProps";
 import {FormAction, reset} from "redux-form";
 
 type MapStatePropsType = {

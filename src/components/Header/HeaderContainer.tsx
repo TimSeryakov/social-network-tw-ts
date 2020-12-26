@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BordersPropsType} from "../common/helpers/parseBordersProps";
+import {BordersPropsType} from "../../helpers/parseBordersProps";
 import {Header} from "./Header";
 import {useDispatch, useSelector} from "react-redux";
 import {logoutTC, requestAuthUserDataTC} from "../../redux/auth-reducer";
