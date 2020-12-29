@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {Users} from "./Users";
 import {RootStateType} from "../../redux/store-redux";
 import {followTC, requestUsersTC, unfollowTC} from "../../redux/users-reducer";
-import {compose} from "redux";
-import {withAuthRedirect} from "../HOC/withAuthRedirect";
+import { withAuthRedirect } from "../HOC/withAuthRedirect";
+import { compose } from "redux";
 
 function UsersContainer() {
 
@@ -45,6 +45,7 @@ function UsersContainer() {
     />
 }
 
+// export default UsersContainer
 export default compose(withAuthRedirect)(UsersContainer)
 
 //

@@ -22,7 +22,6 @@ type PathParamsType = {
 type ProfileContainerPropsType = RouteComponentProps<PathParamsType>
 
 export function ProfileContainer(props: ProfileContainerPropsType) {
-
     const {
         currentUserProfile,
         isProfileDataFetching,
@@ -35,6 +34,9 @@ export function ProfileContainer(props: ProfileContainerPropsType) {
         let userID: string
         if (!props.match.params.userID) {
             userID = String(LOCAL_USER)
+            // if (!userID) {
+            //     history.push("/login")
+            // }
         } else {
             userID = props.match.params.userID
         }

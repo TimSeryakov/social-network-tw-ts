@@ -17,8 +17,6 @@ function HeaderContainer(props: HeaderContainerPropsType) {
         dispatch(logoutTC())
         return <Redirect to={"/login"}/>
     }
-
-
     useEffect(() => {
         if (!userID) dispatch(requestAuthUserDataTC())
     }, [userID, dispatch])

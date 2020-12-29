@@ -1,5 +1,6 @@
 import {ThunkDispatchType} from "./store-redux";
 import {AUTH_API} from "../api/api";
+import {Dispatch} from "react";
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Init State
@@ -47,9 +48,9 @@ export type AuthActionTypes =
 // ---------------------------------------------------------------------------------------------------------------------
 
 export enum AUTH {
-    SET_USER_DATA = 'SET_USER_DATA',
-    SET_AUTH_DATA_FETCHING = 'SET_AUTH_DATA_FETCHING',
-    SET_AUTH_SERVER_ERRORS = 'SET_AUTH_SERVER_ERRORS'
+    SET_USER_DATA = "SET_USER_DATA",
+    SET_AUTH_DATA_FETCHING = "SET_AUTH_DATA_FETCHING",
+    SET_AUTH_SERVER_ERRORS = "SET_AUTH_SERVER_ERRORS"
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -87,33 +88,34 @@ const authReducer = (state: AuthStateType = initialState, action: AuthActionType
 // ---------------------------------------------------------------------------------------------------------------------
 
 export const setAuthUserDataAC = (userAuthData: UserAuthDataType, isAuth: boolean) =>
-    ({ type: AUTH.SET_USER_DATA, userAuthData, isAuth } as const)
+    ({type: AUTH.SET_USER_DATA, userAuthData, isAuth} as const)
 
 export const setAuthDataFetchingAC = (isAuthDataFetching: boolean) =>
-    ({ type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching } as const)
+    ({type: AUTH.SET_AUTH_DATA_FETCHING, isAuthDataFetching} as const)
 
 export const setAuthServerErrorsAC = (serverErrorMessages: string[]) =>
-    ({ type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages } as const)
+    ({type: AUTH.SET_AUTH_SERVER_ERRORS, serverErrorMessages} as const)
 
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Thunk Creators
 // ---------------------------------------------------------------------------------------------------------------------
 
-export const requestAuthUserDataTC = (): ThunkDispatchType => async (dispatch/*, getState*/) => {
+export const requestAuthUserDataTC = () => (dispatch: Dispatch<any>/*, getState*/) => {
     dispatch(setAuthDataFetchingAC(true))
-    try {
-        const res = await AUTH_API.me()
-        if (res.resultCode === 0) {
-            dispatch(setAuthUserDataAC(res.data, true))
-        }
-    }
-    catch(err) {
-        console.log(err) // TODO сделать через redux?
-    }
-    finally {
-        dispatch(setAuthDataFetchingAC(false))
-    }
+
+    return AUTH_API.me()
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserDataAC(data.data, true))
+            }
+        })
+        .catch((err) => {
+            console.log(err.name + ": " + err.message) // TODO сделать через redux?
+        })
+        .finally(() => {
+            dispatch(setAuthDataFetchingAC(false))
+        })
 }
 
 export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkDispatchType => async (dispatch/*, getState*/) => {
@@ -127,11 +129,9 @@ export const loginTC = (email: string, password: string, rememberMe: boolean): T
         } else {
             dispatch(setAuthServerErrorsAC(res.messages))
         }
-    }
-    catch(err) {
+    } catch (err) {
         dispatch(setAuthServerErrorsAC(err.messages))
-    }
-    finally {
+    } finally {
         dispatch(setAuthDataFetchingAC(false))
     }
 
@@ -152,7 +152,7 @@ export const logoutTC = (): ThunkDispatchType => (dispatch/*, getState*/) => {
     AUTH_API.logout()
         .then(data => {
             if (data.resultCode === 0) {
-                dispatch(setAuthUserDataAC({ email: null, login: null, userID: null }, false))
+                dispatch(setAuthUserDataAC({email: null, login: null, userID: null}, false))
                 dispatch(setAuthDataFetchingAC(false))
             }
         })

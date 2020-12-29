@@ -7,6 +7,7 @@ import authReducer, {AuthActionTypes, AuthStateType} from "./auth-reducer";
 import logger from "redux-logger";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as reduxFormReducer} from 'redux-form';
+import appReducer, {AppActionTypes, AppStateType} from "./app-reducer";
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -14,6 +15,7 @@ export type RootStateType = {
     usersPage: UsersPageType
     sidebar: SidebarType
     auth: AuthStateType
+    app: AppStateType
 }
 
 export type StoreType = {
@@ -31,6 +33,7 @@ export type RootActionsTypes =
     | UserActionTypes
     | ProfileActionTypes
     | DialogsActionTypes
+    | AppActionTypes
 
 
 const reducers = combineReducers({
@@ -39,6 +42,7 @@ const reducers = combineReducers({
     usersPage: usersReducer,
     sidebar: sidebarReducer,
     auth: authReducer,
+    app: appReducer,
     form: reduxFormReducer
 })
 
